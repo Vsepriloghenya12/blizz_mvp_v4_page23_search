@@ -1,0 +1,9 @@
+server syntax check passed:
+- node --check src/server.js
+- node --check src/app.js
+- node --check src/modules/auth/auth.routes.js
+- node --check src/modules/auth/auth.service.js
+- node --check src/modules/accounts/accounts.routes.js
+- node --check src/modules/accounts/accounts.service.js
+- node --check src/shared/storage/jsonDatabase.js
+- node --check all server/src/**/*.js

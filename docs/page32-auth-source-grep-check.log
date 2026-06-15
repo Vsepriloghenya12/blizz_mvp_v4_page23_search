@@ -1,0 +1,17 @@
+user.isBusiness
+MainTabs labels
+  key: TabKey;
+  label: string;
+  marker: string;
+};
+
+const tabs: TabConfig[] = [
+  { key: "home", label: "Главная", marker: "⌂" },
+  { key: "video", label: "Видео", marker: "▶" },
+  { key: "create", label: "+", marker: "+" },
+  { key: "map", label: "Карта", marker: "⌖" },
+  { key: "profile", label: "Профиль", marker: "○" },
+];
+
+Обновить
+CreateScreen Близз actions

@@ -1,0 +1,470 @@
+version: 1
+plan:
+  name: 'Близз — полный визуальный сет: идентичность, иконки, система, экраны'
+  max_concurrency: 4
+  max_consecutive_failures: 2
+  max_cycles: 6
+  verifier_config:
+    default_verifiers: [verifier]
+    audit_sample_rate: 0.0
+tasks:
+  - id: identity
+    title: 'Трек 1 — Идентичность бренда и апп-иконка'
+    prompt: |
+      Ты работаешь в проекте D:\blizz_mvp_v4_page23_search. НЕ МЕНЯЙ КОД.
+      Твоя задача — подготовить визуальный research + конкретные референсы для identity бренда «Близз»:
+      приложение-соцсеть с лентой, сторис (Близзы), чатами, картой, поиском, играми и бизнес-аккаунтами.
+      Нижняя навигация: Главная / Видео / + / Карта / Профиль. Сообщения не в нижней навигации.
+      Близз (сторис) НЕ должен быть в центральном +. Квази-соцсеть с геометками.
+      Целевая аудитория — широкая, основной рынок РФ.
+
+      Сначала прочитай контекст:
+      - README.md
+      - docs/skills/scaffold.md
+      - docs/skills/superpowers.md
+      - mobile/src/shared/ui/theme.ts
+      - docs/page-32-auth-visual-schema.md (если есть)
+      - docs/page-32-2-home-visual-verification.md (если есть)
+
+      Что нужно сделать и положить в файл docs/visual/01-identity.md (создай папку docs/visual):
+
+      1. Анализ текущего бренда: что уже есть (логотип-текст «Близз», синяя гамма, italic стиль),
+         что работает, что нет, что путает пользователя.
+
+      2. Платформенные иконки приложения (app icon) — набор требований и референсов:
+         - iOS: 1024×1024 master, без альфа, скруглённые углы не рисуем, иконография по центру
+         - Android adaptive: foreground/background layers, 432×432 safe zone 66dp
+         - PWA: 192×192, 512×512, maskable
+         - Стилистические направления: monogram, символ-объект, abstract mark, mascot.
+         Для каждого — 2-3 референса с описанием (URL / описание источника, тип, что взять).
+         Обязательно: подумай над тем, что БЛИЗЗ = сторис = круг/кольцо. Это сильный символ.
+
+      3. Логотип-знак (wordmark + symbol):
+         - Текущее состояние: текст «Близз» italic, синий.
+         - 3-4 альтернативных концепта знака, каждый с описанием геометрии,
+           смысла и того, как он ведёт себя в маленьком размере (favicon 16px, app icon, шапка).
+         - 2 концепта вордмарка (sans, italic, geometric и т.д.) с обоснованием.
+
+      4. Графический язык:
+         - формы (круг — кольцо — круг-капсула — квадрат с скруглением 24),
+         - плашки и бейджи,
+         - иллюстрации (учитывай, что в проекте пока всё на эмодзи/ASCII),
+         - empty-state иллюстрации (2-3 описания).
+
+      5. Связь с доменом:
+         - почему «Близз» = сторис = кольцо,
+         - почему «Лента» = горизонтальная прокрутка,
+         - почему «+» = центральная кнопка,
+         - как домен диктует визуальный язык.
+
+      6. Дай 3 целостных направления визуала (например: «Bauhaus Geo», «Soft Russian»,
+         «Dark Editorial» или другие твои варианты — обоснуй названия). Для каждого:
+         - 1-2 предложения сути,
+         - где он сильный, где слабый,
+         - 2-3 референса из реальных приложений (Behance / Dribbble / сайт приложения),
+         - подходит ли для Близза по архитектурным правилам (тёмная тема, светлая, оба).
+
+      7. Acceptance-чеклист для иконки приложения (10-12 пунктов: узнаваемость при 60px,
+         работает в monochrome, не сливается с конкурентами, и т.д.).
+
+      Ограничения:
+      - Никаких рекламных обещаний, гемблинга, AI-поиска, contact import — этого нет в проекте и не появится.
+      - Не предлагай gambling/paid boosts/ads.
+      - Двух аккаунтная модель personal/business уже есть — референсы должны быть универсальны.
+
+      Длина файла — substantial: 6-12 KB. Это research, не bullet-list.
+      В конце файла добавь раздел «Открытые вопросы для подтверждения с пользователем»
+      (3-5 вопросов: какое направление ближе, нужны ли маскоты, нужен ли dark mode сразу и т.д.).
+    assigned_to: general
+    verified_by: verifier
+    verify_prompt: |
+      Открой docs/visual/01-identity.md и проверь:
+      1) Файл реально существует и не пустой.
+      2) Есть конкретные референсы (не «сделай красиво», а описания реальных приложений/работ с источниками).
+      3) Рассмотрены ВСЕ платформы иконки (iOS, Android adaptive, PWA).
+      4) Есть минимум 3 направления визуала с обоснованием.
+      5) Учтены архитектурные правила Близза (5 вкладок без Сообщений, Близз не в +).
+      6) Нет запрещённых фич (гемблинг, paid boosts, ads, AI search, contact import).
+      7) Раздел «Открытые вопросы» присутствует и не пустой.
+      8) Длина соответствует deep-research контракту (substantial, не краткий список).
+      Если хоть один пункт не выполнен — FAIL с указанием конкретного пробела.
+    timeout_ms: 1800000
+
+  - id: iconography
+    title: 'Трек 2 — Иконки: навигация, действия, контент'
+    prompt: |
+      Ты работаешь в проекте D:\blizz_mvp_v4_page23_search. НЕ МЕНЯЙ КОД.
+      Подготовь полный визуальный research + набор референсов для ИКОНОК приложения «Близз».
+
+      Сначала прочитай контекст:
+      - README.md
+      - mobile/src/shared/ui/theme.ts
+      - mobile/src/navigation/MainTabs.tsx (какие сейчас ASCII-маркеры)
+      - mobile/src/screens/home/HomeScreen.tsx, mobile/src/screens/search/SearchScreen.tsx,
+        mobile/src/screens/map/MapScreen.tsx, mobile/src/screens/messages/MessagesScreen.tsx
+        — что за иконки используются (⌕ ♢ ✉ ⌖ ▶ ○ и т.д.)
+      - docs/skills/scaffold.md
+      - docs/page-32-auth-visual-schema.md (если есть)
+
+      Положи результат в docs/visual/02-iconography.md.
+
+      Содержимое:
+
+      1. Принципы иконографической системы:
+         - stroke vs fill, размер, оптическое выравнивание,
+         - состояния (default, active, hover, disabled, unread),
+         - толщина обводки и сетка (предложи: 24×24 grid, 1.5–2 px stroke),
+         - именование файлов и формат иконок (SVG, React Native компонент).
+         - Правило: одна иконка = одна функция, не использовать универсальный «три точки» для разных действий.
+
+      2. Навигационные иконки нижней панели (5):
+         Главная / Видео / + / Карта / Профиль.
+         Для каждой: описание геометрии, активное состояние (как меняется при выборе),
+         какой символ точно НЕ использовать (типичные ошибки), 1-2 референса из реальных приложений.
+
+      3. Иконки действий в ленте/постах (10-15):
+         like, comment, share, save, location pin, more (3 dots), follow, message,
+         notification, search, send, camera, plus, home, profile, map, video, story, offer.
+         Для каждой: описание, активное состояние, референс.
+
+      4. Иконки по типу контента на карте и в поиске:
+         post (P), video (V), story (B), business (Б), offer (₽) — что сейчас.
+         Предложи единый язык (shape language): каждая иконка = форма + цветной фон.
+         2-3 референса (Foursquare, Google Maps, Apple Maps).
+
+      5. Иконки в чатах и играх:
+         text, shared content card, story reply, game invite (card/shells),
+         выбранный стаканчик, активный раунд.
+         2-3 референса.
+
+      6. Иконки состояний и системные:
+         loading (spinner), empty, error, success, warning, info.
+         1-2 референса.
+
+      7. Иконка онбординга/empty-state (иллюстративная):
+         2-3 концепта с описанием композиции (например, открытая ладонь с искрой,
+         человек у карты, разговор двух speech bubbles). Без готового изображения —
+         только подробное текстовое описание сцены и палитра.
+
+      8. Библиотеки-кандидаты (выбери 2-3, обоснуй):
+         Phosphor, Lucide, Tabler, Heroicons, Ionicons, Iconoir, Apple SF Symbols, custom.
+         Учти, что mobile — Expo 56 + react-native-web. Custom SVG-компонент в RN нормально.
+
+      9. Acceptance-чеклист для иконок (10-12 пунктов).
+
+      Длина 6-12 KB, substantial.
+      В конце — «Открытые вопросы» (3-5: берём open-source библиотеку или рисуем свои,
+      стиль stroke vs fill, нужны ли filled активные состояния, и т.д.).
+    assigned_to: general
+    verified_by: verifier
+    verify_prompt: |
+      Открой docs/visual/02-iconography.md и проверь:
+      1) Файл существует и substantial (не 1KB).
+      2) Рассмотрены ВСЕ 5 навигационных иконок + действия + контент + чат/игры + состояния.
+      3) Есть 2-3 референса для ключевых групп (навигация, контент, чат).
+      4) Принципы (сетка, stroke, состояния) описаны и применимы к RN/Expo.
+      5) Есть раздел про библиотеки с обоснованием выбора.
+      6) Нет запрещённых фич проекта.
+      7) Раздел «Открытые вопросы» есть.
+      Иначе FAIL с конкретикой.
+    timeout_ms: 1800000
+
+  - id: tokens
+    title: 'Трек 3 — Палитра, типографика, токены'
+    prompt: |
+      Ты работаешь в проекте D:\blizz_mvp_v4_page23_search. НЕ МЕНЯЙ КОД.
+      Подготовь полный визуальный research для системы палитры, типографики, отступов, теней,
+      скруглений и motion-токенов приложения «Близз».
+
+      Сначала прочитай:
+      - README.md
+      - mobile/src/shared/ui/theme.ts
+      - mobile/App.tsx
+      - mobile/package.json (что за шрифты подключены, если что)
+      - docs/skills/scaffold.md
+      - docs/page-32-auth-visual-schema.md и docs/page-32-2-home-visual-verification.md
+        (если есть — что уже сделано по визуалу)
+
+      Положи результат в docs/visual/03-tokens.md.
+
+      Содержимое:
+
+      1. Аудит текущей палитры (theme.ts):
+         - primary #0B3D99, darkNavy #071B3A, background #FAFAF7, surface #FFFFFF,
+           softBlue #EAF1FF, textPrimary #101828, textSecondary #667085, border #D9E3F2,
+           danger #D92D20.
+         - что хорошо (контраст, узнаваемость бренда),
+         - что плохо (нет semantic colors, нет dark theme, нет состояний hover/pressed/disabled,
+           бренд-цвет «кричит» в малых дозах, softBlue слишком бледный для disabled).
+         - Проверь WCAG AA для ключевых пар (textPrimary on background, primary on white).
+
+      2. Палитра для светлой темы — полный набор:
+         - brand: primary, primaryHover, primaryPressed, primarySoft (для подложек),
+           primaryOn (для текста на primary), accent.
+         - surface: bg, surface, surfaceElevated, surfaceMuted.
+         - text: primary, secondary, muted, inverse, onAccent, onPrimary, link.
+         - border: default, strong, subtle, focus.
+         - status: success, warning, danger, info (с text/soft/border вариантами).
+         - content: like, comment, share, save, location, story (B), offer, business.
+         - overlay/scrim.
+         - HEX-значения, HSL, и обоснование шага (как считал, откуда брал базовый).
+
+      3. Палитра для тёмной темы:
+         - те же семантические роли,
+         - стратегия: brand остаётся светлее, surfaces инвертируются, text инвертируется.
+         - конкретные HEX-значения.
+
+      4. Семантические токены vs raw-токены:
+         - объясни разницу, приведи пример «background.surface.card» против «#FFFFFF»,
+         - как это ложится на RN/Expo + TypeScript (типизация theme, тёмная тема через провайдер).
+
+      5. Типографика:
+         - семейство (нативные шрифты iOS/Android, веб-фоллбэк, опционально — Inter / SF Pro),
+         - шкала: display, h1, h2, h3, body, bodySmall, caption, overline (размер/line-height/weight),
+         - референсы: Apple HIG, Material 3, Telegram, VK, Yappy.
+
+      6. Spacing & layout:
+         - шкала 4 / 8 / 12 / 16 / 20 / 24 / 32 / 40 / 56,
+         - container max-width для web,
+         - safe area insets.
+
+      7. Радиусы:
+         - 0, 6, 12, 16, 20, 24, 28, 32, 9999 (full),
+         - что для чего (input 12, card 20-24, sheet 28-32, button 9999).
+
+      8. Тени:
+         - 4 уровня: none, sm (карточка), md (поднятая карточка), lg (bottom sheet / dialog).
+         - цвет тени — обычно брендовый с малой альфой.
+
+      9. Motion:
+         - длительности (instant 100, fast 180, normal 240, slow 360),
+         - кривые (ease-out для входа, ease-in для выхода, standard),
+         - reduced motion: как уважать prefers-reduced-motion.
+
+      10. Accessibility:
+          - минимальный размер тач-таргета 44pt,
+          - контраст AA,
+          - focus ring.
+
+      11. Acceptance-чеклист для токенов (10-12 пунктов).
+
+      Длина 8-14 KB, substantial.
+      В конце «Открытые вопросы» (3-5: поддерживать dark mode сразу или потом,
+      подключать Inter или нативные, нужен ли custom font, и т.д.).
+    assigned_to: general
+    verified_by: verifier
+    verify_prompt: |
+      Открой docs/visual/03-tokens.md и проверь:
+      1) Файл существует, substantial (8+ KB).
+      2) Палитра покрывает все семантические роли для СВЕТЛОЙ темы.
+      3) Есть ТЁМНАЯ тема с конкретными HEX.
+      4) Раздел «Семантические vs raw токены» присутствует и не пустой.
+      5) Типографика имеет шкалу с размерами/line-height/weight.
+      6) Spacing, radius, shadow, motion описаны с конкретными значениями.
+      7) Accessibility раздел есть (контраст, target size, reduced motion).
+      8) Нет запрещённых фич.
+      9) Раздел «Открытые вопросы» есть.
+      Иначе FAIL.
+    timeout_ms: 1800000
+
+  - id: screens
+    title: 'Трек 4 — Компоненты и референсные экраны'
+    prompt: |
+      Ты работаешь в проекте D:\blizz_mvp_v4_page23_search. НЕ МЕНЯЙ КОД.
+      Подготовь полный визуальный research для КОМПОНЕНТОВ и РЕФЕРЕНСНЫХ ЭКРАНОВ приложения «Близз».
+
+      Сначала прочитай:
+      - README.md (особенно список модулей 1-32.2)
+      - mobile/src/shared/ui/theme.ts
+      - mobile/src/screens/home/HomeScreen.tsx (Главная)
+      - mobile/src/screens/search/SearchScreen.tsx (Поиск)
+      - mobile/src/screens/map/MapScreen.tsx (Карта)
+      - mobile/src/screens/messages/MessagesScreen.tsx (Сообщения)
+      - mobile/src/screens/stories/StoryDetailScreen.tsx (Близз)
+      - mobile/src/screens/offers/OfferDetailScreen.tsx (Предложение)
+      - mobile/src/screens/profile/ProfileScreen.tsx (Профиль)
+      - mobile/src/screens/publicProfile/PublicProfileScreen.tsx (Публичный профиль)
+      - docs/skills/scaffold.md, docs/skills/superpowers.md
+      - docs/page-32-auth-visual-schema.md, docs/page-32-2-home-visual-verification.md (если есть)
+
+      Положи результат в docs/visual/04-screens.md.
+
+      Содержимое:
+
+      1. Каталог компонентов (мини-спецификация каждого):
+         - Button (primary / secondary / ghost / danger; sizes; состояния; icon-left/right),
+         - Input (default / focused / error / disabled; с иконкой и без; multiline),
+         - Card (базовая, elevated, media card, action card),
+         - Avatar (размеры 24/32/40/56/80, ring для сторис, fallback),
+         - Tabs (pills vs underline),
+         - Chip / Tag,
+         - Bottom Sheet (handle, header, body, footer),
+         - Modal,
+         - Toast / Snackbar / Banner,
+         - ListItem,
+         - Divider,
+         - Empty state,
+         - Loading skeleton,
+         - Skeleton для feed,
+         - Story ring (с подсветкой hasUnseen, close_friends и т.д.).
+         Для каждого: ASCII-схема или описание компоновки, состояния, референс-приложение,
+         какие props/state нужны.
+
+      2. Карточки контента (важные):
+         - PostCard (header / media / text / actions) — что выровнено, какие отступы,
+         - StoryCard,
+         - VideoCard (для ленты и для grid),
+         - OfferCard (витрина),
+         - ChatBubble (исходящее/входящее, system, game_invite, game_result, shared_content),
+         - MapPin (для разных типов объектов),
+         - SearchResultRow.
+         Для каждой: схема, референс.
+
+      3. Навигация:
+         - нижние табы (5 штук, высота 76, поведение),
+         - top-bar экрана (кнопка back, title, actions),
+         - sticky bottom action bar,
+         - вложенная навигация внутри модалок.
+
+      4. Состояния (для каждого экрана):
+         - loading (skeleton, не spinner),
+         - empty (иллюстрация + CTA),
+         - error (текст + retry),
+         - noAccess (если блокировка, если private-аккаунт),
+         - sessionExpired (форма логина).
+         Привести примеры для Главной, Поиска, Карты, Сообщений, Профиля.
+
+      5. Референсные макеты (HTML-описание) для 5 ключевых экранов:
+         - Главная (сторис → таб Лента/Витрина → пост),
+         - Поиск (строка → табы → недавние/результаты),
+         - Карта (фильтры → рабочий слой → пин → sheet),
+         - Сообщения (список чатов → чат с играми),
+         - Профиль/Публичный профиль.
+         Каждый макет: ASCII-схема + список элементов с типами компонентов из п.1.
+
+      6. Особые паттерны:
+         - story ring + hasUnseen,
+         - post menu (3 dots),
+         - bottom sheet с action list,
+         - image carousel dots,
+         - chat input с + для игр/attachments,
+         - map sheet с маршрутом.
+
+      7. Acceptance-чеклист для компонентов/экранов (10-12 пунктов).
+
+      Длина 10-16 KB, substantial.
+      В конце «Открытые вопросы» (3-5: нужны ли skeleton states, bottom sheet vs full screen,
+      как показывать ошибки сети, и т.д.).
+    assigned_to: general
+    verified_by: verifier
+    verify_prompt: |
+      Открой docs/visual/04-screens.md и проверь:
+      1) Файл существует, substantial (10+ KB).
+      2) Каталог компонентов покрывает Button, Input, Card, Avatar, Tabs, Chip, Sheet, Modal,
+         Toast, ListItem, Divider, Empty, Loading, Story ring.
+      3) Карточки контента: Post, Story, Video, Offer, ChatBubble, MapPin, SearchResult.
+      4) Состояния loading/empty/error/noAccess/sessionExpired для 5 экранов.
+      5) 5 референсных макетов с ASCII или структурным описанием.
+      6) Нет запрещённых фич.
+      7) Раздел «Открытые вопросы» есть.
+      Иначе FAIL.
+    timeout_ms: 1800000
+
+  - id: synthesis
+    title: 'Синтез — единый визуальный гайд + финальный мокап-сет'
+    prompt: |
+      Ты работаешь в проекте D:\blizz_mvp_v4_page23_search. НЕ МЕНЯЙ КОД.
+      Твоя задача — собрать из четырёх треков (docs/visual/01-identity.md,
+      docs/visual/02-iconography.md, docs/visual/03-tokens.md, docs/visual/04-screens.md)
+      ЕДИНЫЙ визуальный гайд и финальный набор мокапов.
+
+      Главный файл: docs/visual/00-visual-system.md.
+      Дополнительно: docs/visual/mocks/ — набор самодостаточных HTML-мокапов
+      ключевых экранов (минимум 4: Главная, Поиск, Карта, Сообщения).
+      Каждый HTML — отдельный файл, открывается в браузере, использует токены
+      из docs/visual/03-tokens.md (палитра, типографика, радиусы, тени).
+
+      Контракт поставки (deep-engineering-handbook):
+
+      depth_level: deep-engineering-handbook
+      expected_scale:
+        main_report: 'docs/visual/00-visual-system.md, 20-30 KB, dense multi-section'
+        appendices: 'отдельные файлы 01-identity.md, 02-iconography.md, 03-tokens.md, 04-screens.md + папка mocks/ с 4+ HTML'
+      must_include:
+        - executive summary (короткое, 5-7 пунктов)
+        - coverage matrix: какой трек покрывает какие разделы гайда
+        - выбранное направление визуала (1 из 3+ в 01), обоснование
+        - полная палитра светлой + тёмной темы (HEX + семантика)
+        - полная типографическая шкала
+        - каталог компонентов (по итогам 04)
+        - правила иконографии (по итогам 02)
+        - рекомендации по app icon (по итогам 01)
+        - 4+ HTML-мокапа ключевых экранов, использующих финальные токены
+        - acceptance-чеклист из 12-15 пунктов для разработчика
+        - open questions, требующие ответа пользователя
+        - source index: ссылки на треки, файлы, разделы
+
+      compression_policy:
+        - executive summary обязателен, но не заменяет тело
+        - все важные находки из треков должны быть в основном гайде или в appendices
+        - не сворачивай треки в один абзац
+
+      verification:
+        - фактическая корректность относительно треков
+        - полнота покрытия всех треков
+        - глубина, адекватная контракту
+
+      Процесс:
+      1) Прочитай все 4 трека целиком.
+      2) Выбери ОДНО направление визуала (или предложи 2 для финального выбора пользователем)
+         и обоснуй выбор на основе аудитории, архитектуры (тёмная тема, light theme),
+         консистентности с 32.x.
+      3) Собери финальные токены (палитра, типографика, radius, shadow, motion) — сводная таблица.
+      4) Собери финальный каталог компонентов.
+      5) Сгенерируй 4 HTML-мокапа (Главная, Поиск, Карта, Сообщения) — в папке docs/visual/mocks/.
+         Каждый файл самодостаточен, без внешних зависимостей, встроенные стили.
+         Мокапы должны показывать ВЫБРАННОЕ направление, использовать финальные токены,
+         показывать loading/empty/error состояния хотя бы для одного экрана.
+      6) Напиши docs/visual/00-visual-system.md со всеми разделами из must_include.
+      7) В конце гайда — acceptance-чеклист для разработчика
+         (12-15 пунктов, чтобы можно было сверить реализацию).
+      8) В конце — open questions для подтверждения с пользователем.
+
+      Архитектурные правила Близза (НЕ НАРУШАТЬ):
+      - User ≠ Account.
+      - activeAccountId на backend, не userId с клиента.
+      - Нижние табы: Главная / Видео / + / Карта / Профиль.
+      - Сообщения не в нижних табах.
+      - Близз (сторис) НЕ в центральном +.
+      - НЕ предлагать: гемблинг, paid boosts, AI search, contact import, ads.
+      - Не использовать user.isBusiness.
+
+      Не меняй существующий код. Не редактируй треки 01-04 (только читай).
+      Все новые файлы — в docs/visual/.
+
+      Верни в отчёте: путь к главному файлу, список mock-файлов, краткое summary выбора.
+    assigned_to: general
+    depends_on: [identity, iconography, tokens, screens]
+    verified_by: verifier
+    verify_prompt: |
+      Проверь 2 аспекта.
+
+      (A) ФАКТИЧЕСКАЯ КОРРЕКТНОСТЬ:
+      1) docs/visual/00-visual-system.md существует, substantial (20+ KB).
+      2) Палитра, типографика, компоненты — консистентны с треками 01-04.
+      3) Синтез действительно использует выводы из всех 4 треков (есть coverage matrix).
+      4) НЕ нарушены архитектурные правила Близза (5 табов, Близз не в +, нет запрещённых фич).
+      5) Тёмная тема присутствует с конкретными HEX.
+      6) Acceptance-чеклист из 12-15 пунктов есть.
+      7) Open questions раздел есть.
+
+      (B) ПОЛНОТА И ГЛУБИНА (по контракту deep-engineering-handbook):
+      8) docs/visual/mocks/ содержит минимум 4 самодостаточных HTML-мокапа.
+      9) Мокапы используют финальные токены из гайда, не изобретают новые.
+      10) Покрыты все разделы must_include (executive summary, coverage matrix, выбранное
+          направление, палитра light+dark, типографика, компоненты, иконки, app icon,
+          4+ мокапа, чеклист, open questions, source index).
+      11) Никакая важная находка из треков не потеряна при сжатии.
+
+      Если хотя бы один пункт не выполнен — FAIL с указанием.
+    timeout_ms: 1800000

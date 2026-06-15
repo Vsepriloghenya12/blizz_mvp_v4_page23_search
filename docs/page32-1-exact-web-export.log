@@ -1,0 +1,15 @@
+Starting Metro Bundler
+
+Web Bundled 1353ms index.js (265 modules)
+
+› Assets (1):
+assets/auth-reference-hero.23c510b81a01908420459dc2b52373e5.png (555KB)
+
+› web bundles (1):
+_expo/static/js/web/index-da735fdf014128896aeb9d216cf9ec1d.js (844KB)
+
+› Files (2):
+index.html (1.2KB)
+metadata.json (49B)
+
+Exported: dist

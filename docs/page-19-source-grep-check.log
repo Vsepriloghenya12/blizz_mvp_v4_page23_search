@@ -1,0 +1,6 @@
+== no user.isBusiness / bottom messages tab / refresh button / removed games in source ==
+== bottom tab labels ==
+== blizz create action check ==
+== business chat guard ==
+server/src/modules/games/games.service.js:274:      throw new HttpError(400, 'GAME_BUSINESS_CHAT_FORBIDDEN', 'Игры доступны только в личных и групповых чатах');
+mobile/src/screens/messages/MessagesScreen.tsx:226:      setError('Игры доступны только в личных и групповых чатах');

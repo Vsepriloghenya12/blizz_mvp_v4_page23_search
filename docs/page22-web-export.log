@@ -1,0 +1,12 @@
+Starting Metro Bundler
+
+Web Bundled 4295ms index.js (249 modules)
+
+› web bundles (1):
+_expo/static/js/web/index-5d7e559145ab26b3cc4a5ba1ea1d9c81.js (720KB)
+
+› Files (2):
+index.html (1.2KB)
+metadata.json (49B)
+
+Exported: dist

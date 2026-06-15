@@ -1,0 +1,7 @@
+user.isBusiness:
+bottom Messages tab:
+Refresh button:
+Create Blizz action in hub:
+mobile/src/screens/create/CreateScreen.tsx:39:      <Text style={styles.brand}>Близз</Text>
+mobile/src/features/auth/screens/AuthScreen.tsx:78:            <Text style={styles.logo}>Близз</Text>
+mobile/src/features/auth/screens/AuthScreen.tsx:79:            <Text style={styles.subtitle}>Люди, места, Близзы и бизнес рядом</Text>

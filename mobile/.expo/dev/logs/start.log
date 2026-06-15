@@ -1,0 +1,216 @@
+{"_e":"root:init","_t":1781440790320,"format":"v0-jsonl","version":"56.1.15"}
+{"_e":"env:mode","_t":1781440790322,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1781440790332,"mode":"development","files":[],"env":{}}
+{"_e":"devserver:start","_t":1781440794255,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1781440795668,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"metro:instantiate","_t":1781440819235,"atlas":false,"workers":3,"host":"::","port":8081}
+{"_e":"metro:bundling:started","_t":1781440853306,"id":"1","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:done","_t":1781440862602,"id":"1","total":284,"ms":9295.0537}
+{"_e":"metro:client_log","_t":1781440862939,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1781440862948,"level":"warn","data":["\"textShadow*\" style props are deprecated. Use \"textShadow\"."]}
+{"_e":"metro:client_log","_t":1781440862949,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1781446947469,"id":"3","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:done","_t":1781446947492,"id":"3","total":1,"ms":22.0705}
+{"_e":"metro:client_log","_t":1781446947661,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1781446947663,"level":"warn","data":["\"textShadow*\" style props are deprecated. Use \"textShadow\"."]}
+{"_e":"metro:client_log","_t":1781446947664,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1781447057966,"id":"5","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:done","_t":1781447057987,"id":"5","total":1,"ms":21.2988}
+{"_e":"metro:client_log","_t":1781447058181,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1781447058182,"level":"warn","data":["\"textShadow*\" style props are deprecated. Use \"textShadow\"."]}
+{"_e":"metro:client_log","_t":1781447058183,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1781447754054,"id":"7","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:done","_t":1781447754075,"id":"7","total":1,"ms":20.8783}
+{"_e":"metro:client_log","_t":1781447754221,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1781447754223,"level":"warn","data":["\"textShadow*\" style props are deprecated. Use \"textShadow\"."]}
+{"_e":"metro:client_log","_t":1781447754225,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1781448677229,"id":"9","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:done","_t":1781448677252,"id":"9","total":1,"ms":22.6014}
+{"_e":"metro:client_log","_t":1781448677540,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1781448677541,"level":"warn","data":["\"textShadow*\" style props are deprecated. Use \"textShadow\"."]}
+{"_e":"metro:client_log","_t":1781448677542,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1781448959188,"id":"a","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:done","_t":1781448959209,"id":"a","total":1,"ms":21.3611}
+{"_e":"metro:client_log","_t":1781448959397,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1781448959398,"level":"warn","data":["\"textShadow*\" style props are deprecated. Use \"textShadow\"."]}
+{"_e":"metro:client_log","_t":1781448959399,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1781449159456,"id":"c","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:done","_t":1781449159516,"id":"c","total":1,"ms":60.133}
+{"_e":"metro:client_log","_t":1781449159772,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1781449159772,"level":"warn","data":["\"textShadow*\" style props are deprecated. Use \"textShadow\"."]}
+{"_e":"metro:client_log","_t":1781449159773,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1781455524344,"id":"d","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:done","_t":1781455525441,"id":"d","total":1,"ms":1096.3297}
+{"_e":"metro:client_log","_t":1781455525600,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1781455525606,"level":"warn","data":["\"textShadow*\" style props are deprecated. Use \"textShadow\"."]}
+{"_e":"metro:client_log","_t":1781455525608,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1781460620633,"id":"f","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:done","_t":1781460621315,"id":"f","total":1,"ms":682.217}
+{"_e":"metro:client_log","_t":1781460621659,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1781460621666,"level":"warn","data":["\"textShadow*\" style props are deprecated. Use \"textShadow\"."]}
+{"_e":"metro:client_log","_t":1781460621667,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1781460754632,"id":"h","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:done","_t":1781460755231,"id":"h","total":1,"ms":598.5283}
+{"_e":"metro:client_log","_t":1781460755462,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1781460755469,"level":"warn","data":["\"textShadow*\" style props are deprecated. Use \"textShadow\"."]}
+{"_e":"metro:client_log","_t":1781460755471,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:client_log","_t":1781460755472,"level":"warn","data":["props.pointerEvents is deprecated. Use style.pointerEvents"]}
+{"_e":"metro:client_log","_t":1781462643378,"level":"warn","data":["\"shadow*\" style props are deprecated. Use \"boxShadow\"."]}
+{"_e":"metro:bundling:started","_t":1781462643461,"id":"l","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:done","_t":1781462643503,"id":"l","total":1,"ms":37.6976}
+{"_e":"metro:client_log","_t":1781462643882,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1781462643884,"level":"warn","data":["\"shadow*\" style props are deprecated. Use \"boxShadow\"."]}
+{"_e":"metro:client_log","_t":1781462643885,"level":"warn","data":["\"textShadow*\" style props are deprecated. Use \"textShadow\"."]}
+{"_e":"metro:client_log","_t":1781462643887,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1781464440912,"id":"o","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:done","_t":1781464441756,"id":"o","total":1,"ms":843.7177}
+{"_e":"metro:client_log","_t":1781464442076,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1781464442083,"level":"warn","data":["\"shadow*\" style props are deprecated. Use \"boxShadow\"."]}
+{"_e":"metro:client_log","_t":1781464442084,"level":"warn","data":["\"textShadow*\" style props are deprecated. Use \"textShadow\"."]}
+{"_e":"metro:client_log","_t":1781464442092,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1781467349968,"id":"s","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:done","_t":1781467350763,"id":"s","total":1,"ms":794.3611}
+{"_e":"metro:client_log","_t":1781467351106,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1781467351107,"level":"warn","data":["\"shadow*\" style props are deprecated. Use \"boxShadow\"."]}
+{"_e":"metro:client_log","_t":1781467351108,"level":"warn","data":["\"textShadow*\" style props are deprecated. Use \"textShadow\"."]}
+{"_e":"metro:client_log","_t":1781467351108,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1781467837312,"id":"y","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:done","_t":1781467837937,"id":"y","total":1,"ms":625.0369}
+{"_e":"metro:client_log","_t":1781467838129,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1781467838129,"level":"warn","data":["\"shadow*\" style props are deprecated. Use \"boxShadow\"."]}
+{"_e":"metro:client_log","_t":1781467838131,"level":"warn","data":["\"textShadow*\" style props are deprecated. Use \"textShadow\"."]}
+{"_e":"metro:client_log","_t":1781467838131,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1781470793307,"id":"14","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:done","_t":1781470793524,"id":"14","total":1,"ms":216.3622}
+{"_e":"metro:client_log","_t":1781470794422,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1781470794423,"level":"warn","data":["\"shadow*\" style props are deprecated. Use \"boxShadow\"."]}
+{"_e":"metro:client_log","_t":1781470794424,"level":"warn","data":["\"textShadow*\" style props are deprecated. Use \"textShadow\"."]}
+{"_e":"metro:client_log","_t":1781470794426,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1781470809355,"id":"19","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:done","_t":1781470809554,"id":"19","total":1,"ms":199.4564}
+{"_e":"metro:client_log","_t":1781470809913,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1781470809914,"level":"warn","data":["\"shadow*\" style props are deprecated. Use \"boxShadow\"."]}
+{"_e":"metro:client_log","_t":1781470809916,"level":"warn","data":["\"textShadow*\" style props are deprecated. Use \"textShadow\"."]}
+{"_e":"metro:client_log","_t":1781470809917,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1781470810375,"id":"1f","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:done","_t":1781470810420,"id":"1f","total":1,"ms":44.6052}
+{"_e":"metro:client_log","_t":1781470810725,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1781470810732,"level":"warn","data":["\"shadow*\" style props are deprecated. Use \"boxShadow\"."]}
+{"_e":"metro:client_log","_t":1781470810733,"level":"warn","data":["\"textShadow*\" style props are deprecated. Use \"textShadow\"."]}
+{"_e":"metro:client_log","_t":1781470810734,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1781470811201,"id":"1l","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:done","_t":1781470811264,"id":"1l","total":1,"ms":62.8677}
+{"_e":"metro:client_log","_t":1781470811552,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1781470811559,"level":"warn","data":["\"shadow*\" style props are deprecated. Use \"boxShadow\"."]}
+{"_e":"metro:client_log","_t":1781470811560,"level":"warn","data":["\"textShadow*\" style props are deprecated. Use \"textShadow\"."]}
+{"_e":"metro:client_log","_t":1781470811561,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1781472977794,"id":"1q","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:done","_t":1781472977830,"id":"1q","total":1,"ms":35.7449}
+{"_e":"metro:client_log","_t":1781472978062,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1781472978064,"level":"warn","data":["\"shadow*\" style props are deprecated. Use \"boxShadow\"."]}
+{"_e":"metro:client_log","_t":1781472978065,"level":"warn","data":["\"textShadow*\" style props are deprecated. Use \"textShadow\"."]}
+{"_e":"metro:client_log","_t":1781472978065,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1781472979774,"id":"1w","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:done","_t":1781472979796,"id":"1w","total":1,"ms":22.2648}
+{"_e":"metro:client_log","_t":1781472979933,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1781472979934,"level":"warn","data":["\"shadow*\" style props are deprecated. Use \"boxShadow\"."]}
+{"_e":"metro:client_log","_t":1781472979935,"level":"warn","data":["\"textShadow*\" style props are deprecated. Use \"textShadow\"."]}
+{"_e":"metro:client_log","_t":1781472979936,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:failed","_t":1781474356465,"id":null,"message":"Unable to resolve \"react-native-svg\" from \"src\\shared\\ui\\BlizzIcon.tsx\"\n> 1 | import Svg, { Circle, Path, Rect } from 'react-native-svg';\n    |                                          ^\n  2 |\n  3 | type BlizzIconName = 'smartphone' | 'lock' | 'eye' | 'eyeOff';\n  4 |","importStack":"Import stack:\n\n src\\shared\\ui\\BlizzIcon.tsx\n | import \"react-native-svg\"\n\n src\\features\\auth\\screens\\AuthScreen.tsx\n | import \"../../../shared/ui/BlizzIcon\"\n\n src\\core\\AppRoot.tsx\n | import \"../features/auth/screens/AuthScreen\"\n\n App.tsx\n | import \"./src/core/AppRoot\"\n\n index.js\n | import \"./App\"\n\n \n | import \"./index\"\n","filename":null,"targetModuleName":"react-native-svg","originModulePath":"src\\shared\\ui\\BlizzIcon.tsx"}
+{"_e":"metro:client_log","_t":1781474356470,"level":"error","data":["[UnableToResolveError: Unable to resolve module react-native-svg from D:\\blizz_mvp_v4_page23_search\\mobile\\src\\shared\\ui\\BlizzIcon.tsx: react-native-svg could not be found within the project or in these directories:\n  node_modules\n> 1 | import Svg, { Circle, Path, Rect } from 'react-native-svg';\n    |                                          ^\n  2 |\n  3 | type BlizzIconName = 'smartphone' | 'lock' | 'eye' | 'eyeOff';\n  4 |]"]}
+{"_e":"metro:bundling:failed","_t":1781474356679,"id":null,"message":"Unable to resolve \"react-native-svg\" from \"src\\shared\\ui\\BlizzIcon.tsx\"\n> 1 | import Svg, { Circle, Path, Rect } from 'react-native-svg';\n    |                                          ^\n  2 |\n  3 | type BlizzIconName = 'smartphone' | 'lock' | 'eye' | 'eyeOff';\n  4 |","importStack":"Import stack:\n\n src\\shared\\ui\\BlizzIcon.tsx\n | import \"react-native-svg\"\n\n src\\features\\auth\\screens\\AuthScreen.tsx\n | import \"../../../shared/ui/BlizzIcon\"\n\n src\\core\\AppRoot.tsx\n | import \"../features/auth/screens/AuthScreen\"\n\n App.tsx\n | import \"./src/core/AppRoot\"\n\n index.js\n | import \"./App\"\n\n \n | import \"./index\"\n","filename":null,"targetModuleName":"react-native-svg","originModulePath":"src\\shared\\ui\\BlizzIcon.tsx"}
+{"_e":"metro:client_log","_t":1781474356685,"level":"error","data":["[UnableToResolveError: Unable to resolve module react-native-svg from D:\\blizz_mvp_v4_page23_search\\mobile\\src\\shared\\ui\\BlizzIcon.tsx: react-native-svg could not be found within the project or in these directories:\n  node_modules\n> 1 | import Svg, { Circle, Path, Rect } from 'react-native-svg';\n    |                                          ^\n  2 |\n  3 | type BlizzIconName = 'smartphone' | 'lock' | 'eye' | 'eyeOff';\n  4 |]"]}
+{"_e":"metro:bundling:failed","_t":1781474356820,"id":null,"message":"Unable to resolve \"react-native-svg\" from \"src\\shared\\ui\\BlizzIcon.tsx\"\n> 1 | import Svg, { Circle, Path, Rect } from 'react-native-svg';\n    |                                          ^\n  2 |\n  3 | type BlizzIconName = 'smartphone' | 'lock' | 'eye' | 'eyeOff';\n  4 |","importStack":"Import stack:\n\n src\\shared\\ui\\BlizzIcon.tsx\n | import \"react-native-svg\"\n\n src\\features\\auth\\screens\\AuthScreen.tsx\n | import \"../../../shared/ui/BlizzIcon\"\n\n src\\core\\AppRoot.tsx\n | import \"../features/auth/screens/AuthScreen\"\n\n App.tsx\n | import \"./src/core/AppRoot\"\n\n index.js\n | import \"./App\"\n\n \n | import \"./index\"\n","filename":null,"targetModuleName":"react-native-svg","originModulePath":"src\\shared\\ui\\BlizzIcon.tsx"}
+{"_e":"metro:client_log","_t":1781474356822,"level":"error","data":["[UnableToResolveError: Unable to resolve module react-native-svg from D:\\blizz_mvp_v4_page23_search\\mobile\\src\\shared\\ui\\BlizzIcon.tsx: react-native-svg could not be found within the project or in these directories:\n  node_modules\n> 1 | import Svg, { Circle, Path, Rect } from 'react-native-svg';\n    |                                          ^\n  2 |\n  3 | type BlizzIconName = 'smartphone' | 'lock' | 'eye' | 'eyeOff';\n  4 |]"]}
+{"_e":"metro:bundling:started","_t":1781474358308,"id":"22","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:failed","_t":1781474358371,"id":"22","message":"Unable to resolve \"react-native-svg\" from \"src\\shared\\ui\\BlizzIcon.tsx\"\n> 1 | import Svg, { Circle, Path, Rect } from 'react-native-svg';\n    |                                          ^\n  2 |\n  3 | type BlizzIconName = 'smartphone' | 'lock' | 'eye' | 'eyeOff';\n  4 |","importStack":"Import stack:\n\n src\\shared\\ui\\BlizzIcon.tsx\n | import \"react-native-svg\"\n\n src\\features\\auth\\screens\\AuthScreen.tsx\n | import \"../../../shared/ui/BlizzIcon\"\n\n src\\core\\AppRoot.tsx\n | import \"../features/auth/screens/AuthScreen\"\n\n App.tsx\n | import \"./src/core/AppRoot\"\n\n index.js\n | import \"./App\"\n\n \n | import \"./index\"\n","filename":null,"targetModuleName":"react-native-svg","originModulePath":"src\\shared\\ui\\BlizzIcon.tsx"}
+{"_e":"metro:bundling:started","_t":1781474362187,"id":"24","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:failed","_t":1781474362311,"id":"24","message":"Unable to resolve \"react-native-svg\" from \"src\\shared\\ui\\BlizzIcon.tsx\"\n> 1 | import Svg, { Circle, Path, Rect } from 'react-native-svg';\n    |                                          ^\n  2 |\n  3 | type BlizzIconName = 'smartphone' | 'lock' | 'eye' | 'eyeOff';\n  4 |","importStack":"Import stack:\n\n src\\shared\\ui\\BlizzIcon.tsx\n | import \"react-native-svg\"\n\n src\\features\\auth\\screens\\AuthScreen.tsx\n | import \"../../../shared/ui/BlizzIcon\"\n\n src\\core\\AppRoot.tsx\n | import \"../features/auth/screens/AuthScreen\"\n\n App.tsx\n | import \"./src/core/AppRoot\"\n\n index.js\n | import \"./App\"\n\n \n | import \"./index\"\n","filename":null,"targetModuleName":"react-native-svg","originModulePath":"src\\shared\\ui\\BlizzIcon.tsx"}
+{"_e":"metro:bundling:started","_t":1781474363654,"id":"26","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:failed","_t":1781474363706,"id":"26","message":"Unable to resolve \"react-native-svg\" from \"src\\shared\\ui\\BlizzIcon.tsx\"\n> 1 | import Svg, { Circle, Path, Rect } from 'react-native-svg';\n    |                                          ^\n  2 |\n  3 | type BlizzIconName = 'smartphone' | 'lock' | 'eye' | 'eyeOff';\n  4 |","importStack":"Import stack:\n\n src\\shared\\ui\\BlizzIcon.tsx\n | import \"react-native-svg\"\n\n src\\features\\auth\\screens\\AuthScreen.tsx\n | import \"../../../shared/ui/BlizzIcon\"\n\n src\\core\\AppRoot.tsx\n | import \"../features/auth/screens/AuthScreen\"\n\n App.tsx\n | import \"./src/core/AppRoot\"\n\n index.js\n | import \"./App\"\n\n \n | import \"./index\"\n","filename":null,"targetModuleName":"react-native-svg","originModulePath":"src\\shared\\ui\\BlizzIcon.tsx"}
+{"_e":"metro:bundling:started","_t":1781474387676,"id":"28","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:failed","_t":1781474387743,"id":"28","message":"Unable to resolve \"react-native-svg\" from \"src\\shared\\ui\\BlizzIcon.tsx\"\n> 1 | import Svg, { Circle, Path, Rect } from 'react-native-svg';\n    |                                          ^\n  2 |\n  3 | type BlizzIconName = 'smartphone' | 'lock' | 'eye' | 'eyeOff';\n  4 |","importStack":"Import stack:\n\n src\\shared\\ui\\BlizzIcon.tsx\n | import \"react-native-svg\"\n\n src\\features\\auth\\screens\\AuthScreen.tsx\n | import \"../../../shared/ui/BlizzIcon\"\n\n src\\core\\AppRoot.tsx\n | import \"../features/auth/screens/AuthScreen\"\n\n App.tsx\n | import \"./src/core/AppRoot\"\n\n index.js\n | import \"./App\"\n\n \n | import \"./index\"\n","filename":null,"targetModuleName":"react-native-svg","originModulePath":"src\\shared\\ui\\BlizzIcon.tsx"}
+{"_e":"metro:bundling:started","_t":1781474411816,"id":"2a","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:failed","_t":1781474411896,"id":"2a","message":"Unable to resolve \"react-native-svg\" from \"src\\shared\\ui\\BlizzIcon.tsx\"\n> 1 | import Svg, { Circle, Path, Rect } from 'react-native-svg';\n    |                                          ^\n  2 |\n  3 | type BlizzIconName = 'smartphone' | 'lock' | 'eye' | 'eyeOff';\n  4 |","importStack":"Import stack:\n\n src\\shared\\ui\\BlizzIcon.tsx\n | import \"react-native-svg\"\n\n src\\features\\auth\\screens\\AuthScreen.tsx\n | import \"../../../shared/ui/BlizzIcon\"\n\n src\\core\\AppRoot.tsx\n | import \"../features/auth/screens/AuthScreen\"\n\n App.tsx\n | import \"./src/core/AppRoot\"\n\n index.js\n | import \"./App\"\n\n \n | import \"./index\"\n","filename":null,"targetModuleName":"react-native-svg","originModulePath":"src\\shared\\ui\\BlizzIcon.tsx"}
+{"_e":"metro:bundling:started","_t":1781474571152,"id":"2c","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:failed","_t":1781474571241,"id":"2c","message":"Unable to resolve \"react-native-svg\" from \"src\\shared\\ui\\BlizzIcon.tsx\"\n> 1 | import Svg, { Circle, Path, Rect } from 'react-native-svg';\n    |                                          ^\n  2 |\n  3 | type BlizzIconName = 'smartphone' | 'lock' | 'eye' | 'eyeOff';\n  4 |","importStack":"Import stack:\n\n src\\shared\\ui\\BlizzIcon.tsx\n | import \"react-native-svg\"\n\n src\\features\\auth\\screens\\AuthScreen.tsx\n | import \"../../../shared/ui/BlizzIcon\"\n\n src\\core\\AppRoot.tsx\n | import \"../features/auth/screens/AuthScreen\"\n\n App.tsx\n | import \"./src/core/AppRoot\"\n\n index.js\n | import \"./App\"\n\n \n | import \"./index\"\n","filename":null,"targetModuleName":"react-native-svg","originModulePath":"src\\shared\\ui\\BlizzIcon.tsx"}
+{"_e":"metro:bundling:started","_t":1781474625358,"id":"2e","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:failed","_t":1781474625494,"id":"2e","message":"Unable to resolve \"react-native-svg\" from \"src\\shared\\ui\\BlizzIcon.tsx\"\n> 1 | import Svg, { Circle, Path, Rect } from 'react-native-svg';\n    |                                          ^\n  2 |\n  3 | type BlizzIconName = 'smartphone' | 'lock' | 'eye' | 'eyeOff';\n  4 |","importStack":"Import stack:\n\n src\\shared\\ui\\BlizzIcon.tsx\n | import \"react-native-svg\"\n\n src\\features\\auth\\screens\\AuthScreen.tsx\n | import \"../../../shared/ui/BlizzIcon\"\n\n src\\core\\AppRoot.tsx\n | import \"../features/auth/screens/AuthScreen\"\n\n App.tsx\n | import \"./src/core/AppRoot\"\n\n index.js\n | import \"./App\"\n\n \n | import \"./index\"\n","filename":null,"targetModuleName":"react-native-svg","originModulePath":"src\\shared\\ui\\BlizzIcon.tsx"}
+{"_e":"metro:bundling:started","_t":1781474746817,"id":"2g","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:failed","_t":1781474746916,"id":"2g","message":"Unable to resolve \"react-native-svg\" from \"src\\shared\\ui\\BlizzIcon.tsx\"\n> 1 | import Svg, { Circle, Path, Rect } from 'react-native-svg';\n    |                                          ^\n  2 |\n  3 | type BlizzIconName = 'smartphone' | 'lock' | 'eye' | 'eyeOff';\n  4 |","importStack":"Import stack:\n\n src\\shared\\ui\\BlizzIcon.tsx\n | import \"react-native-svg\"\n\n src\\features\\auth\\screens\\AuthScreen.tsx\n | import \"../../../shared/ui/BlizzIcon\"\n\n src\\core\\AppRoot.tsx\n | import \"../features/auth/screens/AuthScreen\"\n\n App.tsx\n | import \"./src/core/AppRoot\"\n\n index.js\n | import \"./App\"\n\n \n | import \"./index\"\n","filename":null,"targetModuleName":"react-native-svg","originModulePath":"src\\shared\\ui\\BlizzIcon.tsx"}
+{"_e":"metro:bundling:started","_t":1781474789866,"id":"2h","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:failed","_t":1781474790269,"id":"2h","message":"Unable to resolve \"react-native-svg\" from \"src\\shared\\ui\\BlizzIcon.tsx\"\n> 1 | import Svg, { Circle, Path, Rect } from 'react-native-svg';\n    |                                          ^\n  2 |\n  3 | type BlizzIconName = 'smartphone' | 'lock' | 'eye' | 'eyeOff';\n  4 |","importStack":"Import stack:\n\n src\\shared\\ui\\BlizzIcon.tsx\n | import \"react-native-svg\"\n\n src\\features\\auth\\screens\\AuthScreen.tsx\n | import \"../../../shared/ui/BlizzIcon\"\n\n src\\core\\AppRoot.tsx\n | import \"../features/auth/screens/AuthScreen\"\n\n App.tsx\n | import \"./src/core/AppRoot\"\n\n index.js\n | import \"./App\"\n\n \n | import \"./index\"\n","filename":null,"targetModuleName":"react-native-svg","originModulePath":"src\\shared\\ui\\BlizzIcon.tsx"}
+{"_e":"metro:bundling:started","_t":1781474800250,"id":"2i","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:failed","_t":1781474800371,"id":"2i","message":"Unable to resolve \"react-native-svg\" from \"src\\shared\\ui\\BlizzIcon.tsx\"\n> 1 | import Svg, { Circle, Path, Rect } from 'react-native-svg';\n    |                                          ^\n  2 |\n  3 | type BlizzIconName = 'smartphone' | 'lock' | 'eye' | 'eyeOff';\n  4 |","importStack":"Import stack:\n\n src\\shared\\ui\\BlizzIcon.tsx\n | import \"react-native-svg\"\n\n src\\features\\auth\\screens\\AuthScreen.tsx\n | import \"../../../shared/ui/BlizzIcon\"\n\n src\\core\\AppRoot.tsx\n | import \"../features/auth/screens/AuthScreen\"\n\n App.tsx\n | import \"./src/core/AppRoot\"\n\n index.js\n | import \"./App\"\n\n \n | import \"./index\"\n","filename":null,"targetModuleName":"react-native-svg","originModulePath":"src\\shared\\ui\\BlizzIcon.tsx"}
+{"_e":"root:init","_t":1781474842539,"format":"v0-jsonl","version":"56.1.15"}
+{"_e":"env:mode","_t":1781474842542,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1781474842546,"mode":"development","files":[],"env":{}}
+{"_e":"root:init","_t":1781474873314,"format":"v0-jsonl","version":"56.1.15"}
+{"_e":"env:mode","_t":1781474873315,"nodeEnv":"development","babelEnv":"development","mode":"development"}
+{"_e":"env:load","_t":1781474873320,"mode":"development","files":[],"env":{}}
+{"_e":"devserver:start","_t":1781474874103,"mode":"development","web":true,"baseUrl":"","asyncRoutes":false,"routerRoot":"../..\\..\\app","serverComponents":false,"serverActions":false,"serverRendering":false,"apiRoutes":false,"exporting":false}
+{"_e":"metro:config","_t":1781474875066,"serverRoot":"../..\\..","projectRoot":"../..\\..","exporting":false,"flags":{"autolinkingModuleResolution":false,"serverActions":false,"serverComponents":false,"reactCompiler":false,"optimizeGraph":false,"treeshaking":false,"logbox":false}}
+{"_e":"metro:instantiate","_t":1781474884379,"atlas":false,"workers":3,"host":"::","port":8081}
+{"_e":"metro:bundling:started","_t":1781474885533,"id":"1","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:progress","_t":1781474885533,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1781474885551,"id":"1","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:progress","_t":1781474885651,"id":"1","progress":0.031141868512110732,"total":17,"current":3}
+{"_e":"metro:bundling:progress","_t":1781474885763,"id":"1","progress":0.05444444444444445,"total":30,"current":7}
+{"_e":"metro:bundling:progress","_t":1781474885869,"id":"1","progress":0.2006293402777778,"total":96,"current":43}
+{"_e":"metro:bundling:progress","_t":1781474885970,"id":"1","progress":0.32463493780421854,"total":172,"current":98}
+{"_e":"metro:bundling:progress","_t":1781474886070,"id":"1","progress":0.32463493780421854,"total":192,"current":108}
+{"_e":"metro:bundling:progress","_t":1781474886170,"id":"1","progress":0.43585634838344806,"total":206,"current":136}
+{"_e":"metro:bundling:progress","_t":1781474886270,"id":"1","progress":0.7576750971168188,"total":247,"current":215}
+{"_e":"metro:bundling:progress","_t":1781474886370,"id":"1","progress":0.8988877048885908,"total":289,"current":274}
+{"_e":"metro:bundling:progress","_t":1781474886470,"id":"1","progress":0.9933665191333428,"total":301,"current":300}
+{"_e":"metro:bundling:progress","_t":1781474887427,"id":"1","progress":0.999,"total":301,"current":301}
+{"_e":"metro:bundling:progress","_t":1781474887531,"id":"1","progress":0.999,"total":307,"current":302}
+{"_e":"metro:bundling:progress","_t":1781474887658,"id":"1","progress":0.999,"total":307,"current":303}
+{"_e":"metro:bundling:progress","_t":1781474887825,"id":"1","progress":0.999,"total":307,"current":304}
+{"_e":"metro:bundling:progress","_t":1781474887945,"id":"1","progress":0.999,"total":309,"current":304}
+{"_e":"metro:bundling:progress","_t":1781474887988,"id":"1","progress":0.999,"total":309,"current":305}
+{"_e":"metro:bundling:progress","_t":1781474888089,"id":"1","progress":0.999,"total":311,"current":307}
+{"_e":"metro:bundling:progress","_t":1781474888189,"id":"1","progress":0.999,"total":317,"current":309}
+{"_e":"metro:bundling:progress","_t":1781474888291,"id":"1","progress":0.999,"total":318,"current":312}
+{"_e":"metro:bundling:progress","_t":1781474888403,"id":"1","progress":0.999,"total":319,"current":315}
+{"_e":"metro:bundling:progress","_t":1781474888477,"id":"1","progress":0.999,"total":319,"current":316}
+{"_e":"metro:bundling:progress","_t":1781474888578,"id":"1","progress":0.999,"total":325,"current":319}
+{"_e":"metro:bundling:progress","_t":1781474888692,"id":"1","progress":0.999,"total":325,"current":320}
+{"_e":"metro:bundling:progress","_t":1781474888737,"id":"1","progress":0.999,"total":325,"current":321}
+{"_e":"metro:bundling:progress","_t":1781474888850,"id":"1","progress":0.999,"total":325,"current":323}
+{"_e":"metro:bundling:done","_t":1781474888929,"id":"1","total":325,"ms":3395.8359}
+{"_e":"metro:client_log","_t":1781474889141,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1781474889142,"level":"warn","data":["\"shadow*\" style props are deprecated. Use \"boxShadow\"."]}
+{"_e":"metro:client_log","_t":1781474889142,"level":"warn","data":["\"textShadow*\" style props are deprecated. Use \"textShadow\"."]}
+{"_e":"metro:client_log","_t":1781474889142,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1781474906608,"id":"4","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:progress","_t":1781474906609,"id":"4","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1781474906655,"id":"4","total":1,"ms":46.7739}
+{"_e":"metro:bundling:started","_t":1781474917264,"id":"5","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:progress","_t":1781474917264,"id":"5","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1781474917287,"id":"5","total":1,"ms":22.2995}
+{"_e":"metro:client_log","_t":1781474917564,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1781474917564,"level":"warn","data":["\"shadow*\" style props are deprecated. Use \"boxShadow\"."]}
+{"_e":"metro:client_log","_t":1781474917566,"level":"warn","data":["\"textShadow*\" style props are deprecated. Use \"textShadow\"."]}
+{"_e":"metro:client_log","_t":1781474917566,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1781521494595,"id":"7","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:progress","_t":1781521494595,"id":"7","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1781521494625,"id":"7","total":1,"ms":30.0755}
+{"_e":"metro:client_log","_t":1781521494921,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1781521494924,"level":"warn","data":["\"shadow*\" style props are deprecated. Use \"boxShadow\"."]}
+{"_e":"metro:client_log","_t":1781521494925,"level":"warn","data":["\"textShadow*\" style props are deprecated. Use \"textShadow\"."]}
+{"_e":"metro:client_log","_t":1781521494925,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1781521540940,"id":"9","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:progress","_t":1781521540941,"id":"9","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1781521540980,"id":"9","total":1,"ms":39.4455}
+{"_e":"metro:client_log","_t":1781521541446,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1781521541447,"level":"warn","data":["\"shadow*\" style props are deprecated. Use \"boxShadow\"."]}
+{"_e":"metro:client_log","_t":1781521541484,"level":"warn","data":["\"textShadow*\" style props are deprecated. Use \"textShadow\"."]}
+{"_e":"metro:client_log","_t":1781521541484,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}
+{"_e":"metro:bundling:started","_t":1781523972388,"id":"b","platform":"web","environment":null,"entry":"index.js"}
+{"_e":"metro:bundling:progress","_t":1781523972389,"id":"b","progress":0,"total":1,"current":0}
+{"_e":"metro:bundling:done","_t":1781523972672,"id":"b","total":1,"ms":284.0716}
+{"_e":"metro:client_log","_t":1781523973289,"level":"info","data":["%cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools","font-weight:bold"]}
+{"_e":"metro:client_log","_t":1781523973304,"level":"warn","data":["\"shadow*\" style props are deprecated. Use \"boxShadow\"."]}
+{"_e":"metro:client_log","_t":1781523973305,"level":"warn","data":["\"textShadow*\" style props are deprecated. Use \"textShadow\"."]}
+{"_e":"metro:client_log","_t":1781523973305,"level":"log","data":["Running application \"main\" with appParams:\n","{\"hydrate\": undefined, \"rootTag\": \"#root\"}","\nDevelopment-level warnings: ON.\nPerformance optimizations: OFF."]}

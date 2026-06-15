@@ -1,0 +1,5 @@
+Forbidden-source grep check for page04:
+OK: user.isBusiness not found
+OK: forbidden empty-profile hint not found
+OK: quick sections not found
+OK: bottom tab messages not found

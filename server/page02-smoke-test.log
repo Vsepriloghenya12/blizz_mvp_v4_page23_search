@@ -1,0 +1,2 @@
+backend smoke ok
+Проверено: register, me, login, accounts/switch, logout.

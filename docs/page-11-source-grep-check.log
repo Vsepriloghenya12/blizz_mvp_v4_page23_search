@@ -1,0 +1,21 @@
+grep: user.isBusiness / lower Messages tab / refresh button / separate ShareScreen CommentsScreen
+grep: create hub actions
+mobile/src/navigation/MainTabs.tsx:26:  | { type: 'accountSwitcher'; previous: 'profile' | 'create' | 'createPost' | 'createVideo' | 'createStory' }
+mobile/src/navigation/MainTabs.tsx:30:  | { type: 'createStory' }
+mobile/src/navigation/MainTabs.tsx:78:  function openAccountSwitcher(previous: 'profile' | 'create' | 'createPost' | 'createVideo' | 'createStory' = 'profile') {
+mobile/src/navigation/MainTabs.tsx:110:    if (route.type === 'accountSwitcher' && route.previous === 'createStory') {
+mobile/src/navigation/MainTabs.tsx:111:      setRoute({ type: 'createStory' });
+mobile/src/navigation/MainTabs.tsx:168:    if (tab === 'home') return <HomeScreen auth={auth} onCreateStory={() => setRoute({ type: 'createStory' })} onOpenMessages={openMessages} />;
+mobile/src/navigation/MainTabs.tsx:266:  if (route.type === 'createStory') {
+mobile/src/navigation/MainTabs.tsx:272:          onOpenAccountSwitcher={() => openAccountSwitcher('createStory')}
+CreateHub action titles:
+16:  title: string;
+32:        { type: 'post', title: 'Пост', description: 'Фото, текст, геометка и видимость' },
+33:        { type: 'video', title: 'Видео', description: 'Вертикальный формат 9:16 до 60 секунд' },
+34:        ...(canCreateOffer ? [{ type: 'offer' as const, title: 'Предложение', description: 'Акция, товар, услуга или событие витрины' }] : [])
+83:const ACTION_COPY: Record<CreateActionType, { title: string; text: string }> = {
+85:    title: 'Создание поста',
+89:    title: 'Создание видео',
+93:    title: 'Создание предложения',
+126:  title: {
+No story action type in CreateHub:

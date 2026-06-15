@@ -1,0 +1,9 @@
+--- forbidden source checks ---
+user.isBusiness:
+bottom Сообщения/MainTabs:
+Refresh button:
+Blizz create action:
+forbidden game types in source:
+games in business chat gate:
+mobile/src/screens/messages/MessagesScreen.tsx:220:    return selectedConversation && selectedConversation.type !== 'business';
+server/src/modules/games/games.service.js:220:      throw new HttpError(400, 'GAME_BUSINESS_CHAT_FORBIDDEN', 'Игры доступны только в личных и групповых чатах');

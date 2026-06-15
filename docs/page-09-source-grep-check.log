@@ -1,0 +1,11 @@
+page09 grep checks:
+- no user.isBusiness in mobile/src or server/src
+- no bottom tab Сообщения in MainTabs source
+- no feed button Обновить
+- no CreateActionType for Близз in CreateScreen; only explanatory note remains
+- no separate ShareScreen file; Share is an inline bottom sheet inside HomeScreen
+user.isBusiness matches: 0
+bottom tab Сообщения matches: 0
+Обновить matches: 0
+CreateActionType Bлизз matches: 0
+ShareScreen files: 0

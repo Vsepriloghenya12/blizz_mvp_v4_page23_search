@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blizz Icon Style Directions</title>
+  <style>
+    :root {
+      --blue: #0B3D99;
+      --blue2: #2E6BD8;
+      --navy: #071B3A;
+      --ink: #101828;
+      --muted: #667085;
+      --bg: #FAFAF7;
+      --paper: #FFFFFF;
+      --line: #D9E3F2;
+      --soft: #EAF1FF;
+      --mint: #DDF8EC;
+      --mintText: #0D6846;
+      --sun: #FFE7B8;
+      --danger: #D92D20;
+      --shadow: 0 22px 55px rgba(7, 27, 58, 0.11);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.45;
+    }
+
+    .shell {
+      width: min(1180px, calc(100vw - 32px));
+      margin: 0 auto;
+      padding: 34px 0 54px;
+    }
+
+    .hero,
+    .direction,
+    .phone,
+    .rule,
+    .choice {
+      background: var(--paper);
+      border: 1px solid rgba(217, 227, 242, 0.95);
+      border-radius: 26px;
+      box-shadow: var(--shadow);
+    }
+
+    .hero {
+      padding: 30px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 360px;
+      gap: 28px;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: var(--soft);
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 850;
+    }
+
+    h1 {
+      margin: 20px 0 12px;
+      max-width: 760px;
+      color: var(--navy);
+      font-size: clamp(36px, 5.5vw, 68px);
+      line-height: 0.96;
+      letter-spacing: 0;
+    }
+
+    h2 {
+      margin: 32px 0 14px;
+      color: var(--navy);
+      font-size: 28px;
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 0;
+      color: var(--navy);
+      font-size: 21px;
+      letter-spacing: 0;
+    }
+
+    p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .lead {
+      max-width: 680px;
+      font-size: 18px;
+    }
+
+    .phone {
+      border-radius: 34px;
+      padding: 14px;
+      min-height: 440px;
+      box-shadow: none;
+    }
+
+    .phone-screen {
+      min-height: 412px;
+      border-radius: 26px;
+      background: #F7FAFF;
+      border: 1px solid var(--line);
+      overflow: hidden;
+      padding: 16px;
+    }
+
+    .phone-head,
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .brand {
+      color: var(--blue);
+      font-size: 25px;
+      font-weight: 900;
+    }
+
+    .subtitle {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 750;
+    }
+
+    .icon-button {
+      width: 44px;
+      height: 44px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      color: var(--blue);
+      background: #FFFFFF;
+      border: 1px solid #DDE7F5;
+      box-shadow: 0 10px 22px rgba(7, 27, 58, 0.07);
+    }
+
+    .icon-button.round {
+      border-radius: 50%;
+    }
+
+    .story-row {
+      display: flex;
+      gap: 10px;
+      margin: 18px -2px 14px;
+      overflow: hidden;
+    }
+
+    .story {
+      width: 62px;
+      flex: 0 0 auto;
+    }
+
+    .story-icon {
+      width: 58px;
+      height: 58px;
+      border-radius: 20px;
+      display: grid;
+      place-items: center;
+      color: var(--blue);
+      background: linear-gradient(145deg, #FFFFFF, #EAF1FF);
+      border: 1px solid #D9E3F2;
+      box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.72);
+    }
+
+    .story span {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 750;
+      text-align: center;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .post {
+      border-radius: 22px;
+      background: #FFFFFF;
+      border: 1px solid #DDE7F5;
+      overflow: hidden;
+    }
+
+    .post-head {
+      padding: 12px;
+      display: flex;
+      gap: 10px;
+      align-items: center;
+    }
+
+    .avatar {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--blue), #77ACFF);
+    }
+
+    .line {
+      height: 9px;
+      border-radius: 999px;
+      background: #E2EAF6;
+    }
+
+    .media {
+      height: 172px;
+      margin: 0 12px;
+      border-radius: 18px;
+      background:
+        linear-gradient(145deg, rgba(7, 27, 58, 0.06), rgba(7, 27, 58, 0)),
+        linear-gradient(135deg, #C6D9F7, #FFFFFF 52%, #D7F1E6);
+    }
+
+    .actions {
+      padding: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .action-group {
+      display: flex;
+      gap: 15px;
+    }
+
+    .action {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 750;
+    }
+
+    .icon {
+      width: 24px;
+      height: 24px;
+      display: block;
+      color: currentColor;
+    }
+
+    .icon.big {
+      width: 30px;
+      height: 30px;
+    }
+
+    .directions {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .direction {
+      padding: 18px;
+      box-shadow: none;
+    }
+
+    .direction.recommended {
+      border-color: rgba(11, 61, 153, 0.38);
+      box-shadow: 0 18px 46px rgba(11, 61, 153, 0.11);
+    }
+
+    .tag {
+      display: inline-flex;
+      margin-top: 12px;
+      border-radius: 999px;
+      padding: 7px 10px;
+      background: var(--soft);
+      color: var(--blue);
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .icon-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      margin: 18px 0 16px;
+    }
+
+    .icon-cell {
+      min-height: 82px;
+      border-radius: 18px;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding: 8px;
+      background: #F7FAFF;
+      border: 1px solid #E1E9F5;
+      color: var(--blue);
+    }
+
+    .icon-cell.rounded {
+      border-radius: 24px;
+      background: linear-gradient(145deg, #FFFFFF, #EAF1FF);
+      box-shadow: inset 0 0 0 3px rgba(255, 255, 255, 0.7);
+    }
+
+    .icon-cell.solid {
+      background: var(--blue);
+      color: #FFFFFF;
+      border-color: var(--blue);
+    }
+
+    .icon-cell.glass {
+      background: rgba(255, 255, 255, 0.62);
+      border-color: rgba(11, 61, 153, 0.22);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.85);
+    }
+
+    .icon-cell span {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 750;
+    }
+
+    .solid span {
+      color: rgba(255, 255, 255, 0.78);
+    }
+
+    ul {
+      margin: 12px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 7px;
+    }
+
+    li {
+      display: flex;
+      gap: 8px;
+      color: var(--ink);
+      font-size: 14px;
+    }
+
+    li::before {
+      content: "";
+      width: 7px;
+      height: 7px;
+      margin-top: 7px;
+      border-radius: 50%;
+      background: var(--blue);
+      flex: 0 0 auto;
+    }
+
+    .rules {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .rule {
+      padding: 15px;
+      box-shadow: none;
+    }
+
+    .rule strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--navy);
+      font-size: 14px;
+    }
+
+    .rule span {
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .choices {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .choice {
+      cursor: pointer;
+      padding: 17px;
+      text-align: left;
+      transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    .choice:hover,
+    .choice.selected {
+      transform: translateY(-2px);
+      border-color: rgba(11, 61, 153, 0.55);
+      background: #F7FAFF;
+    }
+
+    .choice strong {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--navy);
+      font-size: 16px;
+    }
+
+    .footer {
+      margin-top: 16px;
+      font-size: 13px;
+    }
+
+    @media (max-width: 980px) {
+      .hero,
+      .directions,
+      .rules,
+      .choices {
+        grid-template-columns: 1fr;
+      }
+
+      .phone {
+        width: min(430px, 100%);
+        margin: 0 auto;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .shell {
+        width: min(100vw - 20px, 430px);
+        padding-top: 18px;
+      }
+
+      .hero,
+      .direction {
+        border-radius: 20px;
+        padding: 18px;
+      }
+
+      .icon-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <section class="hero">
+      <div>
+        <span class="eyebrow">Reworked icon direction</span>
+        <h1>Не библиотечные иконки, а Blizz Soft Glyphs</h1>
+        <p class="lead">Предыдущий вариант был слишком сухой. Для Близз лучше сделать фирменные мягкие иконки: округлые, чуть более “живые”, с глубоким синим, soft-blue подложками и аккуратными заполнениями для активных состояний.</p>
+      </div>
+
+      <aside class="phone">
+        <div class="phone-screen">
+          <div class="phone-head">
+            <div>
+              <div class="brand">Близз</div>
+              <div class="subtitle">мягкие фирменные glyphs</div>
+            </div>
+            <div class="row">
+              <div class="icon-button round">
+                <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M10.8 17.2a6.4 6.4 0 1 1 4.5-1.9l4.2 4.2" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/><path d="M8.4 10.7h4.9" stroke="currentColor" stroke-width="2.3" stroke-linecap="round"/></svg>
+              </div>
+              <div class="icon-button round">
+                <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M6.8 10.2a5.2 5.2 0 0 1 10.4 0v2.7l1.8 3.2H5l1.8-3.2v-2.7Z" fill="#EAF1FF" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M10 19.1c.5.7 1.1 1 2 1s1.5-.3 2-1" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+              </div>
+              <div class="icon-button round">
+                <svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M5 7.3c0-1.2.8-2 2-2h10c1.2 0 2 .8 2 2v6.7c0 1.2-.8 2-2 2H10l-4.7 3.1.8-3.5C5.4 15.2 5 14.6 5 13.8V7.3Z" fill="#EAF1FF" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>
+              </div>
+            </div>
+          </div>
+
+          <div class="story-row">
+            <div class="story"><div class="story-icon"><svg class="icon big" viewBox="0 0 24 24" fill="none"><path d="M5.2 11.1 12 5l6.8 6.1v7.4H7.4v-5.2h9.2" fill="#EAF1FF" stroke="currentColor" stroke-width="2.15" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span>Места</span></div>
+            <div class="story"><div class="story-icon"><svg class="icon big" viewBox="0 0 24 24" fill="none"><path d="M7 20c.8-3 2.5-4.5 5-4.5s4.2 1.5 5 4.5" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="12" cy="8.5" r="3.7" fill="#EAF1FF" stroke="currentColor" stroke-width="2.2"/></svg></div><span>Люди</span></div>
+            <div class="story"><div class="story-icon"><svg class="icon big" viewBox="0 0 24 24" fill="none"><path d="M6 6.8h12v10.4H6z" fill="#EAF1FF" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M6 10.2h12M9 5v3M15 5v3" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></div><span>События</span></div>
+            <div class="story"><div class="story-icon"><svg class="icon big" viewBox="0 0 24 24" fill="none"><path d="M6.5 7.2h11l-1 11h-9l-1-11Z" fill="#EAF1FF" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/><path d="M9.2 7.2a2.8 2.8 0 0 1 5.6 0" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg></div><span>Офферы</span></div>
+          </div>
+
+          <article class="post">
+            <div class="post-head">
+              <div class="avatar"></div>
+              <div style="flex: 1; display: grid; gap: 7px;">
+                <div class="line" style="width: 56%;"></div>
+                <div class="line" style="width: 78%; height: 7px;"></div>
+              </div>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" style="color: #667085;"><circle cx="6.5" cy="12" r="1.35" fill="currentColor"/><circle cx="12" cy="12" r="1.35" fill="currentColor"/><circle cx="17.5" cy="12" r="1.35" fill="currentColor"/></svg>
+            </div>
+            <div class="media"></div>
+            <div class="actions">
+              <div class="action-group">
+                <div class="action" style="color: var(--danger);"><svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M19.5 8.9c0 5.1-7.5 9.3-7.5 9.3S4.5 14 4.5 8.9A4 4 0 0 1 12 6.8a4 4 0 0 1 7.5 2.1Z" fill="#FCE4E4" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>128</div>
+                <div class="action"><svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M5 7.3c0-1.2.8-2 2-2h10c1.2 0 2 .8 2 2v6.7c0 1.2-.8 2-2 2H10l-4.7 3.1.8-3.5C5.4 15.2 5 14.6 5 13.8V7.3Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>24</div>
+                <div class="action"><svg class="icon" viewBox="0 0 24 24" fill="none"><path d="M5 12.2v6h14v-6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 5v10.2M8.4 8.6 12 5l3.6 3.6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+              </div>
+              <svg class="icon" viewBox="0 0 24 24" fill="none" style="color: var(--blue);"><path d="M7.2 5.2c0-.6.4-1 1-1h7.6c.6 0 1 .4 1 1v14L12 16.2l-4.8 3V5.2Z" fill="#EAF1FF" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>
+            </div>
+          </article>
+        </div>
+      </aside>
+    </section>
+
+    <h2>Три варианта красивого стиля</h2>
+    <section class="directions">
+      <article class="direction recommended">
+        <h3>1. Blizz Soft Glyphs</h3>
+        <span class="tag">рекомендую</span>
+        <div class="icon-grid">
+          <div class="icon-cell rounded"><svg class="icon big" viewBox="0 0 24 24" fill="none"><path d="M5 7.3c0-1.2.8-2 2-2h10c1.2 0 2 .8 2 2v6.7c0 1.2-.8 2-2 2H10l-4.7 3.1.8-3.5C5.4 15.2 5 14.6 5 13.8V7.3Z" fill="#EAF1FF" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg><span>message</span></div>
+          <div class="icon-cell rounded"><svg class="icon big" viewBox="0 0 24 24" fill="none"><path d="M19.5 8.9c0 5.1-7.5 9.3-7.5 9.3S4.5 14 4.5 8.9A4 4 0 0 1 12 6.8a4 4 0 0 1 7.5 2.1Z" fill="#FCE4E4" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg><span>like</span></div>
+          <div class="icon-cell rounded"><svg class="icon big" viewBox="0 0 24 24" fill="none"><path d="M12 21s6-5.2 6-10.7a6 6 0 1 0-12 0C6 15.8 12 21 12 21Z" fill="#EAF1FF" stroke="currentColor" stroke-width="2.2"/><circle cx="12" cy="10.2" r="2.1" fill="#fff" stroke="currentColor" stroke-width="2"/></svg><span>place</span></div>
+          <div class="icon-cell rounded"><svg class="icon big" viewBox="0 0 24 24" fill="none"><path d="M7.2 5.2c0-.6.4-1 1-1h7.6c.6 0 1 .4 1 1v14L12 16.2l-4.8 3V5.2Z" fill="#EAF1FF" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg><span>save</span></div>
+        </div>
+        <p>Фирменный стиль: outline + мягкая заливка внутри ключевых иконок. Красиво, дружелюбно, не выглядит как системная библиотека.</p>
+        <ul>
+          <li>Лучше всего подходит под теплый фон и deep blue.</li>
+          <li>Активные состояния становятся красивыми, а не просто цветными.</li>
+          <li>Можно реализовать в текущем `BlizzIcon` без новой зависимости.</li>
+        </ul>
+      </article>
+
+      <article class="direction">
+        <h3>2. City Badge Icons</h3>
+        <span class="tag">более брендово</span>
+        <div class="icon-grid">
+          <div class="icon-cell solid"><svg class="icon big" viewBox="0 0 24 24" fill="none"><path d="M5 7.3c0-1.2.8-2 2-2h10c1.2 0 2 .8 2 2v6.7c0 1.2-.8 2-2 2H10l-4.7 3.1.8-3.5C5.4 15.2 5 14.6 5 13.8V7.3Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg><span>message</span></div>
+          <div class="icon-cell solid"><svg class="icon big" viewBox="0 0 24 24" fill="none"><path d="M19.5 8.9c0 5.1-7.5 9.3-7.5 9.3S4.5 14 4.5 8.9A4 4 0 0 1 12 6.8a4 4 0 0 1 7.5 2.1Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg><span>like</span></div>
+          <div class="icon-cell solid"><svg class="icon big" viewBox="0 0 24 24" fill="none"><path d="M12 21s6-5.2 6-10.7a6 6 0 1 0-12 0C6 15.8 12 21 12 21Z" stroke="currentColor" stroke-width="2.2"/><circle cx="12" cy="10.2" r="2.1" stroke="currentColor" stroke-width="2"/></svg><span>place</span></div>
+          <div class="icon-cell solid"><svg class="icon big" viewBox="0 0 24 24" fill="none"><path d="M7.2 5.2c0-.6.4-1 1-1h7.6c.6 0 1 .4 1 1v14L12 16.2l-4.8 3V5.2Z" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg><span>save</span></div>
+        </div>
+        <p>Иконка всегда в синем бейдже. Сильнее бренд, но есть риск утяжелить ленту, особенно если много действий под постами.</p>
+        <ul>
+          <li>Хорошо для bottom nav и stories.</li>
+          <li>Плохо для плотной action-строки: слишком много синих пятен.</li>
+          <li>Можно использовать дозированно для primary actions.</li>
+        </ul>
+      </article>
+
+      <article class="direction">
+        <h3>3. Clean Premium Line</h3>
+        <span class="tag">тише</span>
+        <div class="icon-grid">
+          <div class="icon-cell glass"><svg class="icon big" viewBox="0 0 24 24" fill="none"><path d="M5 7.3c0-1.2.8-2 2-2h10c1.2 0 2 .8 2 2v6.7c0 1.2-.8 2-2 2H10l-4.7 3.1.8-3.5C5.4 15.2 5 14.6 5 13.8V7.3Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>message</span></div>
+          <div class="icon-cell glass"><svg class="icon big" viewBox="0 0 24 24" fill="none"><path d="M19.5 8.9c0 5.1-7.5 9.3-7.5 9.3S4.5 14 4.5 8.9A4 4 0 0 1 12 6.8a4 4 0 0 1 7.5 2.1Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>like</span></div>
+          <div class="icon-cell glass"><svg class="icon big" viewBox="0 0 24 24" fill="none"><path d="M12 21s6-5.2 6-10.7a6 6 0 1 0-12 0C6 15.8 12 21 12 21Z" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10.2" r="2.1" stroke="currentColor" stroke-width="1.8"/></svg><span>place</span></div>
+          <div class="icon-cell glass"><svg class="icon big" viewBox="0 0 24 24" fill="none"><path d="M7.2 5.2c0-.6.4-1 1-1h7.6c.6 0 1 .4 1 1v14L12 16.2l-4.8 3V5.2Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg><span>save</span></div>
+        </div>
+        <p>Самый спокойный вариант: красиво и premium, но слабее фирменность. Больше похож на Airbnb/современный SaaS.</p>
+        <ul>
+          <li>Подойдет, если хотим очень дорогой и тихий интерфейс.</li>
+          <li>Меньше характера для социальной городской ленты.</li>
+          <li>Активные состояния нужно делать очень аккуратно.</li>
+        </ul>
+      </article>
+    </section>
+
+    <h2>Правила красоты для Blizz Soft Glyphs</h2>
+    <section class="rules">
+      <div class="rule"><strong>Форма</strong><span>Округлые углы, мягкие кривые, без острых технических деталей.</span></div>
+      <div class="rule"><strong>Заливка</strong><span>Soft-blue внутри важных иконок; danger fill только для active like.</span></div>
+      <div class="rule"><strong>Размер</strong><span>24px actions, 22px header, 28-30px stories/bottom nav center.</span></div>
+      <div class="rule"><strong>Цвет</strong><span>Primary для active/brand, navy для обычных, muted для secondary.</span></div>
+    </section>
+
+    <h2>Что берем в реализацию после approval</h2>
+    <section class="rules">
+      <div class="rule"><strong>`BlizzIcon`</strong><span>Расширить именами `search`, `bell`, `message`, `heart`, `comment`, `share`, `bookmark`, `mapPin`, `home`, `play`, `plus`, `user`, `more`.</span></div>
+      <div class="rule"><strong>Header</strong><span>Круглые/мягкие icon buttons, без символов `⌕`, `♢`, `✉`.</span></div>
+      <div class="rule"><strong>Post actions</strong><span>Like/comment/share/save с красивыми active states и ровными счетчиками.</span></div>
+      <div class="rule"><strong>Bottom nav</strong><span>Тот же состав навигации, но без `⌂`, `▶`, `⌖`, `○` как текстовых маркеров.</span></div>
+    </section>
+
+    <h2>Какой стиль фиксируем?</h2>
+    <section class="choices">
+      <button class="choice" type="button" data-choice="soft-glyphs">
+        <strong>Blizz Soft Glyphs</strong>
+        <p>Моя рекомендация: красиво, брендово, но не перегружает ленту.</p>
+      </button>
+      <button class="choice" type="button" data-choice="city-badges">
+        <strong>City Badge Icons</strong>
+        <p>Сильнее бренд и больше синего, но может утяжелить action rows.</p>
+      </button>
+      <button class="choice" type="button" data-choice="premium-line">
+        <strong>Clean Premium Line</strong>
+        <p>Самый тихий premium, но меньше собственного характера Близз.</p>
+      </button>
+    </section>
+    <p class="footer">После выбора я оформлю spec по иконкам и затем внедрю выбранный стиль в HomeScreen + bottom nav.</p>
+  </main>
+
+  <script>
+    const buttons = Array.from(document.querySelectorAll('[data-choice]'));
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        buttons.forEach((item) => item.classList.remove('selected'));
+        button.classList.add('selected');
+        window.localStorage.setItem('blizz-icon-style-choice', button.dataset.choice || '');
+      });
+    });
+    const saved = window.localStorage.getItem('blizz-icon-style-choice');
+    if (saved) {
+      const selected = document.querySelector(`[data-choice="${saved}"]`);
+      if (selected) selected.classList.add('selected');
+    }
+  </script>
+</body>
+</html>

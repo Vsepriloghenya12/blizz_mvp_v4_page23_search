@@ -1,0 +1,123 @@
+{
+  "meta": {
+    "name": "Blizz MVP v4",
+    "version": 1,
+    "cleanedAt": "2026-06-14T00:00:00.000Z",
+    "updatedAt": "2026-06-15T11:46:20.066Z"
+  },
+  "users": [
+    {
+      "id": "user_60472972b3053323644b",
+      "login": "32423423",
+      "passwordHash": "a512f4e338d9dfe12734126cf95b9cafb86b666d4c4a258d1a546c1db0a8e813aa6a37ee2a2af5fe7551d44d2668c1e302083a7775e1a331055cf45a9b386c4a",
+      "passwordSalt": "5ff2ad700cf72ea9924c0f7ba6e7ca1b",
+      "status": "active",
+      "createdAt": "2026-06-14T22:09:54.975Z",
+      "updatedAt": "2026-06-14T22:09:54.975Z"
+    },
+    {
+      "id": "user_a9ac8de7c6b66c0f888b",
+      "login": "23123",
+      "passwordHash": "679617737a0083ae175c131245a3dbbacab96a6051c0b8189dc0091250574bc9081410502598962d35171317d0c81091c017774d3bab60d078f9a3abc1f43e11",
+      "passwordSalt": "5040b828efedae1eb110aee9bf1b40f1",
+      "status": "active",
+      "createdAt": "2026-06-15T11:46:19.933Z",
+      "updatedAt": "2026-06-15T11:46:19.933Z"
+    }
+  ],
+  "accounts": [
+    {
+      "id": "account_551ee79c1c8b3c861288",
+      "type": "personal",
+      "ownerUserId": "user_60472972b3053323644b",
+      "name": "Пользователь",
+      "username": "user_378612",
+      "avatar": null,
+      "bio": "",
+      "city": "",
+      "isPrivate": false,
+      "link": "",
+      "createdAt": "2026-06-14T22:09:54.975Z",
+      "updatedAt": "2026-06-14T22:09:54.975Z"
+    },
+    {
+      "id": "account_8a971d3c3c61afc65d31",
+      "type": "personal",
+      "ownerUserId": "user_a9ac8de7c6b66c0f888b",
+      "name": "Пользователь",
+      "username": "user_169075",
+      "avatar": null,
+      "bio": "",
+      "city": "",
+      "isPrivate": false,
+      "link": "",
+      "createdAt": "2026-06-15T11:46:19.933Z",
+      "updatedAt": "2026-06-15T11:46:19.933Z"
+    }
+  ],
+  "accountMemberships": [
+    {
+      "id": "membership_e6ee0b998f8adde4376a",
+      "userId": "user_60472972b3053323644b",
+      "accountId": "account_551ee79c1c8b3c861288",
+      "role": "owner",
+      "status": "active",
+      "createdAt": "2026-06-14T22:09:54.975Z"
+    },
+    {
+      "id": "membership_c13547865ff3b78ae2a7",
+      "userId": "user_a9ac8de7c6b66c0f888b",
+      "accountId": "account_8a971d3c3c61afc65d31",
+      "role": "owner",
+      "status": "active",
+      "createdAt": "2026-06-15T11:46:19.933Z"
+    }
+  ],
+  "businessProfiles": [],
+  "posts": [],
+  "videos": [],
+  "videoLikes": [],
+  "stories": [],
+  "storyViews": [],
+  "storyReplies": [],
+  "offers": [],
+  "drafts": [],
+  "savedItems": [],
+  "postLikes": [],
+  "postComments": [],
+  "sharedContents": [],
+  "conversations": [],
+  "messages": [],
+  "messageReads": [],
+  "gameSessions": [],
+  "gameAnswers": [],
+  "accountSettings": [],
+  "follows": [],
+  "recentSearches": [],
+  "blocks": [],
+  "notifications": [],
+  "notificationSettings": [],
+  "pushTokens": [],
+  "metricsEvents": [],
+  "reports": [],
+  "sessions": [
+    {
+      "id": "session_d5ef74993f15e00b47a1",
+      "token": "blizz_session_aac2fb0c8faa2aec2c58e960deeb79de625ca3b4c62e1d936779627aa5f86091",
+      "userId": "user_60472972b3053323644b",
+      "activeAccountId": "account_551ee79c1c8b3c861288",
+      "createdAt": "2026-06-14T22:09:55.100Z",
+      "lastSeenAt": "2026-06-15T11:05:41.484Z",
+      "revokedAt": null
+    },
+    {
+      "id": "session_3e333e480a6625264e2e",
+      "token": "blizz_session_bde810d594e157c8d488e95231c3ae9e0a76741ab9f730d58523cd9573b1b730",
+      "userId": "user_a9ac8de7c6b66c0f888b",
+      "activeAccountId": "account_8a971d3c3c61afc65d31",
+      "createdAt": "2026-06-15T11:46:20.065Z",
+      "lastSeenAt": "2026-06-15T11:46:20.065Z",
+      "revokedAt": null
+    }
+  ]
+}

@@ -1,0 +1,4 @@
+
+> blizz-mvp-v4-server@0.7.0 check
+> node --check src/server.js && node --check src/app.js && node --check src/modules/auth/auth.routes.js && node --check src/modules/auth/auth.service.js && node --check src/modules/accounts/accounts.routes.js && node --check src/modules/accounts/accounts.service.js && node --check src/modules/profile/profile.routes.js && node --check src/modules/profile/profile.service.js && node --check src/modules/posts/posts.routes.js && node --check src/modules/posts/posts.service.js && node --check src/shared/storage/jsonDatabase.js
+

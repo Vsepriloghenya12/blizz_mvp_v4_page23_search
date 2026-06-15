@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Близз — владелец приложения</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <main id="loginView" class="login-shell">
+      <section class="login-card">
+        <div class="brand">Близз</div>
+        <h1>Панель владельца приложения</h1>
+        <p>Отдельный вход для владельца платформы. Это не мобильное приложение и не бизнес-кабинет.</p>
+        <form id="loginForm" class="form">
+          <label>
+            Email или телефон
+            <input id="loginInput" autocomplete="username" placeholder="owner@example.com" />
+          </label>
+          <label>
+            Пароль
+            <input id="passwordInput" type="password" autocomplete="current-password" placeholder="••••••••" />
+          </label>
+          <button type="submit">Войти в панель</button>
+          <div id="loginError" class="error" hidden></div>
+        </form>
+      </section>
+    </main>
+
+    <main id="dashboardView" class="dashboard" hidden>
+      <aside class="sidebar">
+        <div class="brand brand-sidebar">Близз</div>
+        <div class="sidebar-subtitle">Владелец приложения</div>
+        <nav class="nav">
+          <button class="nav-button active" data-section="overview">Обзор</button>
+          <button class="nav-button" data-section="users">Пользователи</button>
+          <button class="nav-button" data-section="businesses">Бизнесы</button>
+          <button class="nav-button" data-section="content">Контент</button>
+          <button class="nav-button" data-section="reports">Жалобы</button>
+          <button class="nav-button" data-section="metrics">Метрики</button>
+        </nav>
+        <button id="logoutButton" class="ghost-button">Выйти</button>
+      </aside>
+
+      <section class="content-shell">
+        <header class="topbar">
+          <div>
+            <h1 id="sectionTitle">Обзор приложения</h1>
+            <p id="sectionSubtitle">Общие показатели платформы Близз.</p>
+          </div>
+          <div class="topbar-actions">
+            <select id="periodSelect" aria-label="Период">
+              <option value="7d">7 дней</option>
+              <option value="30d">30 дней</option>
+              <option value="90d">90 дней</option>
+            </select>
+            <button id="refreshButton" class="secondary-button">Обновить</button>
+          </div>
+        </header>
+        <div id="panelError" class="error" hidden></div>
+        <section id="panelContent" class="panel-content"></section>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>

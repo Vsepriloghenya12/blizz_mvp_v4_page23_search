@@ -1,0 +1,18 @@
+RUN page24-smoke-test.js
+page24 smoke test ok
+RUN page25-smoke-test.js
+page25 smoke test ok
+RUN page26-smoke-test.js
+page26 smoke test ok
+RUN page27-smoke-test.js
+page27 smoke test ok
+RUN page28-smoke-test.js
+page28 smoke test ok
+RUN page29-smoke-test.js
+page29 smoke test ok
+RUN page30-smoke-test.js
+page30 smoke test ok
+RUN page31-smoke-test.js
+page31 smoke test ok
+RUN page31_1-smoke-test.js
+page31.1 smoke test ok

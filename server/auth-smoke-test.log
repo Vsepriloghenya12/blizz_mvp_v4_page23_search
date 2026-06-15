@@ -1,0 +1,9 @@
+auth-smoke-ok
+
+Проверено:
+- register создаёт User + Personal Account + AccountMembership + Session;
+- activeAccountId указывает на personalAccountId;
+- me возвращает пользователя и activeAccount;
+- login создаёт новую session;
+- accounts/switch проверяет membership;
+- logout отзывает session.

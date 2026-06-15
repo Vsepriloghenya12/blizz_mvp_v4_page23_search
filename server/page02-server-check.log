@@ -1,0 +1,2 @@
+npm run check: ok
+node --check прошёл для backend entrypoints/routes/services/storage.

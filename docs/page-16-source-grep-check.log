@@ -1,0 +1,21 @@
+Check: no bottom tab Сообщения in MainTabs tabs
+OK
+Check: no Обновить button in mobile/src
+OK
+Check: no user.isBusiness
+OK
+Check: Близз not create action in CreateHub
+OK
+Check: no games in messages module
+OK
+Check: group endpoints exist
+mobile/src/features/messages/api/messagesApi.ts:36:export async function createGroupConversation(
+mobile/src/features/messages/api/messagesApi.ts:42:  return apiRequest<CreateConversationResponse>('/api/messages/groups', {
+mobile/src/features/messages/api/messagesApi.ts:50:  return apiRequest<GroupMembersResponse>(`/api/messages/groups/${conversationId}/members`, { token });
+mobile/src/screens/messages/MessagesScreen.tsx:5:import { createGroupConversation, getConversation, getConversations, markConversationRead, sendMessage } from '../../features/messages/api/messagesApi';
+mobile/src/screens/messages/MessagesScreen.tsx:184:      const response = await createGroupConversation(auth.session.token, title, selectedParticipantIds, clientRequestId);
+mobile/src/screens/messages/MessagesScreen.tsx:317:        <FilterButton active={filter === 'group'} title="Группы" onPress={() => changeFilter('group')} />
+server/src/modules/messages/messages.service.js:378:function createGroupConversation({ userId, activeAccountId, input }) {
+server/src/modules/messages/messages.service.js:572:  createGroupConversation,
+server/src/modules/messages/messages.routes.js:7:  createGroupConversation,
+server/src/modules/messages/messages.routes.js:18:    const result = createGroupConversation({

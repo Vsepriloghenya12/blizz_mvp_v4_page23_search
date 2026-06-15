@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Близз — мокап Карты (Editorial Blue, light)</title>
+<style>
+  :root {
+    --brand-primary: #0B3D99;
+    --brand-primary-soft: #EAF1FF;
+    --brand-primary-on: #FFFFFF;
+    --brand-accent: #1B5BD9;
+    --surface-bg: #FAFAF7;
+    --surface-surface: #FFFFFF;
+    --surface-muted: #F4F6F9;
+    --text-primary: #101828;
+    --text-secondary: #667085;
+    --border-default: #D9E3F2;
+    --border-subtle: #EEF2F8;
+    --content-story: #E48A3F;
+    --content-offer: #12B76A;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-pill: 9999px;
+    --radius-2xl: 28px;
+    --shadow-sm: 0 1px 2px rgba(11, 61, 153, 0.06), 0 1px 3px rgba(11, 61, 153, 0.04);
+    --shadow-lg: 0 24px 48px rgba(11, 61, 153, 0.16), 0 8px 16px rgba(11, 61, 153, 0.08);
+    --font: Inter, -apple-system, "SF Pro Text", "Segoe UI", Roboto, system-ui, sans-serif;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 32px 16px;
+    background: #0E1116;
+    font-family: var(--font);
+    color: #E7ECF3;
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+  }
+  .label { text-align: center; font-size: 13px; color: #8A93A4; margin-bottom: 24px; }
+  .label b { color: #E7ECF3; }
+  .phone {
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+    border-radius: 42px;
+    border: 8px solid #0B0E14;
+    background: var(--surface-bg);
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.5);
+    color: var(--text-primary);
+    font-size: 13px;
+    position: relative;
+    min-height: 760px;
+  }
+  .statusbar { display: flex; justify-content: space-between; align-items: center; padding: 10px 20px 4px; font-size: 11px; font-weight: 600; }
+  .statusbar .right { display: flex; gap: 6px; align-items: center; }
+  .statusbar .dot { width: 5px; height: 5px; border-radius: 50%; background: #101828; }
+
+  .header { display: flex; align-items: flex-start; justify-content: space-between; padding: 4px 18px 12px; }
+  .title { font-size: 26px; font-weight: 800; letter-spacing: -0.4px; }
+  .subtitle { color: var(--text-secondary); font-size: 13px; margin-top: 4px; }
+  .header-right { display: flex; align-items: center; gap: 8px; }
+  .search-icon-btn {
+    width: 36px; height: 36px;
+    background: var(--surface-surface);
+    border: 1px solid var(--border-default);
+    border-radius: 18px;
+    display: flex; align-items: center; justify-content: center;
+    color: var(--text-primary);
+  }
+  .hint { color: var(--brand-primary); font-size: 11px; font-weight: 700; }
+
+  .tabs {
+    display: flex; gap: 8px;
+    padding: 0 18px 14px;
+    overflow-x: auto;
+  }
+  .tab {
+    padding: 8px 14px;
+    border-radius: var(--radius-pill);
+    background: var(--surface-surface);
+    border: 1px solid var(--border-default);
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--brand-primary);
+    white-space: nowrap;
+  }
+  .tab.active { background: var(--brand-primary); color: var(--brand-primary-on); border-color: var(--brand-primary); }
+
+  .map-area {
+    margin: 0 18px 16px;
+    background: var(--brand-primary-soft);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-2xl);
+    padding: 16px;
+    height: 240px;
+    position: relative;
+    overflow: hidden;
+  }
+  .map-area-title { font-size: 16px; font-weight: 800; }
+  .map-area-text { color: var(--text-secondary); font-size: 13px; margin-top: 4px; }
+  .map-area-rule {
+    color: var(--brand-primary); font-size: 11px; font-weight: 700;
+    margin-top: 6px; max-width: 250px; line-height: 1.4;
+  }
+
+  .pin {
+    position: absolute;
+    width: 32px; height: 32px;
+    border-radius: 16px;
+    background: var(--surface-surface);
+    border: 2px solid var(--brand-primary);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px;
+    font-weight: 900;
+    color: var(--brand-primary);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  }
+  .pin.active { background: var(--brand-primary); color: white; }
+  .pin.story { border-color: var(--content-story); color: var(--content-story); }
+  .pin.story.active { background: var(--content-story); color: white; }
+  .pin.offer { border-color: var(--content-offer); color: var(--content-offer); }
+  .pin.offer.active { background: var(--content-offer); color: white; }
+
+  .section-title {
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--text-secondary);
+    padding: 12px 18px 8px;
+  }
+
+  .object-row {
+    display: flex; align-items: center; gap: 12px;
+    margin: 0 18px 8px;
+    padding: 12px 14px;
+    background: var(--surface-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-lg);
+  }
+  .object-row.selected { border-color: var(--brand-primary); }
+  .object-icon {
+    width: 36px; height: 36px;
+    border-radius: 18px;
+    background: var(--brand-primary-soft);
+    color: var(--brand-primary);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 900; font-size: 12px;
+  }
+  .object-body { flex: 1; min-width: 0; }
+  .object-type { color: var(--text-secondary); font-size: 11px; font-weight: 700; }
+  .object-title { font-size: 14px; font-weight: 800; margin-top: 2px; }
+  .object-sub { font-size: 12px; color: var(--text-secondary); margin-top: 2px; }
+  .saved-mark { color: var(--brand-primary); font-weight: 900; }
+
+  /* Bottom sheet */
+  .sheet {
+    position: absolute;
+    left: 0; right: 0; bottom: 0;
+    background: var(--surface-surface);
+    border-top: 1px solid var(--border-default);
+    border-top-left-radius: var(--radius-2xl);
+    border-top-right-radius: var(--radius-2xl);
+    padding: 14px 18px 24px;
+    box-shadow: var(--shadow-lg);
+  }
+  .handle {
+    width: 42px; height: 4px;
+    background: var(--border-default);
+    border-radius: 2px;
+    margin: 0 auto 14px;
+  }
+  .sheet-header { display: flex; align-items: flex-start; justify-content: space-between; }
+  .sheet-type {
+    color: var(--brand-primary);
+    font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .sheet-title { font-size: 18px; font-weight: 800; margin-top: 4px; }
+  .sheet-close {
+    width: 32px; height: 32px;
+    border-radius: 16px;
+    background: var(--brand-primary-soft);
+    color: var(--brand-primary);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; font-weight: 700;
+  }
+  .sheet-sub { color: var(--text-secondary); font-size: 12px; margin-top: 6px; }
+  .sheet-loc { color: var(--text-primary); font-size: 13px; font-weight: 700; margin-top: 8px; display: flex; align-items: center; gap: 6px; }
+  .sheet-desc { color: var(--text-secondary); font-size: 13px; line-height: 1.5; margin-top: 6px; }
+  .sheet-actions { display: flex; gap: 8px; margin-top: 14px; }
+  .btn-primary {
+    background: var(--brand-primary);
+    color: var(--brand-primary-on);
+    border-radius: var(--radius-pill);
+    padding: 10px 16px;
+    font-size: 13px; font-weight: 800;
+  }
+  .btn-secondary {
+    background: var(--brand-primary-soft);
+    color: var(--brand-primary);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-pill);
+    padding: 10px 16px;
+    font-size: 13px; font-weight: 800;
+  }
+
+  .icon-set { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.75; stroke-linecap: round; stroke-linejoin: round; }
+</style>
+</head>
+<body>
+<div class="label"><b>Карта</b> — Editorial Blue, light theme</div>
+
+<div class="phone">
+  <div class="statusbar">
+    <span>9:41</span>
+    <div class="right"><span>5G</span><span class="dot"></span><span>100%</span></div>
+  </div>
+
+  <div class="header">
+    <div>
+      <div class="title">Карта</div>
+      <div class="subtitle">Что интересного рядом?</div>
+    </div>
+    <div class="header-right">
+      <div class="search-icon-btn">
+        <svg class="icon-set" viewBox="0 0 24 24" width="16" height="16"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+      </div>
+      <div class="hint">без live tracking</div>
+    </div>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active">Все</div>
+    <div class="tab">Посты</div>
+    <div class="tab">Видео</div>
+    <div class="tab">Бизнес</div>
+    <div class="tab">Близзы</div>
+    <div class="tab">Предложения</div>
+    <div class="tab">Сохранённое</div>
+  </div>
+
+  <div class="map-area">
+    <div class="map-area-title">Рабочий слой карты</div>
+    <div class="map-area-text">Найдено объектов: 12</div>
+    <div class="map-area-rule">Финальный Android-экран будет на Yandex MapKit. Здесь — данные, фильтры, переходы.</div>
+
+    <div class="pin" style="top: 20%; left: 22%;">Б</div>
+    <div class="pin story active" style="top: 40%; left: 50%;">Б</div>
+    <div class="pin" style="top: 65%; left: 18%;">P</div>
+    <div class="pin offer" style="top: 30%; left: 70%;">₽</div>
+    <div class="pin" style="top: 75%; left: 60%;">V</div>
+    <div class="pin" style="top: 12%; left: 80%;">P</div>
+  </div>
+
+  <div class="section-title">Объекты</div>
+
+  <div class="object-row selected">
+    <div class="object-icon" style="background: rgba(228, 138, 63, 0.15); color: #E48A3F;">Б</div>
+    <div class="object-body">
+      <div class="object-type">Близз</div>
+      <div class="object-title">Утренний кофе в парке</div>
+      <div class="object-sub">@anya · Парк Горького</div>
+    </div>
+  </div>
+
+  <div class="object-row">
+    <div class="object-icon" style="background: rgba(18, 183, 106, 0.15); color: #12B76A;">₽</div>
+    <div class="object-body">
+      <div class="object-type">Предложение</div>
+      <div class="object-title">Завтраки весь день · 590₽</div>
+      <div class="object-sub">Diner 24 · ул. Тверская, 12</div>
+    </div>
+    <div class="saved-mark">✓</div>
+  </div>
+
+  <div class="object-row">
+    <div class="object-icon">P</div>
+    <div class="object-body">
+      <div class="object-type">Пост</div>
+      <div class="object-title">Рассвет на Воробьёвых горах</div>
+      <div class="object-sub">@kirill · Воробьёвы горы</div>
+    </div>
+  </div>
+
+  <div class="sheet">
+    <div class="handle"></div>
+    <div class="sheet-header">
+      <div>
+        <div class="sheet-type">Близз</div>
+        <div class="sheet-title">Утренний кофе в парке</div>
+      </div>
+      <div class="sheet-close">×</div>
+    </div>
+    <div class="sheet-sub">@anya · Аня</div>
+    <div class="sheet-loc">
+      <svg class="icon-set" viewBox="0 0 24 24" width="14" height="14"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+      Парк Горького, Москва
+    </div>
+    <div class="sheet-desc">Поймал рассвет и поделился с тёплой чашкой в кадре. Скоро исчезнет.</div>
+    <div class="sheet-actions">
+      <div class="btn-primary">Открыть</div>
+      <div class="btn-secondary">Маршрут</div>
+      <div class="btn-secondary">Сохранить</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
