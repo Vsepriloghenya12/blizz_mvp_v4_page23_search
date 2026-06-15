@@ -1,3 +1,0 @@
-transpile syntax ok: 15 files
-Проверено через TypeScript transpileModule без установки node_modules.
-Полный tsc --noEmit требует npm install, потому что tsconfig extends expo/tsconfig.base.
