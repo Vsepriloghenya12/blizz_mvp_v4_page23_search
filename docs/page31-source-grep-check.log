@@ -1,8 +1,0 @@
-user.isBusiness
-bottom messages
-mobile/src/screens/notifications/NotificationsScreen.tsx:26:  { key: 'messages', label: 'Сообщения' },
-mobile/src/screens/metrics/MetricsScreen.tsx:81:      { label: 'Сообщения', value: summary.overview.messages },
-mobile/src/screens/businessDashboard/BusinessOwnerDashboardScreen.tsx:20:  { value: 'messages', label: 'Сообщения' },
-refresh button
-create blizz in create hub
-mobile/src/screens/create/CreateScreen.tsx:39:      <Text style={styles.brand}>Близз</Text>

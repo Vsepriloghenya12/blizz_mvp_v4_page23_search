@@ -1,8 +1,0 @@
-## page12 grep checks
-user.isBusiness:
-bottom tab Сообщения:
-button Обновить:
-Предложения рядом:
-CreateHub story/Близз action:
-/mnt/data/blizz_mvp_v4_page12_showcase/blizz_mvp_v4_page11_stories/mobile/src/screens/create/CreateScreen.tsx:39:      <Text style={styles.brand}>Близз</Text>
-MainTabs showcase bottom tab:

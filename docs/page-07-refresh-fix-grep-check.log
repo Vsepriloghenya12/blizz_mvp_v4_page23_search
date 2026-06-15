@@ -1,3 +1,0 @@
-No standalone feed refresh button should exist in mobile source.
-2:import { ActivityIndicator, Image, Pressable, RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native';
-181:        <RefreshControl
