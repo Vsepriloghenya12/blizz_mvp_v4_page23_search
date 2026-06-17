@@ -1,0 +1,12 @@
+{
+  "name": "blizz-mvp-v4",
+  "version": "0.9.0",
+  "private": true,
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node server/src/server.js",
+    "postinstall": "cd server && npm install"
+  }
+}
