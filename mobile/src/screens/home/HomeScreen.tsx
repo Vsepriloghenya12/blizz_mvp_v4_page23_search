@@ -1034,9 +1034,11 @@ export function HomeScreen({ auth, onCreateStory, onOpenMessages, onOpenOffer, o
         <View style={styles.homeTabs}>
           <Pressable accessibilityRole="button" onPress={() => setHomeTab('feed')} style={[styles.homeTabButton, homeTab === 'feed' && styles.homeTabButtonActive]}>
             <Text style={[styles.homeTabText, homeTab === 'feed' && styles.homeTabTextActive]}>Лента</Text>
+            {homeTab === 'feed' ? <View style={styles.homeTabIndicator} /> : null}
           </Pressable>
           <Pressable accessibilityRole="button" onPress={() => setHomeTab('showcase')} style={[styles.homeTabButton, homeTab === 'showcase' && styles.homeTabButtonActive]}>
             <Text style={[styles.homeTabText, homeTab === 'showcase' && styles.homeTabTextActive]}>Витрина</Text>
+            {homeTab === 'showcase' ? <View style={styles.homeTabIndicator} /> : null}
           </Pressable>
         </View>
 
@@ -1161,6 +1163,9 @@ const styles = StyleSheet.create({
   },
   header: {
     alignItems: 'center',
+    backgroundColor: '#FFFFFF',
+    borderBottomColor: '#E5E5EA',
+    borderBottomWidth: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 16,
@@ -1180,10 +1185,10 @@ const styles = StyleSheet.create({
   },
   headerIconButton: {
     alignItems: 'center',
-    borderRadius: 20,
-    height: 40,
+    borderRadius: 10,
+    height: 36,
     justifyContent: 'center',
-    width: 40
+    width: 36
   },
   messagesIcon: {
     color: '#061327',
@@ -1191,10 +1196,13 @@ const styles = StyleSheet.create({
     fontWeight: '800'
   },
   storiesBlock: {
-    marginTop: 0
+    backgroundColor: '#FFFFFF',
+    marginTop: 0,
+    paddingHorizontal: 16,
+    paddingVertical: 14
   },
   storiesRow: {
-    marginHorizontal: -18
+    marginHorizontal: -16
   },
   storyItem: {
     alignItems: 'center',
@@ -1253,35 +1261,40 @@ const styles = StyleSheet.create({
     marginTop: 24
   },
   homeTabs: {
-    backgroundColor: '#EEF3FB',
-    borderRadius: 24,
+    backgroundColor: '#FFFFFF',
+    borderBottomColor: '#E5E5EA',
+    borderBottomWidth: 1,
     flexDirection: 'row',
-    marginTop: 20,
-    overflow: 'hidden',
-    padding: 4
+    marginTop: 20
   },
   homeTabButton: {
     alignItems: 'center',
-    borderRadius: 20,
     flex: 1,
+    justifyContent: 'center',
     minHeight: 44,
-    justifyContent: 'center'
+    paddingBottom: 10,
+    paddingTop: 10,
+    position: 'relative'
   },
-  homeTabButtonActive: {
-    backgroundColor: colors.surface,
-    shadowColor: colors.primary,
-    shadowOffset: { height: 2, width: 0 },
-    shadowOpacity: 0.1,
-    shadowRadius: 8
+  homeTabButtonActive: {},
+  homeTabIndicator: {
+    backgroundColor: '#0B3D99',
+    borderRadius: 2,
+    bottom: 0,
+    height: 2.5,
+    left: '25%',
+    position: 'absolute',
+    right: '25%'
   },
   homeTabText: {
     color: colors.textSecondary,
-    fontSize: 15,
-    fontWeight: '700'
+    fontSize: 13,
+    fontWeight: '600',
+    letterSpacing: 1.2,
+    textTransform: 'uppercase'
   },
   homeTabTextActive: {
-    color: colors.primary,
-    fontWeight: '900'
+    color: colors.primary
   },
   infoText: {
     backgroundColor: colors.softBlue,
@@ -1976,7 +1989,7 @@ const styles = StyleSheet.create({
   },
 
   storiesRowContent: {
-    paddingHorizontal: 18,
+    paddingHorizontal: 16,
     paddingRight: 30
   },
   storyRing: {

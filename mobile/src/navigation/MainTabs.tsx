@@ -1029,18 +1029,14 @@ const styles = StyleSheet.create({
   },
   tabBar: {
     alignItems: "center",
-    backgroundColor: colors.surface,
-    borderTopColor: "#E6EEF8",
+    backgroundColor: "#FFFFFF",
+    borderTopColor: "#E5E5EA",
     borderTopWidth: 1,
     flexDirection: "row",
     minHeight: 76,
     paddingBottom: 8,
     paddingHorizontal: 6,
-    paddingTop: 8,
-    shadowColor: "#0B3D99",
-    shadowOffset: { height: -4, width: 0 },
-    shadowOpacity: 0.06,
-    shadowRadius: 12
+    paddingTop: 8
   },
   tabItem: {
     alignItems: "center",
@@ -1050,13 +1046,13 @@ const styles = StyleSheet.create({
   },
   tabIcon: {
     alignItems: "center",
-    borderRadius: 17,
-    height: 34,
+    borderRadius: 10,
+    height: 30,
     justifyContent: "center",
-    width: 34
+    width: 40
   },
   tabIconActive: {
-    backgroundColor: colors.softBlue
+    backgroundColor: "#EAF1FF"
   },
   tabIconText: {
     color: colors.textSecondary,
@@ -1065,13 +1061,9 @@ const styles = StyleSheet.create({
     lineHeight: 22
   },
   createIcon: {
-    backgroundColor: colors.primary,
-    borderRadius: 18,
+    backgroundColor: "#0B3D99",
+    borderRadius: 16,
     height: 54,
-    shadowColor: colors.primary,
-    shadowOffset: { height: 6, width: 0 },
-    shadowOpacity: 0.18,
-    shadowRadius: 10,
     width: 54
   },
   createText: {
@@ -1081,11 +1073,12 @@ const styles = StyleSheet.create({
     lineHeight: 42
   },
   tabLabel: {
-    color: colors.textSecondary,
+    color: "#8E8E93",
     fontSize: 12,
-    fontWeight: "700"
+    fontWeight: "500"
   },
   tabTextActive: {
-    color: colors.primary
+    color: "#0B3D99",
+    fontWeight: "700"
   },
 });
