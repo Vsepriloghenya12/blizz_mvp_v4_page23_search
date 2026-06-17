@@ -2,7 +2,7 @@
 nixPkgs = ["nodejs_22"]
 
 [phases.install]
-cmds = ["npm install --prefix server --omit=dev"]
+cmds = ["cd server && npm ci --omit=dev"]
 
 [start]
 cmd = "node server/src/server.js"
