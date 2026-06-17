@@ -70,6 +70,13 @@ function createApp() {
   app.use('/api/moderation', moderationRouter);
   app.use('/api/service-owner', serviceOwnerRouter);
 
+  const appPublicPath = path.join(__dirname, '..', 'public', 'app');
+  app.use(express.static(appPublicPath));
+  app.get('*', (_req, res, next) => {
+    const index = path.join(appPublicPath, 'index.html');
+    res.sendFile(index, (err) => { if (err) next(); });
+  });
+
   app.use(notFoundHandler);
   app.use(errorHandler);
 

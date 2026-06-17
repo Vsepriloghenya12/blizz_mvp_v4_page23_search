@@ -1,6 +1,6 @@
 import type { ApiErrorPayload } from './types';
 
-const API_URL = process.env.EXPO_PUBLIC_API_URL || 'http://localhost:4000';
+const API_URL = process.env.EXPO_PUBLIC_API_URL ?? 'http://localhost:4000';
 
 type ApiRequestOptions = {
   method?: 'GET' | 'POST' | 'PATCH' | 'DELETE';
