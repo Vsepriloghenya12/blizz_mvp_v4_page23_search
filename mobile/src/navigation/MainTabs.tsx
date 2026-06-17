@@ -1030,13 +1030,17 @@ const styles = StyleSheet.create({
   tabBar: {
     alignItems: "center",
     backgroundColor: colors.surface,
-    borderTopColor: colors.border,
+    borderTopColor: "#E6EEF8",
     borderTopWidth: 1,
     flexDirection: "row",
     minHeight: 76,
-    paddingBottom: 6,
-    paddingHorizontal: 10,
-    paddingTop: 8
+    paddingBottom: 8,
+    paddingHorizontal: 6,
+    paddingTop: 8,
+    shadowColor: "#0B3D99",
+    shadowOffset: { height: -4, width: 0 },
+    shadowOpacity: 0.06,
+    shadowRadius: 12
   },
   tabItem: {
     alignItems: "center",

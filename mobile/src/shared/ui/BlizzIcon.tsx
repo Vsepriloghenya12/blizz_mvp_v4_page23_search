@@ -1,8 +1,9 @@
-import Svg, { Circle, Path, Rect } from 'react-native-svg';
+import Svg, { Circle, Line, Path, Rect } from 'react-native-svg';
 
 export type BlizzIconName =
   | 'bell'
   | 'bookmark'
+  | 'chevronLeft'
   | 'comment'
   | 'eye'
   | 'eyeOff'
@@ -17,7 +18,8 @@ export type BlizzIconName =
   | 'search'
   | 'share'
   | 'smartphone'
-  | 'user';
+  | 'user'
+  | 'x';
 
 type BlizzIconProps = {
   name: BlizzIconName;
@@ -164,6 +166,23 @@ export function BlizzIcon({ name, size = 24, color = '#0B1220', filled = false, 
     );
   }
 
+  if (name === 'chevronLeft') {
+    return (
+      <Svg height={size} viewBox="0 0 24 24" width={size}>
+        <Path d="M15 19l-7-7 7-7" {...commonProps} />
+      </Svg>
+    );
+  }
+
+  if (name === 'x') {
+    return (
+      <Svg height={size} viewBox="0 0 24 24" width={size}>
+        <Line x1="18" y1="6" x2="6" y2="18" {...commonProps} />
+        <Line x1="6" y1="6" x2="18" y2="18" {...commonProps} />
+      </Svg>
+    );
+  }
+
   if (name === 'eyeOff') {
     return (
       <Svg height={size} viewBox="0 0 24 24" width={size}>
@@ -175,6 +194,7 @@ export function BlizzIcon({ name, size = 24, color = '#0B1220', filled = false, 
     );
   }
 
+  // eye (default fallback)
   return (
     <Svg height={size} viewBox="0 0 24 24" width={size}>
       <Path d="M2.8 12s3.4-6 9.2-6 9.2 6 9.2 6-3.4 6-9.2 6-9.2-6-9.2-6Z" {...commonProps} />

@@ -29,6 +29,17 @@ export function AppRoot() {
         setAuth(response);
         setStatus('authenticated');
       } catch (_error) {
+        // Dev preview: if API is unreachable but __dev_auth__ is set in localStorage, use it
+        if (__DEV__ && Platform.OS === 'web' && typeof window !== 'undefined') {
+          const devAuth = window.localStorage.getItem('__dev_auth__');
+          if (devAuth) {
+            try {
+              const parsed = JSON.parse(devAuth) as AuthResponse;
+              if (mounted) { setAuth(parsed); setStatus('authenticated'); }
+              return;
+            } catch { /* fall through */ }
+          }
+        }
         await clearSessionToken();
         if (mounted) setStatus('guest');
       }

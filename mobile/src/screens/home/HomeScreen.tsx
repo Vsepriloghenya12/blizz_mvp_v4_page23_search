@@ -1163,25 +1163,27 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 18
+    marginBottom: 16,
+    paddingTop: 4
   },
   logo: {
     color: colors.primary,
-    fontSize: 27,
+    fontSize: 28,
     fontStyle: 'italic',
     fontWeight: '900',
-    letterSpacing: -1.2
+    letterSpacing: -1.4
   },
   headerActions: {
     alignItems: 'center',
     flexDirection: 'row',
-    gap: 16
+    gap: 4
   },
   headerIconButton: {
     alignItems: 'center',
-    height: 36,
+    borderRadius: 20,
+    height: 40,
     justifyContent: 'center',
-    width: 36
+    width: 40
   },
   messagesIcon: {
     color: '#061327',
@@ -1251,32 +1253,35 @@ const styles = StyleSheet.create({
     marginTop: 24
   },
   homeTabs: {
-    backgroundColor: colors.surface,
-    borderColor: colors.primary,
-    borderRadius: 22,
-    borderWidth: 1.5,
+    backgroundColor: '#EEF3FB',
+    borderRadius: 24,
     flexDirection: 'row',
     marginTop: 20,
     overflow: 'hidden',
-    padding: 0
+    padding: 4
   },
   homeTabButton: {
     alignItems: 'center',
     borderRadius: 20,
     flex: 1,
-    minHeight: 48,
+    minHeight: 44,
     justifyContent: 'center'
   },
   homeTabButtonActive: {
-    backgroundColor: colors.primary
+    backgroundColor: colors.surface,
+    shadowColor: colors.primary,
+    shadowOffset: { height: 2, width: 0 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8
   },
   homeTabText: {
-    color: colors.primary,
-    fontSize: 16,
-    fontWeight: '900'
+    color: colors.textSecondary,
+    fontSize: 15,
+    fontWeight: '700'
   },
   homeTabTextActive: {
-    color: '#FFFFFF'
+    color: colors.primary,
+    fontWeight: '900'
   },
   infoText: {
     backgroundColor: colors.softBlue,
@@ -1317,9 +1322,8 @@ const styles = StyleSheet.create({
     fontWeight: '600'
   },
   feedList: {
-    gap: 14,
-    marginHorizontal: -2,
-    marginTop: 22
+    gap: 16,
+    marginTop: 20
   },
   offerCard: {
     backgroundColor: colors.surface,
@@ -1407,18 +1411,21 @@ const styles = StyleSheet.create({
   },
   postCard: {
     backgroundColor: colors.surface,
-    borderBottomColor: '#E8EDF5',
-    borderBottomWidth: 8,
-    borderRadius: 0,
+    borderColor: '#E6EEF8',
+    borderRadius: 22,
+    borderWidth: 1,
     overflow: 'hidden',
-    paddingBottom: 2
+    shadowColor: '#0B3D99',
+    shadowOffset: { height: 4, width: 0 },
+    shadowOpacity: 0.06,
+    shadowRadius: 12
   },
   postHeader: {
     alignItems: 'center',
     flexDirection: 'row',
-    paddingHorizontal: 0,
+    paddingHorizontal: 14,
     paddingBottom: 12,
-    paddingTop: 8
+    paddingTop: 14
   },
   authorPressable: {
     alignItems: 'center',
@@ -1444,8 +1451,8 @@ const styles = StyleSheet.create({
   },
   authorName: {
     color: colors.textPrimary,
-    fontSize: 17,
-    fontWeight: '900',
+    fontSize: 15,
+    fontWeight: '800',
     letterSpacing: -0.2
   },
   authorMeta: {
@@ -1468,14 +1475,14 @@ const styles = StyleSheet.create({
   },
   postImage: {
     backgroundColor: colors.softBlue,
-    borderRadius: 20,
-    height: 282,
+    borderRadius: 0,
+    height: 280,
     width: '100%'
   },
   postImageFallback: {
     alignItems: 'center',
     backgroundColor: colors.softBlue,
-    borderRadius: 20,
+    borderRadius: 0,
     height: 220,
     justifyContent: 'center'
   },
@@ -1486,9 +1493,9 @@ const styles = StyleSheet.create({
   postActions: {
     alignItems: 'center',
     flexDirection: 'row',
-    gap: 22,
-    paddingHorizontal: 0,
-    paddingBottom: 16,
+    gap: 20,
+    paddingHorizontal: 14,
+    paddingBottom: 14,
     paddingTop: 12
   },
   actionButton: {
@@ -1514,10 +1521,11 @@ const styles = StyleSheet.create({
   },
   postText: {
     color: colors.textPrimary,
-    fontSize: 16,
-    lineHeight: 23,
-    paddingHorizontal: 0,
-    paddingTop: 14
+    fontSize: 15,
+    lineHeight: 22,
+    paddingHorizontal: 14,
+    paddingTop: 12,
+    paddingBottom: 2
   },
   postTime: {
     color: colors.textSecondary,
@@ -1999,7 +2007,8 @@ const styles = StyleSheet.create({
   },
   postHeaderRight: {
     alignItems: 'center',
-    flexDirection: 'row'
+    flexDirection: 'row',
+    gap: 4
   },
   postHeaderTime: {
     color: colors.textSecondary,
@@ -2007,7 +2016,7 @@ const styles = StyleSheet.create({
     fontWeight: '600'
   },
   postMediaPressable: {
-    borderRadius: 20,
+    borderRadius: 0,
     overflow: 'hidden'
   },
   carouselDots: {
@@ -2027,9 +2036,10 @@ const styles = StyleSheet.create({
     backgroundColor: colors.primary
   },
   postActionsDivider: {
-    backgroundColor: colors.border,
+    backgroundColor: '#EEF2F8',
     height: 1,
-    marginTop: 18
+    marginHorizontal: 14,
+    marginTop: 14
   },
   actionIconText: {
     color: '#081120',

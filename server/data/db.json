@@ -3,7 +3,7 @@
     "name": "Blizz MVP v4",
     "version": 1,
     "cleanedAt": "2026-06-14T00:00:00.000Z",
-    "updatedAt": "2026-06-15T11:46:20.066Z"
+    "updatedAt": "2026-06-17T14:34:24.601Z"
   },
   "users": [
     {
@@ -23,6 +23,15 @@
       "status": "active",
       "createdAt": "2026-06-15T11:46:19.933Z",
       "updatedAt": "2026-06-15T11:46:19.933Z"
+    },
+    {
+      "id": "user_9fe41bbe70f40cc4b7c9",
+      "login": "testuser@blizz.app",
+      "passwordHash": "13569891dcd8222373ec77af4226269f1d675768b4328f5fb03334dd084225b5760f643ef8f65b163e3eed045a7c0c8d5fa459abf843d54f3d78b6db5d431b7e",
+      "passwordSalt": "27ff09d223b72ef1bb35f8aea76685ba",
+      "status": "active",
+      "createdAt": "2026-06-17T14:29:25.515Z",
+      "updatedAt": "2026-06-17T14:29:25.515Z"
     }
   ],
   "accounts": [
@@ -53,6 +62,20 @@
       "link": "",
       "createdAt": "2026-06-15T11:46:19.933Z",
       "updatedAt": "2026-06-15T11:46:19.933Z"
+    },
+    {
+      "id": "account_dbe23a7efe723cfebd08",
+      "type": "personal",
+      "ownerUserId": "user_9fe41bbe70f40cc4b7c9",
+      "name": "Пользователь",
+      "username": "user_367753",
+      "avatar": null,
+      "bio": "",
+      "city": "",
+      "isPrivate": false,
+      "link": "",
+      "createdAt": "2026-06-17T14:29:25.515Z",
+      "updatedAt": "2026-06-17T14:29:25.515Z"
     }
   ],
   "accountMemberships": [
@@ -71,6 +94,14 @@
       "role": "owner",
       "status": "active",
       "createdAt": "2026-06-15T11:46:19.933Z"
+    },
+    {
+      "id": "membership_f9e91c8220a250c27ee8",
+      "userId": "user_9fe41bbe70f40cc4b7c9",
+      "accountId": "account_dbe23a7efe723cfebd08",
+      "role": "owner",
+      "status": "active",
+      "createdAt": "2026-06-17T14:29:25.515Z"
     }
   ],
   "businessProfiles": [],
@@ -107,7 +138,7 @@
       "userId": "user_60472972b3053323644b",
       "activeAccountId": "account_551ee79c1c8b3c861288",
       "createdAt": "2026-06-14T22:09:55.100Z",
-      "lastSeenAt": "2026-06-15T11:05:41.484Z",
+      "lastSeenAt": "2026-06-17T14:34:24.601Z",
       "revokedAt": null
     },
     {
@@ -117,6 +148,15 @@
       "activeAccountId": "account_8a971d3c3c61afc65d31",
       "createdAt": "2026-06-15T11:46:20.065Z",
       "lastSeenAt": "2026-06-15T11:46:20.065Z",
+      "revokedAt": null
+    },
+    {
+      "id": "session_0b479136ecce76b79721",
+      "token": "blizz_session_6650070dfa41a7d8a6148b40e108b80ffe6c2775857e280d690d44c40f80c840",
+      "userId": "user_9fe41bbe70f40cc4b7c9",
+      "activeAccountId": "account_dbe23a7efe723cfebd08",
+      "createdAt": "2026-06-17T14:29:25.626Z",
+      "lastSeenAt": "2026-06-17T14:33:04.201Z",
       "revokedAt": null
     }
   ]

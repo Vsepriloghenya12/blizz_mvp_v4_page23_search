@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import {
   ActivityIndicator,
-  Image,
   KeyboardAvoidingView,
   Platform,
   Pressable,
@@ -12,6 +11,7 @@ import {
   TextInput,
   View
 } from 'react-native';
+import Svg, { Circle, Defs, LinearGradient, Path, Stop } from 'react-native-svg';
 import { BlizzIcon } from '../../../shared/ui/BlizzIcon';
 import { ApiError } from '../../../shared/api/client';
 import type { AuthResponse } from '../../../shared/api/types';
@@ -90,12 +90,32 @@ export function AuthScreen({ onAuthSuccess }: AuthScreenProps) {
             showsVerticalScrollIndicator={false}
           >
             <View style={styles.heroCard}>
-              <Image
-                accessibilityIgnoresInvertColors
-                resizeMode="cover"
-                source={require('../../../../assets/auth-hero-city-oil-clean.png')}
-                style={styles.heroImage}
-              />
+              <Svg height="100%" viewBox="0 0 430 318" width="100%">
+                <Defs>
+                  <LinearGradient id="bg" x1="0" x2="0.4" y1="0" y2="1">
+                    <Stop offset="0" stopColor="#071B3A" />
+                    <Stop offset="1" stopColor="#0B3D99" />
+                  </LinearGradient>
+                  <LinearGradient id="glow" x1="0" x2="1" y1="0" y2="1">
+                    <Stop offset="0" stopColor="#1A5FCC" stopOpacity="0.6" />
+                    <Stop offset="1" stopColor="#0B3D99" stopOpacity="0" />
+                  </LinearGradient>
+                </Defs>
+                <Path d="M0 0h430v318H0z" fill="url(#bg)" />
+                <Circle cx="340" cy="60" fill="url(#glow)" r="180" />
+                <Circle cx="80" cy="260" fill="#1A5FCC" fillOpacity="0.18" r="120" />
+                <Circle cx="215" cy="159" fill="none" r="90" stroke="#FFFFFF" strokeOpacity="0.04" strokeWidth="1" />
+                <Circle cx="215" cy="159" fill="none" r="140" stroke="#FFFFFF" strokeOpacity="0.03" strokeWidth="1" />
+                <Circle cx="215" cy="159" fill="none" r="190" stroke="#FFFFFF" strokeOpacity="0.025" strokeWidth="1" />
+                <Path d="M60 200 Q110 140 160 180 Q210 220 260 160 Q310 100 370 140" fill="none" stroke="#FFFFFF" strokeOpacity="0.12" strokeWidth="2" />
+                <Path d="M0 240 Q80 180 150 220 Q220 260 300 190 Q370 130 430 170" fill="none" stroke="#4A90D9" strokeOpacity="0.2" strokeWidth="1.5" />
+                <Circle cx="160" cy="180" fill="#FFFFFF" fillOpacity="0.7" r="3" />
+                <Circle cx="260" cy="160" fill="#FFFFFF" fillOpacity="0.7" r="3" />
+                <Circle cx="110" cy="145" fill="#E48A3F" fillOpacity="0.9" r="2" />
+                <Circle cx="320" cy="120" fill="#E48A3F" fillOpacity="0.9" r="2" />
+                <Circle cx="200" cy="220" fill="#FFFFFF" fillOpacity="0.4" r="1.5" />
+                <Circle cx="350" cy="200" fill="#FFFFFF" fillOpacity="0.4" r="1.5" />
+              </Svg>
             </View>
 
             <View style={styles.brandBlock}>
