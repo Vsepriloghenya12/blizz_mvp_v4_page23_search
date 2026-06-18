@@ -219,6 +219,28 @@ components and text symbols are not allowed.
 - Respect safe area and prevent the create action from vertically displacing the
   other tabs.
 
+### Moving Signal Line
+
+- The top edge of the bottom navigation is one continuous neutral divider.
+- A single soft downward curve in that divider marks the active destination.
+- The curve is approximately 48 px wide.
+- The curve moves horizontally between tab centers when the active destination
+  changes; it must not disappear and reappear as separate per-tab indicators.
+- Standard transition duration: 240 ms.
+- Use a smooth ease-in-out timing curve without spring, bounce, overshoot, or
+  elastic behavior.
+- The central create destination uses the same moving signal, with a slightly
+  deeper curve to accommodate the larger plus control.
+- The animation must not change the navigation height, icon positions, press
+  targets, or safe-area padding.
+- Rapid tab changes must move the current signal toward the latest selected
+  destination without leaving duplicate curves.
+- On initial render, the curve appears directly above the current active tab
+  without an entrance animation.
+- When reduced motion is requested, update the curve position immediately.
+- Implement with existing React Native animation primitives; do not add a
+  dependency solely for this effect.
+
 ## Responsive Behavior
 
 ### Mobile
@@ -283,6 +305,11 @@ duplication and remain within the Home/icon-system scope.
 - Browser checks at 390 x 844, 430 px, 1280 x 800, and 1440 x 900.
 - Compare the selected reference and rendered implementation at matching mobile
   dimensions.
+- Verify the signal line moves across every adjacent and non-adjacent tab
+  transition, including transitions to and from the central create action.
+- Verify rapid repeated tab selection leaves one curve at the latest active
+  destination.
+- Verify reduced-motion behavior updates the curve without animation.
 - Verify all existing Home interactions and sheets.
 - Grep for forbidden text-symbol icons and navigation regressions.
 - Record inspected files, changed elements, intentionally unchanged elements,
