@@ -30,7 +30,7 @@ The result must be:
 ## Existing Behavior To Preserve
 
 - Header actions: search, notifications, messages.
-- Stories/Blizz row, including `Ваш Близз`.
+- Stories/Blizz row, including the current user's first-position create item.
 - Tabs: `Лента` and `Витрина`.
 - Personal feed posts and business showcase content.
 - Like, comments, share, save, post opening, account opening.
@@ -48,6 +48,9 @@ The result must be:
 - Keep the header compact and visually calm.
 - Make the Blizz row spatially efficient; it must not create an empty band when
   only one story exists.
+- Do not show a title above the Blizz row.
+- Place the current user's Blizz first and attach a small add badge to the
+  avatar instead of rendering a separate create tile or header action.
 - Keep `Лента / Витрина` visually clear without large pills or uppercase
   letter-spaced labels.
 - Remove unnecessary card shells from the personal feed.
@@ -166,7 +169,10 @@ components and text symbols are not allowed.
 
 ### Blizz Row
 
-- `Ваш Близз` create state.
+- Current user's Blizz is always the first item.
+- The create affordance is a small circular plus badge attached to the current
+  user's avatar.
+- No `Близзы` section title and no separate `Ваш Близз` header action.
 - Viewed and unseen states.
 - Image and fallback states.
 - Loading, error, disabled/no-access, and long-name behavior.
@@ -183,6 +189,9 @@ components and text symbols are not allowed.
 - Avatar/fallback, author, location, time, and overflow.
 - Media/fallback and multi-media indicator.
 - Caption/no-caption.
+- Do not render hashtags or tag rows beneath the post caption.
+- Do not place a divider between the caption and the action row; use spacing
+  alone.
 - Like, comment, share, and bookmark states.
 - Long names, long locations, multiline captions, and large counters.
 
@@ -203,6 +212,7 @@ components and text symbols are not allowed.
 ### Bottom Navigation
 
 - Keep the five existing destinations and order.
+- Show icons only; bottom-navigation text labels are not rendered.
 - Use 24 px icons and a 28 px central plus.
 - Active icons use filled primary glyphs.
 - Profile avatar uses a neutral inactive ring and primary active ring.
