@@ -1,7 +1,9 @@
 import { useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import Svg, { Circle, Defs, LinearGradient, Stop } from 'react-native-svg';
 import type { AuthResponse, PostItem, Profile, VideoItem } from '../../shared/api/types';
 import { colors } from '../../shared/ui/theme';
+import { BlizzIcon } from '../../shared/ui/BlizzIcon';
 import { getMyProfile, getProfileFromAuth } from '../../features/profile/api/profileApi';
 import { getMyDrafts, getMyPosts } from '../../features/posts/api/postsApi';
 import { getMyVideos } from '../../features/videos/api/videosApi';
@@ -153,19 +155,38 @@ export function ProfileScreen({ auth, onOpenMessages, onOpenMenu, onEditProfile,
         </View>
         <View style={styles.headerActions}>
           <Pressable accessibilityLabel="Личные сообщения" accessibilityRole="button" onPress={onOpenMessages} style={styles.headerButton}>
-            <Text style={styles.headerButtonText}>✉</Text>
+            <BlizzIcon color={colors.textPrimary} name="message" size={20} />
           </Pressable>
           <Pressable accessibilityLabel="Управление профилем" accessibilityRole="button" onPress={onOpenMenu} style={styles.headerButton}>
-            <Text style={styles.headerButtonText}>☰</Text>
+            <BlizzIcon color={colors.textPrimary} name="moreHorizontal" size={20} />
           </Pressable>
         </View>
       </View>
 
       <View style={styles.profileTop}>
-        <View style={styles.avatar}>
-          <Text style={styles.avatarText}>{profile.name.slice(0, 1).toUpperCase()}</Text>
+        <View style={styles.avatarWrap}>
+          {profile.avatar ? (
+            <Image resizeMode="cover" source={{ uri: profile.avatar }} style={styles.avatarImage} />
+          ) : (
+            <View style={styles.avatar}>
+              <Text style={styles.avatarText}>{profile.name.slice(0, 1).toUpperCase()}</Text>
+            </View>
+          )}
+          <Svg height={96} style={{ left: 0, position: 'absolute', top: 0 }} width={96}>
+            <Defs>
+              <LinearGradient id="avatarRing" x1="0" x2="1" y1="0" y2="1">
+                <Stop offset="0" stopColor="#0B3D99" />
+                <Stop offset="1" stopColor="#4F8EF7" />
+              </LinearGradient>
+            </Defs>
+            <Circle cx={48} cy={48} fill="none" r={46} stroke="url(#avatarRing)" strokeWidth={2.5} />
+          </Svg>
         </View>
         <View style={styles.socialStats}>
+          <View style={styles.statItem}>
+            <Text style={styles.statNumber}>{profile.stats.posts}</Text>
+            <Text style={styles.statLabel}>Постов</Text>
+          </View>
           <Pressable accessibilityRole="button" onPress={onOpenFollowers} style={styles.statItem}>
             <Text style={styles.statNumber}>{profile.stats.followers}</Text>
             <Text style={styles.statLabel}>Подписчики</Text>
@@ -271,12 +292,11 @@ const styles = StyleSheet.create({
   },
   headerButton: {
     alignItems: 'center',
-    borderColor: colors.border,
-    borderRadius: 16,
-    borderWidth: 1,
-    height: 36,
+    backgroundColor: '#F5F7FA',
+    borderRadius: 12,
+    height: 38,
     justifyContent: 'center',
-    width: 36
+    width: 38
   },
   headerButtonText: {
     color: colors.textPrimary,
@@ -286,32 +306,41 @@ const styles = StyleSheet.create({
   profileTop: {
     alignItems: 'center',
     flexDirection: 'row',
-    marginTop: 24
+    marginTop: 20
+  },
+  avatarWrap: {
+    alignItems: 'center',
+    height: 96,
+    justifyContent: 'center',
+    width: 96
   },
   avatar: {
     alignItems: 'center',
     backgroundColor: colors.softBlue,
-    borderColor: colors.border,
-    borderRadius: 44,
-    borderWidth: 1,
-    height: 88,
+    borderRadius: 40,
+    height: 80,
     justifyContent: 'center',
-    width: 88
+    width: 80
+  },
+  avatarImage: {
+    borderRadius: 40,
+    height: 80,
+    width: 80
   },
   avatarText: {
     color: colors.primary,
-    fontSize: 34,
+    fontSize: 32,
     fontWeight: '800'
   },
   socialStats: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-around',
-    marginLeft: 18
+    marginLeft: 10
   },
   statItem: {
     alignItems: 'center',
-    minWidth: 86
+    minWidth: 64
   },
   statNumber: {
     color: colors.textPrimary,
@@ -337,12 +366,11 @@ const styles = StyleSheet.create({
   },
   editButton: {
     alignItems: 'center',
-    borderColor: colors.border,
-    borderRadius: 16,
-    borderWidth: 1,
+    backgroundColor: colors.softBlue,
+    borderRadius: 14,
+    justifyContent: 'center',
     marginTop: 16,
-    minHeight: 42,
-    justifyContent: 'center'
+    minHeight: 42
   },
   editButtonText: {
     color: colors.primary,

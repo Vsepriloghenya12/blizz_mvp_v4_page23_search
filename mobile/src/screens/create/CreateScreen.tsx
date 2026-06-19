@@ -1,6 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import type { AuthResponse } from '../../shared/api/types';
 import { colors } from '../../shared/ui/theme';
+import { BackButton } from '../../shared/ui/BackButton';
 
 export type CreateActionType = 'post' | 'video' | 'offer';
 
@@ -100,9 +101,7 @@ export function CreateActionIntroScreen({ action, auth, onBack }: CreateActionIn
 
   return (
     <View style={styles.container}>
-      <Pressable accessibilityRole="button" onPress={onBack} style={styles.backButton}>
-        <Text style={styles.backText}>← Назад</Text>
-      </Pressable>
+      <BackButton onPress={onBack} />
       <Text style={styles.title}>{copy.title}</Text>
       <Text style={styles.account}>Активный аккаунт: {auth.activeAccount.name} @{auth.activeAccount.username}</Text>
       <View style={styles.introCard}>
@@ -227,16 +226,6 @@ const styles = StyleSheet.create({
   },
   primaryButtonText: {
     color: '#FFFFFF',
-    fontSize: 15,
-    fontWeight: '700'
-  },
-  backButton: {
-    alignSelf: 'flex-start',
-    minHeight: 36,
-    justifyContent: 'center'
-  },
-  backText: {
-    color: colors.textPrimary,
     fontSize: 15,
     fontWeight: '700'
   },

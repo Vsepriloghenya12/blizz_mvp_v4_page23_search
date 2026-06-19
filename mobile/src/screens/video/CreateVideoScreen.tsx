@@ -3,6 +3,7 @@ import { ActivityIndicator, Image, Pressable, ScrollView, StyleSheet, Text, Text
 import type { AuthResponse, VideoVisibility } from '../../shared/api/types';
 import { colors } from '../../shared/ui/theme';
 import { ApiError } from '../../shared/api/client';
+import { BackButton } from '../../shared/ui/BackButton';
 import { createVideo, type CreateVideoInput } from '../../features/videos/api/videosApi';
 
 type CreateVideoScreenProps = {
@@ -91,9 +92,7 @@ export function CreateVideoScreen({ auth, onBack, onOpenAccountSwitcher, onVideo
   return (
     <ScrollView contentContainerStyle={styles.content} style={styles.container}>
       <View style={styles.header}>
-        <Pressable accessibilityRole="button" onPress={onBack} style={styles.backButton}>
-          <Text style={styles.backText}>← Назад</Text>
-        </Pressable>
+        <BackButton onPress={onBack} />
         <Text style={styles.headerTitle}>Создание видео</Text>
       </View>
 
@@ -215,16 +214,6 @@ const styles = StyleSheet.create({
   },
   header: {
     gap: 12
-  },
-  backButton: {
-    alignSelf: 'flex-start',
-    minHeight: 34,
-    justifyContent: 'center'
-  },
-  backText: {
-    color: colors.textPrimary,
-    fontSize: 15,
-    fontWeight: '700'
   },
   headerTitle: {
     color: colors.textPrimary,

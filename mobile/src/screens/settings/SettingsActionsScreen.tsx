@@ -3,6 +3,7 @@ import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, TextInput, 
 import type { AccountSettings, AuthResponse, UpdateSettingsInput } from '../../shared/api/types';
 import { colors } from '../../shared/ui/theme';
 import { getSettings, updateSettings } from '../../features/settings/api/settingsApi';
+import { BackButton } from '../../shared/ui/BackButton';
 
 type SettingsActionsScreenProps = {
   auth: AuthResponse;
@@ -280,9 +281,7 @@ export function SettingsActionsScreen({ auth, onBack, onOpenSaved, onOpenFollowR
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Pressable accessibilityRole="button" onPress={onBack} style={styles.backButton}>
-          <Text style={styles.backText}>←</Text>
-        </Pressable>
+        <BackButton onPress={onBack} />
         <Text style={styles.title}>Настройки и действия</Text>
         <View style={styles.headerSpacer} />
       </View>
@@ -708,9 +707,7 @@ function SettingDetailView({ item, saving, notice, currentValue, onBack, onSelec
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Pressable accessibilityRole="button" onPress={onBack} style={styles.backButton}>
-          <Text style={styles.backText}>←</Text>
-        </Pressable>
+        <BackButton onPress={onBack} />
         <Text style={styles.title}>{item.detailTitle || item.title}</Text>
         <View style={styles.headerSpacer} />
       </View>
@@ -765,17 +762,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     minHeight: 58,
     paddingHorizontal: 16,
-  },
-  backButton: {
-    alignItems: 'center',
-    height: 40,
-    justifyContent: 'center',
-    width: 40,
-  },
-  backText: {
-    color: colors.textPrimary,
-    fontSize: 28,
-    fontWeight: '600',
   },
   title: {
     color: colors.textPrimary,

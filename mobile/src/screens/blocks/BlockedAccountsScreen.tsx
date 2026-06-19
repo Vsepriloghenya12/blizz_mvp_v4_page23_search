@@ -3,6 +3,7 @@ import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from
 import type { AuthResponse, BlockedAccountItem } from '../../shared/api/types';
 import { getBlockedAccounts, unblockAccount } from '../../features/blocks/api/blocksApi';
 import { colors } from '../../shared/ui/theme';
+import { BackButton } from '../../shared/ui/BackButton';
 
 type BlockedAccountsScreenProps = {
   auth: AuthResponse;
@@ -51,9 +52,7 @@ export function BlockedAccountsScreen({ auth, onBack, onOpenAccount }: BlockedAc
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Pressable accessibilityRole="button" onPress={onBack} style={styles.backButton}>
-          <Text style={styles.backText}>←</Text>
-        </Pressable>
+        <BackButton onPress={onBack} />
         <Text style={styles.title}>Заблокированные</Text>
         <View style={styles.headerSpacer} />
       </View>
@@ -109,8 +108,6 @@ export function BlockedAccountsScreen({ auth, onBack, onOpenAccount }: BlockedAc
 const styles = StyleSheet.create({
   container: { backgroundColor: colors.background, flex: 1 },
   header: { alignItems: 'center', flexDirection: 'row', minHeight: 58, paddingHorizontal: 16 },
-  backButton: { alignItems: 'center', height: 40, justifyContent: 'center', width: 40 },
-  backText: { color: colors.textPrimary, fontSize: 28, fontWeight: '600' },
   title: { color: colors.textPrimary, flex: 1, fontSize: 20, fontWeight: '800' },
   headerSpacer: { width: 40 },
   content: { padding: 16, paddingBottom: 32 },

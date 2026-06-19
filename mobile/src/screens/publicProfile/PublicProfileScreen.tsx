@@ -3,6 +3,7 @@ import { ActivityIndicator, Image, Linking, Pressable, ScrollView, StyleSheet, T
 import type { AuthResponse, FeedPostItem, FeedVideoItem, OfferItem, PublicProfileResponse } from '../../shared/api/types';
 import { colors } from '../../shared/ui/theme';
 import { getPublicProfile, getPublicProfilePosts, getPublicProfileVideos } from '../../features/publicProfile/api/publicProfileApi';
+import { BackButton } from '../../shared/ui/BackButton';
 import { followAccount, unfollowAccount } from '../../features/follows/api/followsApi';
 import { createBusinessConversation, createPersonalConversation } from '../../features/messages/api/messagesApi';
 import { getBusinessOffers } from '../../features/offers/api/offersApi';
@@ -237,9 +238,7 @@ export function PublicProfileScreen({ auth, accountId, onBack, onOpenMessages, o
   return (
     <ScrollView contentContainerStyle={styles.content} style={styles.container}>
       <View style={styles.header}>
-        <Pressable accessibilityRole="button" onPress={onBack} style={styles.backButton}>
-          <Text style={styles.backText}>←</Text>
-        </Pressable>
+        <BackButton onPress={onBack} />
         <Text numberOfLines={1} style={styles.title}>{account ? `@${account.username}` : 'Профиль'}</Text>
         <Pressable accessibilityRole="button" onPress={() => setShowSafetyMenu((value) => !value)} style={styles.moreButton}>
           <Text style={styles.moreText}>⋯</Text>
@@ -366,8 +365,6 @@ const styles = StyleSheet.create({
   container: { backgroundColor: colors.background, flex: 1 },
   content: { paddingBottom: 28, paddingHorizontal: 16, paddingTop: 14 },
   header: { alignItems: 'center', flexDirection: 'row', minHeight: 48 },
-  backButton: { alignItems: 'center', height: 40, justifyContent: 'center', width: 40 },
-  backText: { color: colors.textPrimary, fontSize: 26, fontWeight: '800' },
   title: { color: colors.textPrimary, flex: 1, fontSize: 18, fontWeight: '800', textAlign: 'center' },
   moreButton: { alignItems: 'center', height: 40, justifyContent: 'center', width: 40 },
   moreText: { color: colors.textPrimary, fontSize: 26, fontWeight: '800' },

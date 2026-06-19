@@ -172,6 +172,9 @@ components and text symbols are not allowed.
 - Current user's Blizz is always the first item.
 - The create affordance is a small circular plus badge attached to the current
   user's avatar.
+- Every Blizz shows the author's name on one line below the avatar.
+- The name label width equals the 56 px avatar diameter; overflow is truncated
+  with a trailing ellipsis.
 - No `Близзы` section title and no separate `Ваш Близз` header action.
 - Viewed and unseen states.
 - Image and fallback states.
@@ -183,6 +186,10 @@ components and text symbols are not allowed.
 - `Лента` and `Витрина`.
 - Clear active, inactive, pressed, and web focus-visible states.
 - No oversized segmented-control capsule.
+- Use one continuous divider with a soft curve that moves between the two tabs
+  over 240 ms, matching the motion language of the bottom navigation.
+- Keep the tabs directly beneath the Blizz author labels without a decorative
+  empty spacer.
 
 ### Personal Post
 
@@ -214,8 +221,11 @@ components and text symbols are not allowed.
 - Keep the five existing destinations and order.
 - Show icons only; bottom-navigation text labels are not rendered.
 - Use 24 px icons and a 28 px central plus.
+- Keep the visible navigation bar close to 50 px high while preserving 44 px
+  minimum press targets.
 - Active icons use filled primary glyphs.
-- Profile avatar uses a neutral inactive ring and primary active ring.
+- Profile uses the same softly rounded outline/filled glyph family as the other
+  navigation destinations.
 - Respect safe area and prevent the create action from vertically displacing the
   other tabs.
 
@@ -223,6 +233,9 @@ components and text symbols are not allowed.
 
 - The top edge of the bottom navigation is one continuous neutral divider.
 - A single soft downward curve in that divider marks the active destination.
+- The moving segment must remain transparent. It may erase only the straight
+  divider stroke beneath the curve and must not render a rectangular surface
+  patch behind the signal.
 - The curve is approximately 48 px wide.
 - The curve moves horizontally between tab centers when the active destination
   changes; it must not disappear and reappear as separate per-tab indicators.

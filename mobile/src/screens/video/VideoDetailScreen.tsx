@@ -3,6 +3,7 @@ import { ActivityIndicator, Image, Pressable, RefreshControl, ScrollView, StyleS
 import type { AuthResponse, FeedVideoItem } from '../../shared/api/types';
 import { colors } from '../../shared/ui/theme';
 import { getVideoDetail, toggleVideoLike, toggleVideoSave } from '../../features/videos/api/videosApi';
+import { BackButton } from '../../shared/ui/BackButton';
 import { createReport } from '../../features/reports/api/reportsApi';
 
 type VideoDetailScreenProps = {
@@ -95,9 +96,7 @@ export function VideoDetailScreen({ auth, videoId, onBack, onOpenAccount }: Vide
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Pressable accessibilityRole="button" onPress={onBack} style={styles.backButton}>
-          <Text style={styles.backText}>←</Text>
-        </Pressable>
+        <BackButton onPress={onBack} />
         <View style={styles.headerTitleBlock}>
           <Text style={styles.title}>Видео</Text>
           <Text style={styles.subtitle}>{video ? `@${video.author.username}` : 'Отдельный просмотр'}</Text>
@@ -159,8 +158,6 @@ export function VideoDetailScreen({ auth, videoId, onBack, onOpenAccount }: Vide
 const styles = StyleSheet.create({
   container: { backgroundColor: colors.background, flex: 1 },
   header: { alignItems: 'center', flexDirection: 'row', gap: 10, paddingHorizontal: 16, paddingTop: 18 },
-  backButton: { alignItems: 'center', height: 38, justifyContent: 'center', width: 38 },
-  backText: { color: colors.primary, fontSize: 28, fontWeight: '700', lineHeight: 30 },
   headerTitleBlock: { flex: 1 },
   title: { color: colors.textPrimary, fontSize: 24, fontWeight: '800' },
   subtitle: { color: colors.textSecondary, fontSize: 13, marginTop: 3 },

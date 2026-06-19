@@ -3,6 +3,7 @@ import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-
 import type { AuthResponse, OfferType } from '../../shared/api/types';
 import { colors } from '../../shared/ui/theme';
 import { createOffer } from '../../features/offers/api/offersApi';
+import { BackButton } from '../../shared/ui/BackButton';
 
 const OFFER_TYPES: Array<{ type: OfferType; label: string }> = [
   { type: 'promo', label: 'Акция' },
@@ -74,9 +75,7 @@ export function CreateOfferScreen({ auth, onBack, onOfferPublished, onOpenAccoun
 
   return (
     <ScrollView contentContainerStyle={styles.content} style={styles.container}>
-      <Pressable accessibilityRole="button" onPress={onBack} style={styles.backButton}>
-        <Text style={styles.backText}>← Назад</Text>
-      </Pressable>
+      <BackButton onPress={onBack} />
       <Text style={styles.title}>Создать предложение</Text>
       <Pressable accessibilityRole="button" onPress={onOpenAccountSwitcher} style={styles.accountButton}>
         <Text style={styles.accountLabel}>Бизнес-аккаунт</Text>
@@ -143,15 +142,6 @@ const styles = StyleSheet.create({
     paddingBottom: 32,
     paddingHorizontal: 16,
     paddingTop: 20
-  },
-  backButton: {
-    alignSelf: 'flex-start',
-    paddingVertical: 8
-  },
-  backText: {
-    color: colors.primary,
-    fontSize: 15,
-    fontWeight: '700'
   },
   title: {
     color: colors.textPrimary,

@@ -1,8 +1,17 @@
-import { useState } from "react";
-import { Pressable, SafeAreaView, StyleSheet, Text, View } from "react-native";
+import { useEffect, useState } from "react";
+import {
+  AccessibilityInfo,
+  Image,
+  Pressable,
+  SafeAreaView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import type { AuthResponse } from "../shared/api/types";
 import { BlizzIcon, type BlizzIconName } from "../shared/ui/BlizzIcon";
 import { colors } from "../shared/ui/theme";
+import { BottomSignalLine } from "./BottomSignalLine";
 import { HomeScreen } from "../screens/home/HomeScreen";
 import { VideoFeedScreen } from "../screens/video/VideoFeedScreen";
 import { MapScreen } from "../screens/map/MapScreen";
@@ -114,7 +123,7 @@ type TabConfig = {
 const tabs: TabConfig[] = [
   { key: "home", label: "Главная", icon: "home" },
   { key: "video", label: "Видео", icon: "play" },
-  { key: "create", label: "", icon: "plus" },
+  { key: "create", label: "Создать", icon: "plus" },
   { key: "map", label: "Карта", icon: "mapPin" },
   { key: "profile", label: "Профиль", icon: "user" },
 ];
@@ -127,6 +136,25 @@ type MainTabsProps = {
 
 export function MainTabs({ auth, onAuthUpdate, onLogout }: MainTabsProps) {
   const [route, setRoute] = useState<RouteState>({ type: "tab", tab: "home" });
+  const [tabBarWidth, setTabBarWidth] = useState(0);
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  useEffect(() => {
+    let mounted = true;
+
+    AccessibilityInfo.isReduceMotionEnabled().then((enabled) => {
+      if (mounted) setReducedMotion(enabled);
+    });
+    const subscription = AccessibilityInfo.addEventListener(
+      "reduceMotionChanged",
+      setReducedMotion,
+    );
+
+    return () => {
+      mounted = false;
+      subscription.remove();
+    };
+  }, []);
 
   const activeTab =
     route.type === "tab"
@@ -979,13 +1007,25 @@ export function MainTabs({ auth, onAuthUpdate, onLogout }: MainTabsProps) {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.screen}>{renderTabScreen(route.tab)}</View>
-      <View style={styles.tabBar}>
+      <View
+        onLayout={(event) => setTabBarWidth(event.nativeEvent.layout.width)}
+        style={styles.tabBar}
+      >
+        <View pointerEvents="none" style={styles.tabBarSurface} />
+        <BottomSignalLine
+          activeIndex={tabs.findIndex((tab) => tab.key === activeTab)}
+          itemCount={tabs.length}
+          reducedMotion={reducedMotion}
+          width={tabBarWidth}
+        />
         {tabs.map((tab) => {
           const active = activeTab === tab.key;
           const isCreate = tab.key === "create";
           return (
             <Pressable
+              accessibilityLabel={tab.label}
               accessibilityRole="button"
+              accessibilityState={{ selected: active }}
               key={tab.key}
               onPress={() => openTab(tab.key)}
               style={styles.tabItem}
@@ -998,19 +1038,13 @@ export function MainTabs({ auth, onAuthUpdate, onLogout }: MainTabsProps) {
                 ]}
               >
                 <BlizzIcon
-                  color={isCreate ? "#FFFFFF" : active ? colors.primary : colors.textSecondary}
+                  color={isCreate ? "#FFFFFF" : active ? colors.primary : colors.textPrimary}
                   filled={active && !isCreate}
-                  fillColor={colors.softBlue}
+                  fillColor={active ? colors.primary : undefined}
                   name={tab.icon}
-                  size={isCreate ? 30 : 23}
-                  strokeWidth={isCreate ? 2.4 : 2.15}
+                  size={isCreate ? 27 : 24}
                 />
               </View>
-              {tab.label ? (
-                <Text style={[styles.tabLabel, active && styles.tabTextActive]}>
-                  {tab.label}
-                </Text>
-              ) : null}
             </Pressable>
           );
         })}
@@ -1021,7 +1055,10 @@ export function MainTabs({ auth, onAuthUpdate, onLogout }: MainTabsProps) {
 
 const styles = StyleSheet.create({
   safeArea: {
+    alignSelf: "center",
     flex: 1,
+    maxWidth: 430,
+    width: "100%",
     backgroundColor: colors.background,
   },
   screen: {
@@ -1029,20 +1066,28 @@ const styles = StyleSheet.create({
   },
   tabBar: {
     alignItems: "center",
-    backgroundColor: "#FFFFFF",
-    borderTopColor: "#E5E5EA",
-    borderTopWidth: 1,
+    backgroundColor: "transparent",
     flexDirection: "row",
-    minHeight: 76,
-    paddingBottom: 8,
+    marginTop: -9,
+    minHeight: 50,
+    paddingBottom: 0,
     paddingHorizontal: 6,
-    paddingTop: 8
+    paddingTop: 9,
+    position: "relative",
+  },
+  tabBarSurface: {
+    backgroundColor: "#FFFFFF",
+    bottom: 0,
+    left: 0,
+    position: "absolute",
+    right: 0,
+    top: 9
   },
   tabItem: {
     alignItems: "center",
     flex: 1,
-    gap: 3,
-    justifyContent: "center"
+    justifyContent: "center",
+    minHeight: 44,
   },
   tabIcon: {
     alignItems: "center",
@@ -1052,33 +1097,12 @@ const styles = StyleSheet.create({
     width: 40
   },
   tabIconActive: {
-    backgroundColor: "#EAF1FF"
-  },
-  tabIconText: {
-    color: colors.textSecondary,
-    fontSize: 19,
-    fontWeight: "800",
-    lineHeight: 22
+    backgroundColor: "transparent"
   },
   createIcon: {
     backgroundColor: "#0B3D99",
-    borderRadius: 16,
-    height: 54,
-    width: 54
-  },
-  createText: {
-    color: "#FFFFFF",
-    fontSize: 38,
-    fontWeight: "400",
-    lineHeight: 42
-  },
-  tabLabel: {
-    color: "#8E8E93",
-    fontSize: 12,
-    fontWeight: "500"
-  },
-  tabTextActive: {
-    color: "#0B3D99",
-    fontWeight: "700"
-  },
+    borderRadius: 13,
+    height: 40,
+    width: 40
+  }
 });

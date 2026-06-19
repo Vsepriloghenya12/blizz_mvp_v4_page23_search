@@ -1,6 +1,7 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import type { AuthResponse } from '../../shared/api/types';
 import { colors } from '../../shared/ui/theme';
+import { BackButton } from '../../shared/ui/BackButton';
 
 type ProfileMenuScreenProps = {
   auth: AuthResponse;
@@ -25,9 +26,7 @@ export function ProfileMenuScreen({ auth, onBack, onCreateBusiness, onEditProfil
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Pressable accessibilityRole="button" onPress={onBack} style={styles.backButton}>
-          <Text style={styles.backText}>←</Text>
-        </Pressable>
+        <BackButton onPress={onBack} />
         <Text style={styles.title}>{title}</Text>
         <View style={styles.headerSpacer} />
       </View>
@@ -83,17 +82,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     minHeight: 58
-  },
-  backButton: {
-    alignItems: 'center',
-    height: 38,
-    justifyContent: 'center',
-    width: 38
-  },
-  backText: {
-    color: colors.textPrimary,
-    fontSize: 24,
-    fontWeight: '700'
   },
   title: {
     color: colors.textPrimary,

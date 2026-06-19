@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import type { AuthResponse, FollowRequestItem } from '../../shared/api/types';
 import { colors } from '../../shared/ui/theme';
+import { BackButton } from '../../shared/ui/BackButton';
 import { acceptFollowRequest, declineFollowRequest, getFollowRequests } from '../../features/follows/api/followsApi';
 
 type FollowRequestsScreenProps = {
@@ -59,9 +60,7 @@ export function FollowRequestsScreen({ auth, onBack }: FollowRequestsScreenProps
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Pressable accessibilityRole="button" onPress={onBack} style={styles.backButton}>
-          <Text style={styles.backText}>←</Text>
-        </Pressable>
+        <BackButton onPress={onBack} />
         <Text style={styles.title}>Заявки на подписку</Text>
         <View style={styles.headerSpacer} />
       </View>
@@ -108,8 +107,6 @@ export function FollowRequestsScreen({ auth, onBack }: FollowRequestsScreenProps
 const styles = StyleSheet.create({
   container: { backgroundColor: colors.surface, flex: 1 },
   header: { alignItems: 'center', flexDirection: 'row', minHeight: 58, paddingHorizontal: 16 },
-  backButton: { alignItems: 'center', height: 40, justifyContent: 'center', width: 40 },
-  backText: { color: colors.textPrimary, fontSize: 28, fontWeight: '700' },
   title: { color: colors.textPrimary, flex: 1, fontSize: 20, fontWeight: '800' },
   headerSpacer: { width: 40 },
   statusBlock: { alignItems: 'center', flexDirection: 'row', gap: 10, padding: 20 },

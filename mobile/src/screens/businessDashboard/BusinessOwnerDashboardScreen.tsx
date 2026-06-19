@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import type { AuthResponse, BusinessDashboardResponse, MetricsPeriod, ReportItem } from '../../shared/api/types';
 import { colors } from '../../shared/ui/theme';
+import { BackButton } from '../../shared/ui/BackButton';
 import { getBusinessDashboard, updateBusinessOfferStatus } from '../../features/businessDashboard/api/businessDashboardApi';
 import { updateBusinessReportOwnerStatus } from '../../features/reports/api/reportsApi';
 
@@ -123,9 +124,7 @@ export function BusinessOwnerDashboardScreen({ auth, onBack, onOpenMetrics, onOp
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Pressable accessibilityRole="button" onPress={onBack} style={styles.backButton}>
-          <Text style={styles.backText}>←</Text>
-        </Pressable>
+        <BackButton onPress={onBack} />
         <View style={styles.headerTextBlock}>
           <Text style={styles.title}>Управление бизнесом</Text>
           <Text style={styles.subtitle}>{auth.activeAccount.name} · {dashboard?.role || auth.activeAccount.role || 'роль'}</Text>
@@ -339,8 +338,6 @@ function EventLine({ text }: { text: string }) {
 const styles = StyleSheet.create({
   container: { backgroundColor: colors.background, flex: 1 },
   header: { alignItems: 'center', flexDirection: 'row', minHeight: 58, paddingHorizontal: 16 },
-  backButton: { alignItems: 'center', height: 40, justifyContent: 'center', width: 40 },
-  backText: { color: colors.textPrimary, fontSize: 24, fontWeight: '800' },
   headerTextBlock: { flex: 1 },
   title: { color: colors.textPrimary, fontSize: 19, fontWeight: '800', textAlign: 'center' },
   subtitle: { color: colors.textSecondary, fontSize: 12, marginTop: 2, textAlign: 'center' },

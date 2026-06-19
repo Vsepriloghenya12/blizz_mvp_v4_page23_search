@@ -95,25 +95,13 @@ export function VideoFeedScreen({ auth, onOpenAccount, onOpenVideo }: VideoFeedS
       refreshControl={<RefreshControl refreshing={refreshing} onRefresh={() => loadFeed({ refresh: true })} />}
       style={styles.container}
     >
-      <View style={styles.header}>
-        <Text style={styles.title}>Видео</Text>
-        <Text style={styles.subtitle}>Вертикальная лента Близз</Text>
-      </View>
-
       {loading ? (
         <View style={styles.loadingBlock}>
           <ActivityIndicator color={colors.primary} />
-          <Text style={styles.loadingText}>Загружаем видео</Text>
         </View>
       ) : null}
 
       {error ? <Text style={styles.errorText}>{error}</Text> : null}
-
-      {!loading && items.length === 0 ? (
-        <View style={styles.emptyBlock}>
-          <Text style={styles.emptyText}>Пока нет видео</Text>
-        </View>
-      ) : null}
 
       <View style={styles.list}>
         {items.map((item) => {

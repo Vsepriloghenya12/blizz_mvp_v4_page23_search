@@ -1,9 +1,22 @@
 import { useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, Image, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import Svg, { Circle, Line, Path } from 'react-native-svg';
 import type { AuthAccount, AuthResponse, ChatMessage, ConversationItem, GameCatalogItem, GameSession, MessageAccount } from '../../shared/api/types';
 import { colors } from '../../shared/ui/theme';
+import { BackButton } from '../../shared/ui/BackButton';
 import { createGroupConversation, getConversation, getConversations, markConversationRead, sendMessage } from '../../features/messages/api/messagesApi';
 import { answerGameSession, createGameSession, finishGameSession, getGameSession, getGamesCatalog } from '../../features/games/api/gamesApi';
+
+function IconNewGroup() {
+  return (
+    <Svg width={22} height={22} viewBox="0 0 24 24" fill="none">
+      <Circle cx="8" cy="8" r="3.2" stroke="#0B3D99" strokeWidth="1.8"/>
+      <Path d="M2 19c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="#0B3D99" strokeWidth="1.8" strokeLinecap="round"/>
+      <Line x1="19" y1="9" x2="19" y2="15" stroke="#0B3D99" strokeWidth="2" strokeLinecap="round"/>
+      <Line x1="16" y1="12" x2="22" y2="12" stroke="#0B3D99" strokeWidth="2" strokeLinecap="round"/>
+    </Svg>
+  );
+}
 
 type MessagesScreenProps = {
   auth: AuthResponse;
@@ -324,9 +337,7 @@ export function MessagesScreen({ auth, onBack, onOpenPost, onOpenStory, initialC
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-          <Pressable accessibilityRole="button" onPress={closeGroupCreator} style={styles.backButton}>
-            <Text style={styles.backText}>‹</Text>
-          </Pressable>
+          <BackButton onPress={closeGroupCreator} />
           <Text style={styles.title}>Новая группа</Text>
           <View style={styles.headerSpacer} />
         </View>
@@ -381,9 +392,7 @@ export function MessagesScreen({ auth, onBack, onOpenPost, onOpenStory, initialC
     return (
       <View style={styles.container}>
         <View style={styles.header}>
-          <Pressable accessibilityRole="button" onPress={backFromChat} style={styles.backButton}>
-            <Text style={styles.backText}>‹</Text>
-          </Pressable>
+          <BackButton onPress={backFromChat} />
           <View style={styles.headerTitleBlock}>
             <Text style={styles.title}>{selectedConversation?.title || 'Диалог'}</Text>
             {selectedConversation ? <Text style={styles.subtitle}>{conversationSubtitle(selectedConversation)}</Text> : null}
@@ -438,17 +447,19 @@ export function MessagesScreen({ auth, onBack, onOpenPost, onOpenStory, initialC
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Pressable accessibilityRole="button" onPress={onBack} style={styles.backButton}>
-          <Text style={styles.backText}>‹</Text>
-        </Pressable>
-        <Text style={styles.title}>Сообщения</Text>
+        <BackButton onPress={onBack} />
+        <View style={styles.searchBox}>
+          <Text style={styles.searchIcon}>🔍</Text>
+          <TextInput
+            editable={false}
+            placeholder="Поиск по сообщениям..."
+            placeholderTextColor="#98A2B3"
+            style={styles.searchInput}
+          />
+        </View>
         <Pressable accessibilityRole="button" onPress={openGroupCreator} style={styles.addButton}>
-          <Text style={styles.addButtonText}>+</Text>
+          <IconNewGroup />
         </Pressable>
-      </View>
-
-      <View style={styles.searchBox}>
-        <Text style={styles.searchText}>Поиск появится вместе с полноценными чатами</Text>
       </View>
 
       <View style={styles.filters}>
@@ -653,9 +664,7 @@ function CardGuessGameScreen({ loading, session, submitting, error, onAnswer, on
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Pressable accessibilityRole="button" onPress={onBack} style={styles.backButton}>
-          <Text style={styles.backText}>‹</Text>
-        </Pressable>
+        <BackButton onPress={onBack} />
         <View style={styles.headerTitleBlock}>
           <Text style={styles.title}>Угадай карту</Text>
           <Text style={styles.subtitle}>Игра в чате</Text>
@@ -731,9 +740,7 @@ function ShellsGameScreen({ loading, session, submitting, error, onAnswer, onBac
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Pressable accessibilityRole="button" onPress={onBack} style={styles.backButton}>
-          <Text style={styles.backText}>‹</Text>
-        </Pressable>
+        <BackButton onPress={onBack} />
         <View style={styles.headerTitleBlock}>
           <Text style={styles.title}>Напёрстки</Text>
           <Text style={styles.subtitle}>Игра в чате</Text>
@@ -812,31 +819,17 @@ const styles = StyleSheet.create({
   header: {
     alignItems: 'center',
     flexDirection: 'row',
-    minHeight: 42
-  },
-  backButton: {
-    alignItems: 'center',
-    borderColor: colors.border,
-    borderRadius: 16,
-    borderWidth: 1,
-    height: 34,
-    justifyContent: 'center',
-    width: 34
-  },
-  backText: {
-    color: colors.textPrimary,
-    fontSize: 28,
-    lineHeight: 30
+    gap: 8,
+    paddingBottom: 8,
   },
   addButton: {
     alignItems: 'center',
     backgroundColor: colors.softBlue,
-    borderColor: colors.border,
-    borderRadius: 16,
-    borderWidth: 1,
-    height: 34,
+    borderRadius: 20,
+    flexShrink: 0,
+    height: 40,
     justifyContent: 'center',
-    width: 34
+    width: 40,
   },
   addButtonText: {
     color: colors.primary,
@@ -864,43 +857,47 @@ const styles = StyleSheet.create({
     width: 34
   },
   searchBox: {
+    alignItems: 'center',
     backgroundColor: colors.surface,
     borderColor: colors.border,
     borderRadius: 16,
-    borderWidth: 1,
-    marginTop: 18,
-    paddingHorizontal: 14,
-    paddingVertical: 12
+    borderWidth: 1.5,
+    flex: 1,
+    flexDirection: 'row',
+    gap: 6,
+    minHeight: 40,
+    paddingHorizontal: 12,
   },
-  searchText: {
-    color: colors.textSecondary,
-    fontSize: 13
+  searchIcon: {
+    fontSize: 14,
+  },
+  searchInput: {
+    color: colors.textPrimary,
+    flex: 1,
+    fontSize: 14,
   },
   filters: {
     flexDirection: 'row',
-    flexWrap: 'wrap',
-    gap: 8,
-    marginTop: 14
+    flexWrap: 'nowrap',
+    gap: 2,
+    paddingBottom: 8,
   },
   filterButton: {
-    backgroundColor: colors.surface,
-    borderColor: colors.border,
-    borderRadius: 16,
-    borderWidth: 1,
-    paddingHorizontal: 14,
-    paddingVertical: 8
+    borderRadius: 20,
+    paddingHorizontal: 10,
+    paddingVertical: 6,
   },
   filterButtonActive: {
     backgroundColor: colors.softBlue,
-    borderColor: colors.primary
   },
   filterText: {
     color: colors.textSecondary,
     fontSize: 13,
-    fontWeight: '700'
+    fontWeight: '600',
   },
   filterTextActive: {
-    color: colors.primary
+    color: colors.primary,
+    fontWeight: '700',
   },
   listContent: {
     gap: 10,

@@ -3,6 +3,7 @@ import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text
 import type { AuthResponse } from '../../shared/api/types';
 import { colors } from '../../shared/ui/theme';
 import { BUSINESS_CATEGORIES, createBusinessAccount } from '../../features/accounts/api/accountsApi';
+import { BackButton } from '../../shared/ui/BackButton';
 
 const defaultCategory = BUSINESS_CATEGORIES[0];
 
@@ -54,9 +55,7 @@ export function CreateBusinessScreen({ auth, onAuthUpdate, onBack, onCreated }: 
   return (
     <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={styles.container}>
       <View style={styles.header}>
-        <Pressable accessibilityRole="button" onPress={onBack} style={styles.backButton}>
-          <Text style={styles.backText}>←</Text>
-        </Pressable>
+        <BackButton onPress={onBack} />
         <Text style={styles.title}>Создать бизнес</Text>
         <View style={styles.headerSpacer} />
       </View>
@@ -139,17 +138,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     minHeight: 58,
     paddingHorizontal: 12
-  },
-  backButton: {
-    alignItems: 'center',
-    height: 38,
-    justifyContent: 'center',
-    width: 38
-  },
-  backText: {
-    color: colors.textPrimary,
-    fontSize: 24,
-    fontWeight: '700'
   },
   title: {
     color: colors.textPrimary,

@@ -1,6 +1,8 @@
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import {
+  Animated,
   ActivityIndicator,
+  Easing,
   Image,
   Modal,
   Pressable,
@@ -25,7 +27,116 @@ import {
 } from '../../features/feed/api/feedApi';
 import { getStoriesFeed, markStoryView, replyToStory } from '../../features/stories/api/storiesApi';
 import { getShowcaseFeed, toggleOfferSave } from '../../features/offers/api/offersApi';
+import Svg, { Circle, Defs, LinearGradient, Path, Stop } from 'react-native-svg';
 import { BlizzIcon } from '../../shared/ui/BlizzIcon';
+
+function StoryAvatar({ uri, name, hasUnseen, size = 56, uid }: {
+  uri: string; name: string; hasUnseen: boolean; size?: number; uid: string;
+}) {
+  const inner = size - 7;
+
+  return (
+    <View style={[styles.storyAvatarFrame, hasUnseen && styles.storyAvatarFrameUnseen, { height: size, width: size }]} testID={`story-${uid}`}>
+      {uri ? (
+        <Image resizeMode="cover" source={{ uri }} style={{ borderRadius: inner / 2, height: inner, width: inner }} />
+      ) : (
+        <View style={{ alignItems: 'center', backgroundColor: colors.softBlue, borderRadius: inner / 2, height: inner, justifyContent: 'center', width: inner }}>
+          <Text style={styles.storyFallbackText}>{name.slice(0, 1).toUpperCase()}</Text>
+        </View>
+      )}
+      <View style={[styles.storyStatusDot, hasUnseen ? styles.storyStatusDotUnseen : styles.storyStatusDotSeen]} />
+    </View>
+  );
+}
+
+function MyStoryButton({ avatar, canCreate, name }: { avatar: string; canCreate: boolean; name: string }) {
+  const size = 56;
+  const inner = size - 7;
+
+  return (
+    <View style={[styles.storyAvatarFrame, styles.myStoryAvatarFrame, !canCreate && styles.storyAvatarDisabled, { height: size, width: size }]}>
+      {avatar ? (
+        <Image resizeMode="cover" source={{ uri: avatar }} style={{ borderRadius: inner / 2, height: inner, width: inner }} />
+      ) : (
+        <View style={[styles.myStoryFallback, { borderRadius: inner / 2, height: inner, width: inner }]}>
+          <Text style={styles.storyFallbackText}>{name.slice(0, 1).toUpperCase()}</Text>
+        </View>
+      )}
+      <View style={[styles.myStoryAddBadge, !canCreate && styles.myStoryAddBadgeDisabled]}>
+        <BlizzIcon color="#FFFFFF" name="plus" size={13} />
+      </View>
+    </View>
+  );
+}
+
+function HeaderNotificationIcon() {
+  return (
+    <View>
+      <BlizzIcon color={colors.textPrimary} name="notificationBell" size={22} />
+      <View style={styles.headerNotificationDot} />
+    </View>
+  );
+}
+
+function FeedActionIcon({ active, name }: { active?: boolean; name: 'heart' | 'comment' | 'share' | 'bookmark' }) {
+  const activeColor = name === 'heart' ? colors.danger : colors.primary;
+  return (
+    <BlizzIcon
+      color={active ? activeColor : colors.textPrimary}
+      filled={Boolean(active)}
+      name={name}
+      size={20}
+    />
+  );
+}
+
+function HomeTabSignal({ activeIndex, width }: { activeIndex: number; width: number }) {
+  const position = useRef(new Animated.Value(0)).current;
+  const initialized = useRef(false);
+  const signalWidth = 54;
+  const itemWidth = width / 2;
+
+  useEffect(() => {
+    if (width <= 0) return;
+
+    const target = itemWidth * (activeIndex + 0.5) - signalWidth / 2;
+    if (!initialized.current) {
+      position.setValue(target);
+      initialized.current = true;
+      return;
+    }
+
+    position.stopAnimation((currentValue) => {
+      position.setValue(currentValue);
+      Animated.timing(position, {
+        duration: 240,
+        easing: Easing.inOut(Easing.cubic),
+        toValue: target,
+        useNativeDriver: true
+      }).start();
+    });
+  }, [activeIndex, itemWidth, position, width]);
+
+  if (width <= 0) return null;
+
+  return (
+    <View pointerEvents="none" style={styles.homeTabSignalRoot}>
+      <View style={styles.homeTabSignalDivider} />
+      <Animated.View style={[styles.homeTabSignalCurve, { transform: [{ translateX: position }] }]}>
+        <Svg height={8} viewBox="0 0 54 8" width={signalWidth}>
+          <Path
+            d="M0 1 C14 1 14 6 27 6 C40 6 40 1 54 1"
+            fill="none"
+            stroke={colors.primary}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+          />
+        </Svg>
+      </Animated.View>
+    </View>
+  );
+}
 
 type HomeScreenProps = {
   auth: AuthResponse;
@@ -86,31 +197,32 @@ function FeedPostCard({ item, onLike, onOpenComments, onSave, onShare, onFutureA
   return (
     <View style={styles.postCard}>
       <View style={styles.postHeader}>
-        <Pressable accessibilityRole="button" onPress={() => onOpenAccount(item.author.id)} style={styles.authorPressable}>
-          {avatarUri ? (
-            <Image resizeMode="cover" source={{ uri: avatarUri }} style={styles.authorAvatarImage} />
-          ) : (
-            <View style={styles.authorAvatar}>
-              <Text style={styles.authorAvatarText}>{item.author.name.slice(0, 1).toUpperCase()}</Text>
-            </View>
-          )}
-          <View style={styles.authorBlock}>
-            <Text numberOfLines={1} style={styles.authorName}>{item.author.name}</Text>
-            {location ? (
-              <View style={styles.inlineMetaRow}>
-                <BlizzIcon color={colors.textSecondary} name="mapPin" size={14} strokeWidth={2} />
-                <Text numberOfLines={1} style={styles.inlineMetaText}>{location}</Text>
-              </View>
-            ) : (
-              <Text numberOfLines={1} style={styles.authorMeta}>@{item.author.username}</Text>
-            )}
+        {avatarUri ? (
+          <Image resizeMode="cover" source={{ uri: avatarUri }} style={styles.authorAvatarImage} />
+        ) : (
+          <View style={styles.authorAvatar}>
+            <Text style={styles.authorAvatarText}>{item.author.name.slice(0, 1).toUpperCase()}</Text>
           </View>
-        </Pressable>
-        <View style={styles.postHeaderRight}>
-          <Text style={styles.postHeaderTime}>{formatDate(item.publishedAt || item.createdAt)}</Text>
-          <Pressable accessibilityRole="button" onPress={() => onFutureAction('Меню поста будет согласовано отдельным модулем.')} style={styles.moreButton}>
-            <BlizzIcon color={colors.textSecondary} name="moreHorizontal" size={24} />
-          </Pressable>
+        )}
+        <View style={styles.authorBlock}>
+          <View style={styles.authorNameRow}>
+            <Pressable accessibilityRole="button" onPress={() => onOpenAccount(item.author.id)} style={styles.authorNamePressable}>
+              <Text style={styles.authorName}>{item.author.name}</Text>
+            </Pressable>
+            <Pressable accessibilityRole="button" onPress={() => onFutureAction('Меню поста будет согласовано отдельным модулем.')} style={styles.moreButton}>
+              <BlizzIcon color={colors.textSecondary} name="moreHorizontal" size={22} />
+            </Pressable>
+          </View>
+          <View style={styles.authorMetaRow}>
+            {location ? (
+              <>
+                <BlizzIcon color={colors.textSecondary} name="mapPin" size={12} strokeWidth={2} />
+                <Text numberOfLines={1} style={styles.authorMetaText}>{location}</Text>
+                <Text style={styles.authorMetaDot}>·</Text>
+              </>
+            ) : null}
+            <Text style={styles.authorMetaText}>{formatDate(item.publishedAt || item.createdAt)}</Text>
+          </View>
         </View>
       </View>
 
@@ -138,22 +250,20 @@ function FeedPostCard({ item, onLike, onOpenComments, onSave, onShare, onFutureA
         </Pressable>
       ) : null}
 
-      <View style={styles.postActionsDivider} />
       <View style={styles.postActions}>
         <Pressable accessibilityRole="button" onPress={() => onLike(item.id)} style={styles.actionButton}>
-          <BlizzIcon color={item.isLikedByMe ? colors.danger : colors.textPrimary} filled={item.isLikedByMe} name="heart" size={24} />
+          <FeedActionIcon active={item.isLikedByMe} name="heart" />
           <Text style={styles.actionCountText}>{item.likesCount}</Text>
         </Pressable>
         <Pressable accessibilityRole="button" onPress={() => onOpenComments(item.id)} style={styles.actionButton}>
-          <BlizzIcon color={colors.textPrimary} name="comment" size={24} />
+          <FeedActionIcon name="comment" />
           <Text style={styles.actionCountText}>{item.commentsCount}</Text>
         </Pressable>
         <Pressable accessibilityRole="button" onPress={() => onShare(item.id)} style={styles.actionButton}>
-          <BlizzIcon color={colors.textPrimary} name="share" size={24} />
-          <Text style={styles.actionCountText}>Поделиться</Text>
+          <FeedActionIcon name="share" />
         </Pressable>
         <Pressable accessibilityRole="button" onPress={() => onSave(item.id)} style={styles.saveButton}>
-          <BlizzIcon color={item.isSavedByMe ? colors.primary : colors.textPrimary} filled={item.isSavedByMe} name="bookmark" size={25} />
+          <FeedActionIcon active={item.isSavedByMe} name="bookmark" />
         </Pressable>
       </View>
     </View>
@@ -534,6 +644,7 @@ function StoryViewer({
 
 export function HomeScreen({ auth, onCreateStory, onOpenMessages, onOpenOffer, onOpenAccount, onOpenPost, onOpenSearch, onOpenNotifications }: HomeScreenProps) {
   const [homeTab, setHomeTab] = useState<'feed' | 'showcase'>('feed');
+  const [homeTabsWidth, setHomeTabsWidth] = useState(0);
   const [items, setItems] = useState<FeedPostItem[]>([]);
   const [showcaseItems, setShowcaseItems] = useState<ShowcaseFeedItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -983,13 +1094,13 @@ export function HomeScreen({ auth, onCreateStory, onOpenMessages, onOpenOffer, o
           <Text style={styles.logo}>Близз</Text>
           <View style={styles.headerActions}>
             <Pressable accessibilityRole="button" onPress={onOpenSearch} style={styles.headerIconButton}>
-              <BlizzIcon color="#061327" name="search" size={22} />
+              <BlizzIcon color={colors.textPrimary} name="search" size={22} />
             </Pressable>
             <Pressable accessibilityRole="button" onPress={onOpenNotifications} style={styles.headerIconButton}>
-              <BlizzIcon color="#061327" name="bell" size={22} />
+              <HeaderNotificationIcon />
             </Pressable>
             <Pressable accessibilityRole="button" onPress={onOpenMessages} style={styles.headerIconButton}>
-              <BlizzIcon color="#061327" name="message" size={22} />
+              <BlizzIcon color={colors.textPrimary} name="message" size={22} />
             </Pressable>
           </View>
         </View>
@@ -998,10 +1109,10 @@ export function HomeScreen({ auth, onCreateStory, onOpenMessages, onOpenOffer, o
           {storiesError ? <Text style={styles.storyErrorText}>{storiesError}</Text> : null}
           <ScrollView horizontal showsHorizontalScrollIndicator={false} contentContainerStyle={styles.storiesRowContent} style={styles.storiesRow}>
             <Pressable accessibilityRole="button" onPress={handleCreateStoryPress} style={styles.storyItem}>
-              <View style={[styles.myStoryCircle, !canCreateStory && styles.storyCircleDisabled]}>
-                <BlizzIcon color={canCreateStory ? colors.primary : colors.textSecondary} name="plus" size={26} strokeWidth={2.4} />
-              </View>
-              <Text numberOfLines={2} style={styles.storyLabel}>Ваш Близз</Text>
+              <MyStoryButton avatar={auth.activeAccount.avatar || ''} canCreate={canCreateStory} name={auth.activeAccount.name} />
+              <Text ellipsizeMode="tail" numberOfLines={1} style={styles.storyLabel}>
+                {auth.activeAccount.name}
+              </Text>
             </Pressable>
             {storiesLoading ? (
               <View style={styles.storyInfoCard}>
@@ -1012,16 +1123,8 @@ export function HomeScreen({ auth, onCreateStory, onOpenMessages, onOpenOffer, o
               const storyPreview = group.account.avatar || group.items.find((story) => story.mediaType === 'image')?.mediaUrl || '';
               return (
                 <Pressable accessibilityRole="button" key={group.account.id} onPress={() => openStoryGroup(index)} style={styles.storyItem}>
-                  <View style={[styles.storyRing, group.hasUnseen && styles.storyRingUnseen]}>
-                    {storyPreview ? (
-                      <Image resizeMode="cover" source={{ uri: storyPreview }} style={styles.storyImage} />
-                    ) : (
-                      <View style={styles.storyCircle}>
-                        <Text style={styles.storyCircleText}>{group.account.name.slice(0, 1).toUpperCase()}</Text>
-                      </View>
-                    )}
-                  </View>
-                  <Text numberOfLines={2} style={styles.storyLabel}>{group.account.name}</Text>
+                  <StoryAvatar hasUnseen={group.hasUnseen} name={group.account.name} uid={group.account.id} uri={storyPreview} />
+                  <Text numberOfLines={1} ellipsizeMode="tail" style={styles.storyLabel}>{group.account.name}</Text>
                 </Pressable>
               );
             })}
@@ -1031,15 +1134,14 @@ export function HomeScreen({ auth, onCreateStory, onOpenMessages, onOpenOffer, o
         {info ? <Text style={styles.infoText}>{info}</Text> : null}
         {error ? <Text style={styles.errorText}>{error}</Text> : null}
 
-        <View style={styles.homeTabs}>
+        <View onLayout={(event) => setHomeTabsWidth(event.nativeEvent.layout.width)} style={styles.homeTabs}>
           <Pressable accessibilityRole="button" onPress={() => setHomeTab('feed')} style={[styles.homeTabButton, homeTab === 'feed' && styles.homeTabButtonActive]}>
             <Text style={[styles.homeTabText, homeTab === 'feed' && styles.homeTabTextActive]}>Лента</Text>
-            {homeTab === 'feed' ? <View style={styles.homeTabIndicator} /> : null}
           </Pressable>
           <Pressable accessibilityRole="button" onPress={() => setHomeTab('showcase')} style={[styles.homeTabButton, homeTab === 'showcase' && styles.homeTabButtonActive]}>
             <Text style={[styles.homeTabText, homeTab === 'showcase' && styles.homeTabTextActive]}>Витрина</Text>
-            {homeTab === 'showcase' ? <View style={styles.homeTabIndicator} /> : null}
           </Pressable>
+          <HomeTabSignal activeIndex={homeTab === 'feed' ? 0 : 1} width={homeTabsWidth} />
         </View>
 
         {loading ? (
@@ -1051,13 +1153,40 @@ export function HomeScreen({ auth, onCreateStory, onOpenMessages, onOpenOffer, o
 
         {!loading && homeTab === 'feed' && items.length === 0 ? (
           <View style={styles.emptyBlock}>
-            <Text style={styles.emptyText}>Пока нет публикаций</Text>
+            <Svg height={88} viewBox="0 0 88 88" width={88}>
+              <Defs>
+                <LinearGradient id="emptyBg" x1="0" x2="1" y1="0" y2="1">
+                  <Stop offset="0" stopColor="#EAF1FF" />
+                  <Stop offset="1" stopColor="#C7D9FF" />
+                </LinearGradient>
+              </Defs>
+              <Circle cx={44} cy={44} fill="url(#emptyBg)" r={42} />
+              <Path d="M28 38h6l3-5h14l3 5h6a3 3 0 0 1 3 3v18a3 3 0 0 1-3 3H28a3 3 0 0 1-3-3V41a3 3 0 0 1 3-3z" fill="none" stroke="#0B3D99" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} />
+              <Circle cx={44} cy={49} fill="none" r={8} stroke="#0B3D99" strokeWidth={2} />
+              <Circle cx={44} cy={49} fill="#4F8EF7" r={3.5} />
+              <Path d="M52 40h4" stroke="#4F8EF7" strokeLinecap="round" strokeWidth={2} />
+            </Svg>
+            <Text style={styles.emptyTitle}>Лента пока пуста</Text>
+            <Text style={styles.emptySubtitle}>Подписывайтесь на людей и заведения вашего города</Text>
           </View>
         ) : null}
 
         {!loading && homeTab === 'showcase' && showcaseItems.length === 0 ? (
           <View style={styles.emptyBlock}>
-            <Text style={styles.emptyText}>Пока нет публикаций бизнеса</Text>
+            <Svg height={88} viewBox="0 0 88 88" width={88}>
+              <Defs>
+                <LinearGradient id="emptyBg2" x1="0" x2="1" y1="0" y2="1">
+                  <Stop offset="0" stopColor="#EAF1FF" />
+                  <Stop offset="1" stopColor="#C7D9FF" />
+                </LinearGradient>
+              </Defs>
+              <Circle cx={44} cy={44} fill="url(#emptyBg2)" r={42} />
+              <Path d="M26 52l8-10 6 7 5-6 10 12H26z" fill="#4F8EF7" opacity={0.4} />
+              <Path d="M25 35h38v28H25z" fill="none" stroke="#0B3D99" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} />
+              <Path d="M32 35v-4h24v4" fill="none" stroke="#0B3D99" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} />
+            </Svg>
+            <Text style={styles.emptyTitle}>Витрина пока пуста</Text>
+            <Text style={styles.emptySubtitle}>Бизнесы вашего города ещё не добавили предложения</Text>
           </View>
         ) : null}
 
@@ -1157,85 +1286,127 @@ const styles = StyleSheet.create({
     flex: 1
   },
   content: {
-    paddingBottom: 28,
-    paddingHorizontal: 18,
-    paddingTop: 18
+    paddingBottom: 32,
+    paddingTop: 0
   },
   header: {
     alignItems: 'center',
     backgroundColor: '#FFFFFF',
-    borderBottomColor: '#E5E5EA',
-    borderBottomWidth: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginBottom: 16,
-    paddingTop: 4
+    paddingHorizontal: 16,
+    paddingBottom: 8,
+    paddingTop: 12
   },
   logo: {
     color: colors.primary,
-    fontSize: 28,
+    fontSize: 29,
     fontStyle: 'italic',
-    fontWeight: '900',
-    letterSpacing: -1.4
+    fontWeight: '800'
   },
   headerActions: {
     alignItems: 'center',
     flexDirection: 'row',
-    gap: 4
+    gap: 2
   },
   headerIconButton: {
     alignItems: 'center',
-    borderRadius: 10,
-    height: 36,
+    height: 44,
     justifyContent: 'center',
-    width: 36
+    width: 44
   },
-  messagesIcon: {
-    color: '#061327',
-    fontSize: 24,
-    fontWeight: '800'
+  headerNotificationDot: {
+    backgroundColor: colors.primary,
+    borderColor: '#FFFFFF',
+    borderRadius: 4,
+    borderWidth: 1.5,
+    height: 7,
+    position: 'absolute',
+    right: -1,
+    top: -2,
+    width: 7
   },
   storiesBlock: {
     backgroundColor: '#FFFFFF',
-    marginTop: 0,
-    paddingHorizontal: 16,
-    paddingVertical: 14
+    paddingBottom: 0,
+    paddingTop: 4
   },
-  storiesRow: {
-    marginHorizontal: -16
-  },
+  storiesRow: {},
   storyItem: {
     alignItems: 'center',
-    marginRight: 18,
-    width: 78
+    marginRight: 12,
+    minHeight: 72,
+    width: 56
   },
-  myStoryCircle: {
+  storyAvatarFrame: {
     alignItems: 'center',
-    backgroundColor: '#F4F7FF',
-    borderColor: colors.primary,
-    borderRadius: 36,
-    borderWidth: 3,
-    height: 72,
+    borderColor: '#D9E0EA',
+    borderRadius: 30,
+    borderWidth: 1.5,
     justifyContent: 'center',
-    shadowColor: colors.primary,
-    shadowOffset: { height: 4, width: 0 },
-    shadowOpacity: 0.08,
-    shadowRadius: 8,
-    width: 72
+    position: 'relative'
   },
-  myStoryPlus: {
+  storyAvatarFrameUnseen: {
+    borderColor: colors.primary,
+    borderWidth: 2
+  },
+  myStoryAvatarFrame: {
+    borderColor: colors.primary,
+    borderWidth: 2
+  },
+  storyAvatarDisabled: {
+    borderColor: colors.border,
+    opacity: 0.58
+  },
+  storyFallbackText: {
     color: colors.primary,
-    fontSize: 36,
-    fontWeight: '500',
-    lineHeight: 40
+    fontSize: 19,
+    fontWeight: '700'
+  },
+  myStoryFallback: {
+    alignItems: 'center',
+    backgroundColor: colors.softBlue,
+    justifyContent: 'center'
+  },
+  myStoryAddBadge: {
+    alignItems: 'center',
+    backgroundColor: colors.primary,
+    borderColor: '#FFFFFF',
+    borderRadius: 11,
+    borderWidth: 2,
+    bottom: -2,
+    height: 22,
+    justifyContent: 'center',
+    position: 'absolute',
+    right: -3,
+    width: 22
+  },
+  myStoryAddBadgeDisabled: {
+    backgroundColor: colors.textSecondary
+  },
+  storyStatusDot: {
+    borderColor: '#FFFFFF',
+    borderRadius: 5,
+    borderWidth: 2,
+    bottom: -1,
+    height: 10,
+    position: 'absolute',
+    right: 0,
+    width: 10
+  },
+  storyStatusDotUnseen: {
+    backgroundColor: colors.primary
+  },
+  storyStatusDotSeen: {
+    backgroundColor: '#E2654A'
   },
   storyLabel: {
     color: colors.textPrimary,
-    fontSize: 13,
-    lineHeight: 17,
-    marginTop: 8,
-    minHeight: 34,
-    textAlign: 'center'
+    fontSize: 11,
+    lineHeight: 14,
+    marginTop: 2,
+    textAlign: 'center',
+    width: 56
   },
   storyInfoCard: {
     alignItems: 'center',
@@ -1262,39 +1433,50 @@ const styles = StyleSheet.create({
   },
   homeTabs: {
     backgroundColor: '#FFFFFF',
-    borderBottomColor: '#E5E5EA',
-    borderBottomWidth: 1,
     flexDirection: 'row',
-    marginTop: 20
+    position: 'relative'
   },
   homeTabButton: {
     alignItems: 'center',
     flex: 1,
     justifyContent: 'center',
     minHeight: 44,
-    paddingBottom: 10,
-    paddingTop: 10,
+    paddingBottom: 9,
+    paddingTop: 7,
     position: 'relative'
   },
   homeTabButtonActive: {},
-  homeTabIndicator: {
-    backgroundColor: '#0B3D99',
-    borderRadius: 2,
-    bottom: 0,
-    height: 2.5,
-    left: '25%',
-    position: 'absolute',
-    right: '25%'
-  },
   homeTabText: {
     color: colors.textSecondary,
-    fontSize: 13,
+    fontSize: 15,
     fontWeight: '600',
-    letterSpacing: 1.2,
-    textTransform: 'uppercase'
   },
   homeTabTextActive: {
     color: colors.primary
+  },
+  homeTabSignalRoot: {
+    bottom: 0,
+    height: 8,
+    left: 0,
+    overflow: 'hidden',
+    position: 'absolute',
+    right: 0
+  },
+  homeTabSignalDivider: {
+    backgroundColor: '#D9E3F2',
+    height: StyleSheet.hairlineWidth,
+    left: 0,
+    position: 'absolute',
+    right: 0,
+    top: 1
+  },
+  homeTabSignalCurve: {
+    backgroundColor: '#FFFFFF',
+    height: 8,
+    left: 0,
+    position: 'absolute',
+    top: 0,
+    width: 54
   },
   infoText: {
     backgroundColor: colors.softBlue,
@@ -1302,6 +1484,7 @@ const styles = StyleSheet.create({
     color: colors.primary,
     fontSize: 13,
     lineHeight: 18,
+    marginHorizontal: 16,
     marginTop: 14,
     padding: 12
   },
@@ -1309,13 +1492,15 @@ const styles = StyleSheet.create({
     color: colors.danger,
     fontSize: 13,
     lineHeight: 18,
+    marginHorizontal: 16,
     marginTop: 14
   },
   loadingBlock: {
     alignItems: 'center',
     flexDirection: 'row',
     gap: 8,
-    marginTop: 16
+    marginHorizontal: 16,
+    marginTop: 20
   },
   loadingText: {
     color: colors.textSecondary,
@@ -1323,20 +1508,26 @@ const styles = StyleSheet.create({
   },
   emptyBlock: {
     alignItems: 'center',
-    borderColor: colors.border,
-    borderRadius: 20,
-    borderWidth: 1,
-    marginTop: 16,
-    padding: 22
+    marginHorizontal: 16,
+    marginTop: 32,
+    padding: 24
   },
-  emptyText: {
+  emptyTitle: {
+    color: colors.textPrimary,
+    fontSize: 17,
+    fontWeight: '800',
+    marginTop: 16,
+    textAlign: 'center'
+  },
+  emptySubtitle: {
     color: colors.textSecondary,
-    fontSize: 15,
-    fontWeight: '600'
+    fontSize: 14,
+    lineHeight: 20,
+    marginTop: 8,
+    textAlign: 'center'
   },
   feedList: {
-    gap: 16,
-    marginTop: 20
+    marginTop: 0,
   },
   offerCard: {
     backgroundColor: colors.surface,
@@ -1424,34 +1615,47 @@ const styles = StyleSheet.create({
   },
   postCard: {
     backgroundColor: colors.surface,
-    borderColor: '#E6EEF8',
-    borderRadius: 22,
-    borderWidth: 1,
-    overflow: 'hidden',
-    shadowColor: '#0B3D99',
-    shadowOffset: { height: 4, width: 0 },
-    shadowOpacity: 0.06,
-    shadowRadius: 12
+    borderBottomColor: '#E8EBF0',
+    borderBottomWidth: 1,
   },
   postHeader: {
     alignItems: 'center',
     flexDirection: 'row',
-    paddingHorizontal: 14,
-    paddingBottom: 12,
-    paddingTop: 14
+    gap: 11,
+    paddingBottom: 11,
+    paddingHorizontal: 16,
+    paddingTop: 13
   },
-  authorPressable: {
+  authorNameRow: {
+    flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  authorNamePressable: {
     flex: 1,
-    flexDirection: 'row'
+  },
+  authorMetaRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 3,
+    marginTop: 2,
+  },
+  authorMetaText: {
+    color: colors.textSecondary,
+    fontSize: 12,
+    lineHeight: 17
+  },
+  authorMetaDot: {
+    color: colors.textSecondary,
+    fontSize: 12,
   },
   authorAvatar: {
     alignItems: 'center',
     backgroundColor: colors.softBlue,
     borderRadius: 23,
-    height: 46,
+    height: 44,
     justifyContent: 'center',
-    width: 46
+    width: 44
   },
   authorAvatarText: {
     color: colors.primary,
@@ -1460,36 +1664,23 @@ const styles = StyleSheet.create({
   },
   authorBlock: {
     flex: 1,
-    marginLeft: 11
   },
   authorName: {
     color: colors.textPrimary,
-    fontSize: 15,
-    fontWeight: '800',
-    letterSpacing: -0.2
-  },
-  authorMeta: {
-    color: colors.textSecondary,
-    fontSize: 14,
-    marginTop: 3
+    fontSize: 16,
+    fontWeight: '700'
   },
   moreButton: {
     alignItems: 'center',
-    height: 32,
+    height: 44,
     justifyContent: 'center',
-    marginLeft: 4,
-    width: 30
-  },
-  moreText: {
-    color: '#0A1224',
-    fontSize: 24,
-    fontWeight: '800',
-    lineHeight: 24
+    marginRight: -10,
+    width: 44
   },
   postImage: {
     backgroundColor: colors.softBlue,
     borderRadius: 0,
-    height: 280,
+    aspectRatio: 1.05,
     width: '100%'
   },
   postImageFallback: {
@@ -1506,23 +1697,25 @@ const styles = StyleSheet.create({
   postActions: {
     alignItems: 'center',
     flexDirection: 'row',
-    gap: 20,
-    paddingHorizontal: 14,
+    gap: 8,
     paddingBottom: 14,
-    paddingTop: 12
+    paddingHorizontal: 16,
+    paddingTop: 11
   },
   actionButton: {
     alignItems: 'center',
     flexDirection: 'row',
-    gap: 7,
-    minHeight: 32
+    gap: 6,
+    minHeight: 44,
+    minWidth: 44,
+    paddingHorizontal: 3
   },
   saveButton: {
     alignItems: 'center',
-    height: 34,
+    height: 44,
     justifyContent: 'center',
     marginLeft: 'auto',
-    width: 34
+    width: 44
   },
   actionText: {
     color: colors.textPrimary,
@@ -1536,9 +1729,9 @@ const styles = StyleSheet.create({
     color: colors.textPrimary,
     fontSize: 15,
     lineHeight: 22,
-    paddingHorizontal: 14,
-    paddingTop: 12,
-    paddingBottom: 2
+    paddingBottom: 0,
+    paddingHorizontal: 16,
+    paddingTop: 13
   },
   postTime: {
     color: colors.textSecondary,
@@ -1613,6 +1806,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     marginTop: 16,
     padding: 22
+  },
+  emptyText: {
+    color: colors.textSecondary,
+    fontSize: 14,
+    fontWeight: '500'
   },
   commentsList: {
     marginTop: 14
@@ -1774,27 +1972,8 @@ const styles = StyleSheet.create({
     fontWeight: '800'
   },
 
-  storyCircle: {
-    alignItems: 'center',
-    backgroundColor: colors.surface,
-    borderColor: colors.border,
-    borderRadius: 30,
-    borderWidth: 1,
-    height: 60,
-    justifyContent: 'center',
-    width: 60
-  },
-  storyCircleUnseen: {
-    borderColor: colors.primary,
-    borderWidth: 2
-  },
   storyCircleDisabled: {
     opacity: 0.45
-  },
-  storyCircleText: {
-    color: colors.primary,
-    fontSize: 20,
-    fontWeight: '800'
   },
   storyCountText: {
     color: colors.textSecondary,
@@ -1992,27 +2171,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
     paddingRight: 30
   },
-  storyRing: {
-    alignItems: 'center',
-    backgroundColor: colors.surface,
-    borderColor: colors.border,
-    borderRadius: 36,
-    borderWidth: 2.5,
-    height: 72,
-    justifyContent: 'center',
-    overflow: 'hidden',
-    padding: 3,
-    width: 72
-  },
-  storyRingUnseen: {
-    borderColor: '#E48A3F',
-    borderWidth: 3
-  },
-  storyImage: {
-    borderRadius: 31,
-    height: 62,
-    width: 62
-  },
   authorAvatarImage: {
     borderRadius: 23,
     height: 46,
@@ -2048,31 +2206,10 @@ const styles = StyleSheet.create({
   carouselDotActive: {
     backgroundColor: colors.primary
   },
-  postActionsDivider: {
-    backgroundColor: '#EEF2F8',
-    height: 1,
-    marginHorizontal: 14,
-    marginTop: 14
-  },
-  actionIconText: {
-    color: '#081120',
-    fontSize: 28,
-    fontWeight: '500',
-    lineHeight: 31
-  },
   actionCountText: {
     color: colors.textPrimary,
-    fontSize: 15,
-    fontWeight: '700'
-  },
-  likeIconActive: {
-    color: '#F04438'
-  },
-  bookmarkText: {
-    color: '#081120',
-    fontSize: 30,
-    fontWeight: '500',
-    lineHeight: 32
+    fontSize: 14,
+    fontWeight: '600'
   },
   buttonDisabled: {
     opacity: 0.65

@@ -3,6 +3,7 @@ import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text
 import type { AuthResponse } from '../../shared/api/types';
 import { colors } from '../../shared/ui/theme';
 import { updateMyProfile } from '../../features/profile/api/profileApi';
+import { BackButton } from '../../shared/ui/BackButton';
 
 type EditProfileScreenProps = {
   auth: AuthResponse;
@@ -40,9 +41,7 @@ export function EditProfileScreen({ auth, onBack, onAuthUpdate }: EditProfileScr
   return (
     <KeyboardAvoidingView behavior={Platform.OS === 'ios' ? 'padding' : undefined} style={styles.container}>
       <View style={styles.header}>
-        <Pressable accessibilityRole="button" onPress={onBack} style={styles.backButton}>
-          <Text style={styles.backText}>←</Text>
-        </Pressable>
+        <BackButton onPress={onBack} />
         <Text style={styles.title}>Редактировать профиль</Text>
         <Pressable accessibilityRole="button" disabled={saving} onPress={handleSave} style={styles.saveButton}>
           <Text style={[styles.saveText, saving && styles.saveTextDisabled]}>{saving ? 'Сохраняем' : 'Сохранить'}</Text>
@@ -110,17 +109,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     minHeight: 58,
     paddingHorizontal: 12
-  },
-  backButton: {
-    alignItems: 'center',
-    height: 38,
-    justifyContent: 'center',
-    width: 38
-  },
-  backText: {
-    color: colors.textPrimary,
-    fontSize: 24,
-    fontWeight: '700'
   },
   title: {
     color: colors.textPrimary,

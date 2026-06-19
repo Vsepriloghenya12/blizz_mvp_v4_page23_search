@@ -3,6 +3,7 @@ import { ActivityIndicator, Linking, Pressable, RefreshControl, ScrollView, Styl
 import type { AuthResponse, SavedFilter, SavedObjectItem, SavedTargetType } from '../../shared/api/types';
 import { colors } from '../../shared/ui/theme';
 import { getSavedItems, removeSavedObject } from '../../features/saved/api/savedApi';
+import { BackButton } from '../../shared/ui/BackButton';
 
 type SavedScreenProps = {
   auth: AuthResponse;
@@ -110,9 +111,7 @@ export function SavedScreen({ auth, onBack, onOpenOffer, onOpenVideo, onOpenPost
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Pressable accessibilityRole="button" onPress={onBack} style={styles.backButton}>
-          <Text style={styles.backText}>←</Text>
-        </Pressable>
+        <BackButton onPress={onBack} />
         <View style={styles.headerTitleBlock}>
           <Text style={styles.title}>Хочу сходить</Text>
           <Text style={styles.subtitle}>Сохранённые места, посты, видео и предложения</Text>
@@ -222,18 +221,6 @@ const styles = StyleSheet.create({
     gap: 10,
     paddingHorizontal: 16,
     paddingTop: 18
-  },
-  backButton: {
-    alignItems: 'center',
-    height: 38,
-    justifyContent: 'center',
-    width: 38
-  },
-  backText: {
-    color: colors.primary,
-    fontSize: 28,
-    fontWeight: '700',
-    lineHeight: 30
   },
   headerTitleBlock: {
     flex: 1

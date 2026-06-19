@@ -4,6 +4,7 @@ import type { AuthResponse, OfferItem } from '../../shared/api/types';
 import { colors } from '../../shared/ui/theme';
 import { getOffer, toggleOfferSave } from '../../features/offers/api/offersApi';
 import { createReport } from '../../features/reports/api/reportsApi';
+import { BackButton } from '../../shared/ui/BackButton';
 
 type OfferDetailScreenProps = {
   auth: AuthResponse;
@@ -95,9 +96,7 @@ export function OfferDetailScreen({ auth, offerId, onBack, onOpenMessages: _onOp
   return (
     <View style={styles.root}>
       <ScrollView contentContainerStyle={styles.content} style={styles.container}>
-        <Pressable accessibilityRole="button" onPress={onBack} style={styles.backButton}>
-          <Text style={styles.backText}>← Назад</Text>
-        </Pressable>
+        <BackButton onPress={onBack} />
 
         {loading ? (
           <View style={styles.loadingBlock}>
@@ -164,15 +163,6 @@ const styles = StyleSheet.create({
     paddingBottom: 120,
     paddingHorizontal: 16,
     paddingTop: 20
-  },
-  backButton: {
-    alignSelf: 'flex-start',
-    paddingVertical: 8
-  },
-  backText: {
-    color: colors.primary,
-    fontSize: 15,
-    fontWeight: '800'
   },
   loadingBlock: {
     alignItems: 'center',

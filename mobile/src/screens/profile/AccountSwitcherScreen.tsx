@@ -3,6 +3,7 @@ import { ActivityIndicator, Pressable, StyleSheet, Text, View } from 'react-nati
 import type { AuthAccount, AuthResponse } from '../../shared/api/types';
 import { colors } from '../../shared/ui/theme';
 import { switchAccount } from '../../features/accounts/api/accountsApi';
+import { BackButton } from '../../shared/ui/BackButton';
 
 type AccountSwitcherScreenProps = {
   auth: AuthResponse;
@@ -38,9 +39,7 @@ export function AccountSwitcherScreen({ auth, onAuthUpdate, onBack, onCreateBusi
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Pressable accessibilityRole="button" onPress={onBack} style={styles.backButton}>
-          <Text style={styles.backText}>←</Text>
-        </Pressable>
+        <BackButton onPress={onBack} />
         <Text style={styles.title}>Аккаунты</Text>
         <View style={styles.headerSpacer} />
       </View>
@@ -85,17 +84,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     minHeight: 58
-  },
-  backButton: {
-    alignItems: 'center',
-    height: 38,
-    justifyContent: 'center',
-    width: 38
-  },
-  backText: {
-    color: colors.textPrimary,
-    fontSize: 24,
-    fontWeight: '700'
   },
   title: {
     color: colors.textPrimary,

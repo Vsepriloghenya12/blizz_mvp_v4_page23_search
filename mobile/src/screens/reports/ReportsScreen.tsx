@@ -3,6 +3,7 @@ import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from
 import type { AuthResponse, ReportItem } from '../../shared/api/types';
 import { colors } from '../../shared/ui/theme';
 import { getMyReports } from '../../features/reports/api/reportsApi';
+import { BackButton } from '../../shared/ui/BackButton';
 
 const reasonLabels: Record<string, string> = {
   spam: 'Спам',
@@ -51,7 +52,7 @@ export function ReportsScreen({ auth, onBack }: ReportsScreenProps) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Pressable accessibilityRole="button" onPress={onBack} style={styles.backButton}><Text style={styles.backText}>←</Text></Pressable>
+        <BackButton onPress={onBack} />
         <Text style={styles.title}>Мои жалобы</Text>
         <View style={styles.headerSpacer} />
       </View>
@@ -77,8 +78,6 @@ export function ReportsScreen({ auth, onBack }: ReportsScreenProps) {
 const styles = StyleSheet.create({
   container: { backgroundColor: colors.background, flex: 1 },
   header: { alignItems: 'center', flexDirection: 'row', minHeight: 58, paddingHorizontal: 16 },
-  backButton: { alignItems: 'center', height: 40, justifyContent: 'center', width: 40 },
-  backText: { color: colors.textPrimary, fontSize: 24, fontWeight: '800' },
   title: { color: colors.textPrimary, flex: 1, fontSize: 18, fontWeight: '800', textAlign: 'center' },
   headerSpacer: { width: 40 },
   content: { padding: 16, paddingBottom: 32 },

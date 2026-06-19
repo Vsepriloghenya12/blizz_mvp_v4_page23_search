@@ -3,6 +3,7 @@ import { ActivityIndicator, Image, Pressable, ScrollView, StyleSheet, Text, Text
 import type { AuthResponse, RecentSearchItem, SearchResultItem, SearchResultType, SearchType } from '../../shared/api/types';
 import { BlizzIcon } from '../../shared/ui/BlizzIcon';
 import { colors } from '../../shared/ui/theme';
+import { BackButton } from '../../shared/ui/BackButton';
 import { addRecentSearch, clearRecentSearches, deleteRecentSearch, getRecentSearches, searchAll } from '../../features/search/api/searchApi';
 
 type SearchScreenProps = {
@@ -26,7 +27,6 @@ const tabs: SearchTab[] = [
   { key: 'people', label: 'Люди' },
   { key: 'business', label: 'Бизнес' },
   { key: 'places', label: 'Места' },
-  { key: 'offers', label: 'Предложения' },
   { key: 'posts', label: 'Посты' },
   { key: 'videos', label: 'Видео' }
 ];
@@ -195,19 +195,9 @@ export function SearchScreen({ auth, initialType = 'all', onBack, onOpenAccount,
   return (
     <View style={styles.container}>
 
-      {/* Header */}
+      {/* Header + Search */}
       <View style={styles.header}>
-        <Pressable accessibilityRole="button" onPress={onBack} style={styles.backButton}>
-          <BlizzIcon color={colors.textPrimary} name="chevronLeft" size={22} strokeWidth={2.4} />
-        </Pressable>
-        <View style={styles.headerCenter}>
-          <Text style={styles.headerTitle}>Поиск</Text>
-          <Text style={styles.headerSub}>{headerSubtitle}</Text>
-        </View>
-      </View>
-
-      {/* Search box */}
-      <View style={styles.searchWrap}>
+        <BackButton onPress={onBack} />
         <View style={styles.searchBox}>
           <BlizzIcon color={colors.textSecondary} name="search" size={20} strokeWidth={2.2} />
           <TextInput
@@ -228,12 +218,7 @@ export function SearchScreen({ auth, initialType = 'all', onBack, onOpenAccount,
       </View>
 
       {/* Filter tabs */}
-      <ScrollView
-        horizontal
-        showsHorizontalScrollIndicator={false}
-        contentContainerStyle={styles.tabsRow}
-        style={styles.tabsScroll}
-      >
+      <View style={styles.tabsRow}>
         {tabs.map((tab) => {
           const active = activeType === tab.key;
           return (
@@ -249,7 +234,7 @@ export function SearchScreen({ auth, initialType = 'all', onBack, onOpenAccount,
             </Pressable>
           );
         })}
-      </ScrollView>
+      </View>
 
       {/* Notices */}
       {notice ? (
@@ -420,44 +405,14 @@ const styles = StyleSheet.create({
     flex: 1
   },
 
-  // Header
+  // Header + Search
   header: {
     alignItems: 'center',
     flexDirection: 'row',
-    gap: 14,
-    paddingBottom: 14,
+    gap: 10,
     paddingHorizontal: 16,
-    paddingTop: 18
-  },
-  backButton: {
-    alignItems: 'center',
-    backgroundColor: colors.surface,
-    borderColor: colors.border,
-    borderRadius: 20,
-    borderWidth: 1,
-    height: 40,
-    justifyContent: 'center',
-    width: 40
-  },
-  headerCenter: {
-    flex: 1
-  },
-  headerTitle: {
-    color: colors.textPrimary,
-    fontSize: 22,
-    fontWeight: '800',
-    letterSpacing: -0.4
-  },
-  headerSub: {
-    color: colors.textSecondary,
-    fontSize: 13,
-    marginTop: 1
-  },
-
-  // Search box
-  searchWrap: {
-    paddingHorizontal: 16,
-    paddingBottom: 4
+    paddingTop: 16,
+    paddingBottom: 8,
   },
   searchBox: {
     alignItems: 'center',
@@ -466,8 +421,9 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     borderWidth: 1.5,
     flexDirection: 'row',
+    flex: 1,
     gap: 10,
-    minHeight: 50,
+    minHeight: 44,
     paddingHorizontal: 14
   },
   searchInput: {
@@ -488,33 +444,29 @@ const styles = StyleSheet.create({
   },
 
   // Filter tabs
-  tabsScroll: {
-    flexGrow: 0
-  },
   tabsRow: {
-    gap: 8,
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    gap: 4,
     paddingHorizontal: 16,
-    paddingVertical: 12
+    paddingVertical: 10
   },
   tabChip: {
-    backgroundColor: colors.surface,
-    borderColor: colors.border,
     borderRadius: 20,
-    borderWidth: 1.5,
-    paddingHorizontal: 14,
-    paddingVertical: 7
+    paddingHorizontal: 10,
+    paddingVertical: 6
   },
   tabChipActive: {
-    backgroundColor: colors.primary,
-    borderColor: colors.primary
+    backgroundColor: colors.softBlue,
   },
   tabChipText: {
     color: colors.textSecondary,
     fontSize: 13,
-    fontWeight: '700'
+    fontWeight: '600'
   },
   tabChipTextActive: {
-    color: '#FFFFFF'
+    color: colors.primary,
+    fontWeight: '700'
   },
 
   // Notices

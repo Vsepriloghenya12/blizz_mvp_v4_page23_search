@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState, type ReactNode } from 'react';
 import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import type { AuthResponse, MetricsContentItem, MetricsOfferItem, MetricsPeriod, MetricsSummary } from '../../shared/api/types';
 import { colors } from '../../shared/ui/theme';
+import { BackButton } from '../../shared/ui/BackButton';
 import { getMetricsActions, getMetricsContent, getMetricsOffers, getMetricsSummary } from '../../features/metrics/api/metricsApi';
 
 type MetricsScreenProps = {
@@ -85,9 +86,7 @@ export function MetricsScreen({ auth, onBack }: MetricsScreenProps) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Pressable accessibilityRole="button" onPress={onBack} style={styles.backButton}>
-          <Text style={styles.backText}>←</Text>
-        </Pressable>
+        <BackButton onPress={onBack} />
         <Text style={styles.title}>{title}</Text>
         <View style={styles.headerSpacer} />
       </View>
@@ -247,17 +246,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     minHeight: 58,
     paddingHorizontal: 16,
-  },
-  backButton: {
-    alignItems: 'center',
-    height: 38,
-    justifyContent: 'center',
-    width: 38,
-  },
-  backText: {
-    color: colors.textPrimary,
-    fontSize: 24,
-    fontWeight: '800',
   },
   title: {
     color: colors.textPrimary,

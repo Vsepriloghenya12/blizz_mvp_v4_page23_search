@@ -3,6 +3,7 @@ import { Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-
 import type { AuthResponse, StoryMediaType, StoryVisibility } from '../../shared/api/types';
 import { colors } from '../../shared/ui/theme';
 import { createStory } from '../../features/stories/api/storiesApi';
+import { BackButton } from '../../shared/ui/BackButton';
 
 const visibilityOptions: { label: string; value: StoryVisibility; disabled?: boolean }[] = [
   { label: 'Всем', value: 'public' },
@@ -76,9 +77,7 @@ export function CreateStoryScreen({ auth, onBack, onOpenAccountSwitcher, onStory
   return (
     <ScrollView contentContainerStyle={styles.content} style={styles.container}>
       <View style={styles.header}>
-        <Pressable accessibilityRole="button" onPress={onBack} style={styles.headerButton}>
-          <Text style={styles.headerButtonText}>←</Text>
-        </Pressable>
+        <BackButton onPress={onBack} />
         <Text style={styles.title}>Создание Близза</Text>
         <View style={styles.headerButton} />
       </View>
@@ -187,11 +186,6 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: 'center',
     width: 40
-  },
-  headerButtonText: {
-    color: colors.textPrimary,
-    fontSize: 24,
-    fontWeight: '700'
   },
   title: {
     color: colors.textPrimary,

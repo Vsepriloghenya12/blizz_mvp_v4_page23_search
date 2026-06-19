@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
 import type { AuthResponse, FollowListItem } from '../../shared/api/types';
 import { colors } from '../../shared/ui/theme';
+import { BackButton } from '../../shared/ui/BackButton';
 import { getFollowers, getFollowing, unfollowAccount } from '../../features/follows/api/followsApi';
 
 type FollowListScreenProps = {
@@ -67,9 +68,7 @@ export function FollowListScreen({ auth, mode, accountId, onBack, onOpenAccount 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Pressable accessibilityRole="button" onPress={onBack} style={styles.backButton}>
-          <Text style={styles.backText}>←</Text>
-        </Pressable>
+        <BackButton onPress={onBack} />
         <Text numberOfLines={1} style={styles.title}>{title}</Text>
         <View style={styles.headerSpacer} />
       </View>
@@ -113,8 +112,6 @@ export function FollowListScreen({ auth, mode, accountId, onBack, onOpenAccount 
 const styles = StyleSheet.create({
   container: { backgroundColor: colors.surface, flex: 1 },
   header: { alignItems: 'center', flexDirection: 'row', minHeight: 58, paddingHorizontal: 16 },
-  backButton: { alignItems: 'center', height: 40, justifyContent: 'center', width: 40 },
-  backText: { color: colors.textPrimary, fontSize: 28, fontWeight: '700' },
   title: { color: colors.textPrimary, flex: 1, fontSize: 18, fontWeight: '800' },
   headerSpacer: { width: 40 },
   searchBox: { alignItems: 'center', backgroundColor: '#F1F3F7', borderRadius: 12, flexDirection: 'row', marginHorizontal: 20, marginTop: 8, minHeight: 48, paddingHorizontal: 14 },
