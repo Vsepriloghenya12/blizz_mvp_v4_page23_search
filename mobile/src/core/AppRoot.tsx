@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { ActivityIndicator, Platform, SafeAreaView, StatusBar, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Platform, StatusBar, StyleSheet, Text, View } from 'react-native';
+import { SafeAreaProvider, SafeAreaView } from 'react-native-safe-area-context';
 import type { AuthResponse } from '../shared/api/types';
 import { colors } from '../shared/ui/theme';
 import { getSessionToken, saveSessionToken, clearSessionToken } from '../shared/lib/sessionStorage';
@@ -75,41 +76,45 @@ export function AppRoot() {
 
   if (status === 'checkingSession') {
     return (
-      <SafeAreaView style={styles.loadingSafeArea}>
-        <StatusBar barStyle="dark-content" />
-        <View style={styles.loadingContent}>
-          <Text style={styles.logo}>Близз</Text>
-          <ActivityIndicator color={colors.primary} style={styles.loader} />
-        </View>
-      </SafeAreaView>
+      <SafeAreaProvider>
+        <SafeAreaView style={styles.loadingSafeArea}>
+          <StatusBar barStyle="dark-content" backgroundColor={colors.background} translucent={false} />
+          <View style={styles.loadingContent}>
+            <Text style={styles.logo}>Близз</Text>
+            <ActivityIndicator color={colors.primary} style={styles.loader} />
+          </View>
+        </SafeAreaView>
+      </SafeAreaProvider>
     );
   }
 
   if (status === 'guest' || !auth) {
     return (
-      <>
-        <StatusBar barStyle="dark-content" />
+      <SafeAreaProvider>
+        <StatusBar barStyle="dark-content" backgroundColor={colors.background} translucent={false} />
         <AuthScreen onAuthSuccess={handleAuthSuccess} />
-      </>
+      </SafeAreaProvider>
     );
   }
 
   if (Platform.OS === 'web') {
     return (
-      <View style={styles.webPage}>
-        <View style={styles.webShell}>
-          <StatusBar barStyle="dark-content" />
-          <MainTabs auth={auth} onAuthUpdate={setAuth} onLogout={handleLogout} />
+      <SafeAreaProvider>
+        <View style={styles.webPage}>
+          <View style={styles.webShell}>
+            <StatusBar barStyle="dark-content" backgroundColor={colors.background} translucent={false} />
+            <MainTabs auth={auth} onAuthUpdate={setAuth} onLogout={handleLogout} />
+          </View>
         </View>
-      </View>
+      </SafeAreaProvider>
     );
   }
 
   return (
-    <>
-      <StatusBar barStyle="dark-content" />
+    <SafeAreaProvider>
+      <StatusBar barStyle="dark-content" backgroundColor={colors.background} translucent={false} />
       <MainTabs auth={auth} onAuthUpdate={setAuth} onLogout={handleLogout} />
-    </>
+    </SafeAreaProvider>
   );
 }
 

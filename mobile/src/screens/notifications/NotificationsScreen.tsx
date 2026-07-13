@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react';
-import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
+import { ActivityIndicator, Image, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import type { AuthResponse, NotificationFilter, NotificationItem, NotificationSettings } from '../../shared/api/types';
 import { BlizzIcon } from '../../shared/ui/BlizzIcon';
 import { colors } from '../../shared/ui/theme';
@@ -211,10 +211,26 @@ export function NotificationsScreen({ auth, onBack, onOpenPost, onOpenVideo, onO
   );
 }
 
+function NotifAvatar({ item }: { item: NotificationItem }) {
+  const letter = item.actor?.name?.slice(0, 1).toUpperCase() || categoryLabel(String(item.category)).slice(0, 1);
+  return (
+    <View style={styles.avatarWrap}>
+      {item.actor?.avatar ? (
+        <Image resizeMode="cover" source={{ uri: item.actor.avatar }} style={styles.avatarImg} />
+      ) : (
+        <View style={styles.avatarFallback}>
+          <Text style={styles.avatarLetter}>{letter}</Text>
+        </View>
+      )}
+      {!item.isRead ? <View style={styles.avatarBadge} /> : null}
+    </View>
+  );
+}
+
 function NotificationRow({ item, isLast, onPress }: { item: NotificationItem; isLast: boolean; onPress: () => void }) {
   return (
     <Pressable accessibilityRole="button" onPress={onPress} style={[styles.notifRow, !isLast && styles.notifRowBorder]}>
-      <View style={[styles.unreadDot, item.isRead && styles.unreadDotRead]} />
+      <NotifAvatar item={item} />
       <View style={styles.notifBody}>
         <View style={styles.notifTopRow}>
           <Text style={styles.notifCategory}>{categoryLabel(String(item.category))}</Text>
@@ -223,7 +239,6 @@ function NotificationRow({ item, isLast, onPress }: { item: NotificationItem; is
         <Text style={styles.notifTitle}>{item.title}</Text>
         {item.body ? <Text numberOfLines={2} style={styles.notifBodyText}>{item.body}</Text> : null}
       </View>
-      <BlizzIcon color={colors.border} name="chevronLeft" size={16} strokeWidth={2} />
     </Pressable>
   );
 }
@@ -314,27 +329,54 @@ const styles = StyleSheet.create({
     textAlign: 'center',
   },
 
+  // Avatar (NativeWindUI Avatar pattern)
+  avatarWrap: {
+    flexShrink: 0,
+    height: 44,
+    position: 'relative',
+    width: 44,
+  },
+  avatarImg: {
+    borderRadius: 22,
+    height: 44,
+    width: 44,
+  },
+  avatarFallback: {
+    alignItems: 'center',
+    backgroundColor: colors.softBlue,
+    borderRadius: 22,
+    height: 44,
+    justifyContent: 'center',
+    width: 44,
+  },
+  avatarLetter: {
+    color: colors.primary,
+    fontSize: 17,
+    fontWeight: '700',
+  },
+  avatarBadge: {
+    backgroundColor: colors.primary,
+    borderColor: colors.background,
+    borderRadius: 5,
+    borderWidth: 1.5,
+    height: 10,
+    position: 'absolute',
+    right: 0,
+    top: 0,
+    width: 10,
+  },
+
   // Notification row (flat, no card)
   notifRow: {
     alignItems: 'center',
     flexDirection: 'row',
     gap: 12,
     paddingHorizontal: 16,
-    paddingVertical: 14,
+    paddingVertical: 12,
   },
   notifRowBorder: {
     borderBottomColor: colors.border,
     borderBottomWidth: 1,
-  },
-  unreadDot: {
-    backgroundColor: colors.primary,
-    borderRadius: 5,
-    flexShrink: 0,
-    height: 8,
-    width: 8,
-  },
-  unreadDotRead: {
-    backgroundColor: 'transparent',
   },
   notifBody: {
     flex: 1,

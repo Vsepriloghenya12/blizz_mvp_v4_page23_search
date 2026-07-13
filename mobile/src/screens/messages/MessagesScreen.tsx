@@ -480,21 +480,52 @@ export function MessagesScreen({ auth, onBack, onOpenPost, onOpenStory, initialC
       {!loading && conversations.length === 0 ? <Text style={styles.emptyText}>{filter === 'group' ? 'Пока нет групп' : 'Пока нет сообщений'}</Text> : null}
 
       <ScrollView contentContainerStyle={styles.listContent}>
-        {conversations.map((conversation) => (
-          <Pressable accessibilityRole="button" key={conversation.id} onPress={() => openConversation(conversation.id)} style={styles.conversationCard}>
-            <View style={styles.avatarCircle}>
-              <Text style={styles.avatarText}>{conversation.title.slice(0, 1).toUpperCase()}</Text>
+        {conversations.map((conversation, index) => (
+          <Pressable
+            accessibilityRole="button"
+            key={conversation.id}
+            onPress={() => openConversation(conversation.id)}
+            style={[styles.conversationCard, index < conversations.length - 1 && styles.conversationCardBorder]}
+          >
+            <View style={styles.convAvatarWrap}>
+              {conversation.counterpart?.avatar ? (
+                <Image resizeMode="cover" source={{ uri: conversation.counterpart.avatar }} style={styles.convAvatarImg} />
+              ) : (
+                <View style={[styles.convAvatarFallback, conversation.type === 'group' && styles.convAvatarGroup, conversation.type === 'business' && styles.convAvatarBusiness]}>
+                  <Text style={styles.convAvatarLetter}>{conversation.title.slice(0, 1).toUpperCase()}</Text>
+                </View>
+              )}
+              {conversation.unreadCount > 0 ? (
+                <View style={styles.convBadge}>
+                  <Text style={styles.convBadgeText}>{conversation.unreadCount > 99 ? '99+' : String(conversation.unreadCount)}</Text>
+                </View>
+              ) : null}
             </View>
             <View style={styles.conversationBody}>
               <Text style={styles.conversationTitle}>{conversation.title}</Text>
-              <Text numberOfLines={1} style={styles.conversationPreview}>{conversation.lastMessagePreview}</Text>
+              <Text numberOfLines={1} style={styles.conversationPreview}>{conversation.lastMessagePreview || 'Нет сообщений'}</Text>
             </View>
-            <Text style={styles.conversationType}>{conversationTypeLabel(conversation)}</Text>
+            <View style={styles.convMeta}>
+              <Text style={styles.convTime}>{formatConvTime(conversation.lastMessageAt)}</Text>
+              <Text style={styles.conversationType}>{conversationTypeLabel(conversation)}</Text>
+            </View>
           </Pressable>
         ))}
       </ScrollView>
     </View>
   );
+}
+
+function formatConvTime(value: string) {
+  if (!value) return '';
+  const date = new Date(value);
+  if (Number.isNaN(date.getTime())) return '';
+  const now = new Date();
+  const diffMs = now.getTime() - date.getTime();
+  const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+  if (diffDays === 0) return date.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' });
+  if (diffDays < 7) return date.toLocaleDateString('ru-RU', { weekday: 'short' });
+  return date.toLocaleDateString('ru-RU', { day: '2-digit', month: 'short' });
 }
 
 function conversationSubtitle(conversation: ConversationItem) {
@@ -906,44 +937,105 @@ const styles = StyleSheet.create({
   },
   conversationCard: {
     alignItems: 'center',
-    backgroundColor: colors.surface,
-    borderColor: colors.border,
-    borderRadius: 18,
-    borderWidth: 1,
     flexDirection: 'row',
     gap: 12,
-    padding: 12
+    paddingHorizontal: 16,
+    paddingVertical: 12,
   },
+  conversationCardBorder: {
+    borderBottomColor: colors.border,
+    borderBottomWidth: 1,
+  },
+  // NativeWindUI Avatar pattern
+  convAvatarWrap: {
+    flexShrink: 0,
+    height: 48,
+    position: 'relative',
+    width: 48,
+  },
+  convAvatarImg: {
+    borderRadius: 24,
+    height: 48,
+    width: 48,
+  },
+  convAvatarFallback: {
+    alignItems: 'center',
+    backgroundColor: colors.softBlue,
+    borderRadius: 24,
+    height: 48,
+    justifyContent: 'center',
+    width: 48,
+  },
+  convAvatarGroup: {
+    backgroundColor: '#E8F0FE',
+  },
+  convAvatarBusiness: {
+    backgroundColor: '#FFF0E6',
+  },
+  convAvatarLetter: {
+    color: colors.primary,
+    fontSize: 18,
+    fontWeight: '700',
+  },
+  // NativeWindUI Badge pattern
+  convBadge: {
+    alignItems: 'center',
+    backgroundColor: colors.danger,
+    borderColor: colors.background,
+    borderRadius: 9,
+    borderWidth: 1.5,
+    bottom: 0,
+    justifyContent: 'center',
+    minWidth: 18,
+    paddingHorizontal: 3,
+    position: 'absolute',
+    right: -2,
+  },
+  convBadgeText: {
+    color: '#FFFFFF',
+    fontSize: 10,
+    fontWeight: '800',
+  },
+  // avatarCircle kept for group creator
   avatarCircle: {
     alignItems: 'center',
     backgroundColor: colors.softBlue,
     borderRadius: 22,
     height: 44,
     justifyContent: 'center',
-    width: 44
+    width: 44,
   },
   avatarText: {
     color: colors.primary,
     fontSize: 17,
-    fontWeight: '800'
+    fontWeight: '800',
   },
   conversationBody: {
-    flex: 1
+    flex: 1,
   },
   conversationTitle: {
     color: colors.textPrimary,
     fontSize: 15,
-    fontWeight: '800'
+    fontWeight: '700',
   },
   conversationPreview: {
     color: colors.textSecondary,
     fontSize: 13,
-    marginTop: 3
+    marginTop: 2,
+  },
+  convMeta: {
+    alignItems: 'flex-end',
+    gap: 4,
+    flexShrink: 0,
+  },
+  convTime: {
+    color: colors.textSecondary,
+    fontSize: 11,
   },
   conversationType: {
     color: colors.primary,
     fontSize: 11,
-    fontWeight: '800'
+    fontWeight: '700',
   },
   loadingBlock: {
     alignItems: 'center',

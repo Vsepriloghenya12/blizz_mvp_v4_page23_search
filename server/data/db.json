@@ -3,7 +3,7 @@
     "name": "Blizz MVP v4",
     "version": 1,
     "cleanedAt": "2026-06-14T00:00:00.000Z",
-    "updatedAt": "2026-06-18T20:00:49.404Z"
+    "updatedAt": "2026-06-21T21:26:52.913Z"
   },
   "users": [
     {
@@ -90,7 +90,7 @@
       "id": "account_67b5a263a9bcaea2f3c8",
       "type": "personal",
       "ownerUserId": "user_59faa106f3ab4c46c31b",
-      "name": "Пользователь",
+      "name": "Zzz",
       "username": "user_184088",
       "avatar": null,
       "bio": "",
@@ -98,7 +98,7 @@
       "isPrivate": false,
       "link": "",
       "createdAt": "2026-06-18T17:41:17.122Z",
-      "updatedAt": "2026-06-18T17:41:17.122Z"
+      "updatedAt": "2026-06-21T20:10:11.939Z"
     }
   ],
   "accountMemberships": [
@@ -165,10 +165,10 @@
       "isSavedByMe": false,
       "publishedAt": "2026-06-17T18:16:22.504Z",
       "createdAt": "2026-06-17T18:16:22.504Z",
-      "updatedAt": "2026-06-18T18:30:22.555Z",
+      "updatedAt": "2026-06-21T20:11:06.546Z",
       "tags": [],
       "visibility": "public",
-      "likeCount": 0
+      "likeCount": 1
     },
     {
       "id": "post_demo_002",
@@ -292,9 +292,9 @@
       "postId": "post_demo_001",
       "accountId": "account_67b5a263a9bcaea2f3c8",
       "userId": "user_59faa106f3ab4c46c31b",
-      "status": "removed",
+      "status": "active",
       "createdAt": "2026-06-18T18:30:20.315Z",
-      "updatedAt": "2026-06-18T18:30:22.555Z"
+      "updatedAt": "2026-06-21T20:11:06.546Z"
     }
   ],
   "postComments": [],
@@ -340,7 +340,7 @@
       "userId": "user_60472972b3053323644b",
       "type": "post_like",
       "category": "likes",
-      "title": "Пользователь отметил ваш пост",
+      "title": "Zzz отметил ваш пост",
       "body": "Новая отметка “Нравится”",
       "targetType": "post",
       "targetId": "post_demo_001",
@@ -351,7 +351,7 @@
       "isRead": false,
       "status": "active",
       "createdAt": "2026-06-18T18:30:20.316Z",
-      "updatedAt": "2026-06-18T18:30:22.087Z"
+      "updatedAt": "2026-06-21T20:11:06.546Z"
     }
   ],
   "notificationSettings": [
@@ -505,6 +505,33 @@
       "activeAccountId": "account_67b5a263a9bcaea2f3c8",
       "createdAt": "2026-06-18T18:13:42.007Z",
       "lastSeenAt": "2026-06-18T18:13:42.007Z",
+      "revokedAt": null
+    },
+    {
+      "id": "session_dc15ded5ee3d1a60c7f2",
+      "token": "blizz_session_be69354725d8178d5370c6cd40c0e265c7fed5c26a8e80ae0a8a95b1895dbbbb",
+      "userId": "user_59faa106f3ab4c46c31b",
+      "activeAccountId": "account_67b5a263a9bcaea2f3c8",
+      "createdAt": "2026-06-21T19:06:22.832Z",
+      "lastSeenAt": "2026-06-21T20:48:21.917Z",
+      "revokedAt": null
+    },
+    {
+      "id": "session_70f2dc8e9b995f1f3d3f",
+      "token": "blizz_session_0368b87e185d02473a8bbee8a2cc4e502a5e0224fe3eb4fd6250f76633e7d692",
+      "userId": "user_59faa106f3ab4c46c31b",
+      "activeAccountId": "account_67b5a263a9bcaea2f3c8",
+      "createdAt": "2026-06-21T20:09:21.241Z",
+      "lastSeenAt": "2026-06-21T20:10:11.939Z",
+      "revokedAt": null
+    },
+    {
+      "id": "session_04e89a69b21671c4e6bc",
+      "token": "blizz_session_5dc348ddc419a4f7ff7f196e051db54c85568e580d062d4c28dda42dbf7e7726",
+      "userId": "user_59faa106f3ab4c46c31b",
+      "activeAccountId": "account_67b5a263a9bcaea2f3c8",
+      "createdAt": "2026-06-21T21:26:52.911Z",
+      "lastSeenAt": "2026-06-21T21:26:52.911Z",
       "revokedAt": null
     }
   ]

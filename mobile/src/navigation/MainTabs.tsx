@@ -3,11 +3,11 @@ import {
   AccessibilityInfo,
   Image,
   Pressable,
-  SafeAreaView,
   StyleSheet,
   Text,
   View,
 } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 import type { AuthResponse } from "../shared/api/types";
 import { BlizzIcon, type BlizzIconName } from "../shared/ui/BlizzIcon";
 import { colors } from "../shared/ui/theme";
@@ -122,10 +122,10 @@ type TabConfig = {
 
 const tabs: TabConfig[] = [
   { key: "home", label: "Главная", icon: "home" },
-  { key: "video", label: "Видео", icon: "play" },
-  { key: "create", label: "Создать", icon: "plus" },
-  { key: "map", label: "Карта", icon: "mapPin" },
-  { key: "profile", label: "Профиль", icon: "user" },
+  { key: "video", label: "Видео", icon: "video" },
+  { key: "create", label: "Создать", icon: "create" },
+  { key: "map", label: "Карта", icon: "map" },
+  { key: "profile", label: "Профиль", icon: "profile" },
 ];
 
 type MainTabsProps = {
@@ -1030,19 +1030,12 @@ export function MainTabs({ auth, onAuthUpdate, onLogout }: MainTabsProps) {
               onPress={() => openTab(tab.key)}
               style={styles.tabItem}
             >
-              <View
-                style={[
-                  styles.tabIcon,
-                  isCreate && styles.createIcon,
-                  active && !isCreate && styles.tabIconActive,
-                ]}
-              >
+              <View style={[styles.tabIcon, active && !isCreate && styles.tabIconActive]}>
                 <BlizzIcon
-                  color={isCreate ? "#FFFFFF" : active ? colors.primary : colors.textPrimary}
-                  filled={active && !isCreate}
-                  fillColor={active ? colors.primary : undefined}
+                  active={active && !isCreate}
+                  color={active && !isCreate ? colors.primary : colors.textPrimary}
                   name={tab.icon}
-                  size={isCreate ? 27 : 24}
+                  size={isCreate ? 38 : 24}
                 />
               </View>
             </Pressable>
@@ -1099,10 +1092,8 @@ const styles = StyleSheet.create({
   tabIconActive: {
     backgroundColor: "transparent"
   },
-  createIcon: {
-    backgroundColor: "#0B3D99",
-    borderRadius: 13,
-    height: 40,
-    width: 40
+  createIconPlaceholder: {
+    height: 0,
+    width: 0
   }
 });
